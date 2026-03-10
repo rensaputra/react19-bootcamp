@@ -1,2 +1,4 @@
-# react19-bootcamp
-Full-stack code dump from my 2026 React 19 bootcamp. Features Stripe integration, JWT auth, and full CRUD with MySQL. Powered by Next.js &amp; TypeScript.
+# react19-bootcamp 🚀
+
+💀 The Lore
+I spent 28 hours locked in a room with React 19 so you don’t have to.
