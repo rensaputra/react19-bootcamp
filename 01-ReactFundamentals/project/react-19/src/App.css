@@ -8,3 +8,9 @@
   gap: 6px;
   font-weight: 600;
 }
+
+.product-list {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
