@@ -14,7 +14,7 @@
 
 ## Creating first project: React 19
 
-- **Creating a React Project**: Use npx create-react-app followed by the app name to create a new project with the latest version of React.
+- **Creating a React Project**: Use `npx create-react-app` followed by the app name to create a new project with the latest version of React.
 - **Installing Specific React Versions**: After creating the project, navigate to the project directory and use npm install with the specific version number to install a particular version of React and React-DOM.
 - **Role of package.json**: This file stores metadata about the project, including its dependencies, scripts for common tasks, and development dependencies.
 - **Role of package-lock.json**: Ensures consistent installation of dependencies across different environments by locking the exact versions used. Deleting this file can lead to unpredictable behavior, so it is best not to remove it manually.
