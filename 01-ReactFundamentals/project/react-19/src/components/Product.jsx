@@ -1,11 +1,13 @@
 const Product = ({ product }) => {
   return (
-    <div className="card">
-      <img src={product.image} alt={product.name} width={120} height={120} />
-      <span>{product.id}</span>
-      <span>{product.name}</span>
-      <span>${product.price}</span>
-    </div>
+    product.isActive && (
+      <div className="card">
+        <img src={product.image} alt={product.name} width={120} height={120} />
+        <span>{product.id}</span>
+        <span>{product.name}</span>
+        <span>${product.price}</span>
+      </div>
+    )
   );
 };
 

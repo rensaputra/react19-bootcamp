@@ -76,3 +76,26 @@
 - **Using Props**: Props (properties) are used to pass data from one component to another, making components dynamic.
 - **Passing Data**: Data such as strings, numbers, objects, arrays, functions, and variables can be passed as props.
 - **Accessing Props**: Props are received as an object in the component, and their values can be accessed using the dot notation or destructuring.
+
+### Q&A
+
+Q: What is prop drilling?
+
+> The process of passing data or props from parent component to one or more child components is called prop drilling. It occurs when a prop needs to be passed through several layer of child componnts to reach deeply nested child, which actually needs the data. In that process, each intermediary componnet in the herarchy has to pass the props to another componenet even if it does not use the prop itself.
+
+## Conditional Rendering
+
+- **Conditional Rendering with If Statements**: You can use if statements to conditionally render JSX based on a condition. If the condition is false, you can return an alternative UI element or null.
+- **Ternary Operators**: The ternary operator allows you to conditionally render JSX directly within the return statement. It takes a condition followed by a question mark, then the JSX to render if true, and finally a colon with the JSX to render if false.
+- **Logical AND Operator**: The logical AND operator (&&) can be used to render JSX only when a condition is true. If the condition is false, nothing is rendered.
+
+## Basic event handling
+
+- **Event Handling in React**: React allows developers to handle user events using a declarative approach, making it easier to create interactive and dynamic user interfaces.
+- **Handling Click Events**: To handle a click event, use the `onClick` attribute in camel case and assign a function to it without parentheses.
+- **Common Event Handlers**: React supports various event handlers such as `onChange`, `onSubmit`, `onKeyDown`, `onKeyUp`, and `onMouseEnter` for different user interactions.
+
+## Parameter passing
+
+- **Passing Parameters**: To pass parameters to an event handler function, use an arrow function in the onClick property to return the event handler function.
+- **Avoiding Unexpected Behavior**: If you use parentheses right after the function in JSX, the function will be called during rendering, which is unexpected. Using an arrow function prevents this issue.

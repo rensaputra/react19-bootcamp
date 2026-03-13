@@ -14,3 +14,24 @@
   flex-direction: row;
   gap: 10px;
 }
+
+.employee-card{
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border: 1px solid #000000;
+  width: fit-content;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.employee-list {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.title-card {
+  font-size: 24px;
+  font-weight: 700;
+}
