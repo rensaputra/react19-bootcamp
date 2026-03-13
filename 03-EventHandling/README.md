@@ -95,3 +95,9 @@ function handleDivClick(event) {
 - **State Management**: Use separate states for each input field or a single state object to manage multiple input values.
 - **Event Handling**: Use the onChange event to update state with input values in real-time.
 - **Form Submission**: Prevent the default form submission behavior using `e.preventDefault()` and update a separate state to store the submitted data.
+
+## Form states as Object
+
+- **State as Object**: Use an object to manage multiple form values within a single state.
+- **Updating State**: Use the spread operator to update specific properties within the state object without losing other properties.
+- **Rendering State**: Convert the state object to a string using JSON.stringify for rendering in JSX.

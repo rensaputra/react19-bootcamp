@@ -3,27 +3,32 @@ import "./App.css";
 import EventPropagation from "./components/EventPropagation";
 
 function App() {
-  let [name, setName] = useState("");
-  let [email, setEmail] = useState("");
-  let [phoneNumber, setPhoneNumber] = useState();
-  let [data, setData] = useState("");
+  let [data, setData] = useState({
+    name: "",
+    email: "",
+    phoneNumber: NaN,
+  });
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    setData(`${name}, ${email}, ${phoneNumber}`);
+    setData({
+      name: data.name,
+      email: data.email,
+      phoneNumber: data.phoneNumber,
+    });
     console.log("Form submitted");
   };
 
   const handleNameChange = (e: any) => {
-    setName(e.target.value);
+    setData({ ...data, name: e.target.value });
   };
 
   const handleEmailChange = (e: any) => {
-    setEmail(e.target.value);
+    setData({ ...data, email: e.target.value });
   };
 
   const handlePhoneNumberChange = (e: any) => {
-    setPhoneNumber(e.target.value);
+    setData({ ...data, phoneNumber: Number(e.target.value) });
   };
 
   return (
@@ -50,7 +55,7 @@ function App() {
         <button type="submit">Submit</button>
       </form>
       <br />
-      <h3>{data}</h3>
+      <h3>{`${data.name}, ${data.email}, ${data.phoneNumber}`}</h3>
       <EventPropagation />
     </div>
   );
