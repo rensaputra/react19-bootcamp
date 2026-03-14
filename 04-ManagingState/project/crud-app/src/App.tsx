@@ -1,67 +1,11 @@
 import React from "react";
 import ProductCard from "./components/ProductCard";
 import AddProductModal from "./components/AddProductModal";
-
-const productList = [
-  {
-    productCode: "001",
-    productName: "Apple",
-    price: 20,
-  },
-  {
-    productCode: "002",
-    productName: "Banana",
-    price: 10,
-  },
-  {
-    productCode: "003",
-    productName: "Cucumber",
-    price: 5,
-  },
-  {
-    productCode: "004",
-    productName: "Pineapple",
-    price: 12,
-  },
-  {
-    productCode: "005",
-    productName: "Watermelon",
-    price: 15,
-  },
-  {
-    productCode: "006",
-    productName: "Grapes",
-    price: 8,
-  },
-  {
-    productCode: "007",
-    productName: "Mango",
-    price: 18,
-  },
-  {
-    productCode: "008",
-    productName: "Strawberry",
-    price: 25,
-  },
-  {
-    productCode: "009",
-    productName: "Blueberry",
-    price: 30,
-  },
-  {
-    productCode: "010",
-    productName: "Orange",
-    price: 12,
-  },
-  {
-    productCode: "011",
-    productName: "Pear",
-    price: 10,
-  },
-];
+import { Product } from "./types";
 
 function App() {
   const [isOpen, setIsOpen] = React.useState(false);
+  const [productList, setProductList] = React.useState<Product[]>([]);
 
   const handleOpenModal = () => {
     setIsOpen(true);
@@ -69,6 +13,10 @@ function App() {
 
   const handleCloseModal = () => {
     setIsOpen(false);
+  };
+
+  const handleAddProduct = (product: Product) => {
+    setProductList((prev) => [...prev, product]);
   };
 
   return (
@@ -84,18 +32,29 @@ function App() {
             Add Product
           </button>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-          {productList.map((product) => (
-            <ProductCard
-              key={product.productCode}
-              productCode={product.productCode}
-              productName={product.productName}
-              price={product.price}
-            />
-          ))}
-        </div>
+        {productList.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+            {productList.map((product) => (
+              <ProductCard
+                key={product.productCode}
+                productCode={product.productCode}
+                productName={product.productName}
+                price={product.price}
+              />
+            ))}
+          </div>
+        ) : (
+          <h1 className="text-xl font-medium text-center col-span-6">
+            No products available
+          </h1>
+        )}
       </div>
-      {isOpen && <AddProductModal handleCloseModal={handleCloseModal} />}
+      {isOpen && (
+        <AddProductModal
+          handleCloseModal={handleCloseModal}
+          handleAddProduct={handleAddProduct}
+        />
+      )}
     </>
   );
 }
