@@ -9,6 +9,7 @@ Full-stack code dump from my 2026 React 19 bootcamp. Features Stripe integration
 - React
 - TypeScript
 - NextJS
+- Tailwind CSS
 
 ## Table of Contents
 
