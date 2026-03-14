@@ -6,10 +6,16 @@ interface ProductCardProps {
   price: number;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({
+const ProductCard = ({
   productCode,
   productName,
   price,
+  handleDeleteProduct,
+}: {
+  productCode: string;
+  productName: string;
+  price: number;
+  handleDeleteProduct: (productCode: string) => void;
 }) => {
   return (
     <div className="border rounded-lg p-5 flex flex-col gap-2 font-semibold shadow-lg w-[240px] text-2xl">
@@ -26,6 +32,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         <button
           type="button"
           className="bg-red-500 text-white rounded-md px-2 py-1 font-semibold w-full"
+          onClick={() => handleDeleteProduct(productCode)}
         >
           Delete
         </button>

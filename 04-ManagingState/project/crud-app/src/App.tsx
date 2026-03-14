@@ -19,6 +19,11 @@ function App() {
     setProductList((prev) => [...prev, product]);
   };
 
+  const handleDeleteProduct = (productCode: string) => {
+    setProductList((prev) =>
+      prev.filter((product) => product.productCode !== productCode),
+    );
+  };
   return (
     <>
       <div className="w-full max-w-5xl mx-auto">
@@ -40,6 +45,7 @@ function App() {
                 productCode={product.productCode}
                 productName={product.productName}
                 price={product.price}
+                handleDeleteProduct={handleDeleteProduct}
               />
             ))}
           </div>
