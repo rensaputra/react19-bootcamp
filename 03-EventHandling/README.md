@@ -101,3 +101,89 @@ function handleDivClick(event) {
 - **State as Object**: Use an object to manage multiple form values within a single state.
 - **Updating State**: Use the spread operator to update specific properties within the state object without losing other properties.
 - **Rendering State**: Convert the state object to a string using JSON.stringify for rendering in JSX.
+
+## Single event handler using dynamic key
+
+- **Single Event Handler**: Create a single event handler function to manage multiple input fields in a form.
+- **Dynamic Keys**: Use the event object to get the reference of the input field and apply dynamic keys using ES6 features.
+- **Code Conciseness**: Simplify the code by removing multiple event handlers and using a single handler for all input fields.
+
+## Functional update: The correct way
+
+```
+import React, { useState } from 'react';
+
+function Form() {
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    phoneNumber: '',
+    city: ''
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  return (
+    <form>
+      <input
+        type="text"
+        name="firstName"
+        value={formData.firstName}
+        onChange={handleInputChange}
+        placeholder="First Name"
+      />
+      <input
+        type="text"
+        name="lastName"
+        value={formData.lastName}
+        onChange={handleInputChange}
+        placeholder="Last Name"
+      />
+      <input
+        type="text"
+        name="phoneNumber"
+        value={formData.phoneNumber}
+        onChange={handleInputChange}
+        placeholder="Phone Number"
+      />
+      <input
+        type="text"
+        name="city"
+        value={formData.city}
+        onChange={handleInputChange}
+        placeholder="City"
+      />
+    </form>
+  );
+}
+
+export default Form;
+```
+
+## Input fields: Checkbox
+
+- **Checkbox Handling**: Use the checked property instead of value for checkboxes to get boolean values.
+- **Separate Event Handlers**: Create separate event handlers for checkboxes if needed, or use conditional logic within a single handler.
+- **Practical Implementation**: Implement the checkbox handling by adding a property to the state and updating it based on the checked property of the event target.
+
+## Input fields: Radio button
+
+- **Radio Buttons**: Used when a user needs to select one option from multiple options.
+- **State Management**: Store the selected value in the state using a boolean for single radio buttons or a string for groups.
+- **Event Handling**: Use the onChange event handler to update the state with the selected value.
+- **Name Attribute**: Ensure all radio buttons in a group have the same name attribute to allow only one selection at a time.
+
+## Event handling
+
+- **onFocus Event**: Triggered when an element receives focus, commonly used to execute functions or perform actions when the element gains focus.
+- **onBlur Event**: Triggered when an element loses focus, opposite of the onFocus event.
+- **onKeyUp Event**: Triggers when a key is released and can be monitored using JavaScript.
+- **onKeyDown Event**: Triggers when a key is pressed in a browser.
+- **onMouseEnter Event**: Triggers when the mouse cursor enters the boundaries of an element. Useful for initiating actions when the user's cursor hovers over an element.
+- **onMouseLeave Event**: Triggers when the mouse cursor leaves the boundaries of an element. Useful for handling actions when the cursor moves away from an element.
