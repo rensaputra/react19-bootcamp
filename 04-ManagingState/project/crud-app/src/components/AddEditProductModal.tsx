@@ -1,18 +1,25 @@
 import React from "react";
 import { Product } from "../types";
 
-const AddProductModal = ({
+const AddEditProductModal = ({
   handleCloseModal,
   handleAddProduct,
+  selectedProduct,
+  handleUpdateProduct,
 }: {
   handleCloseModal: () => void;
   handleAddProduct: (product: Product) => void;
+  selectedProduct: Product | null;
+  handleUpdateProduct: (updatedProduct: Product) => void;
 }) => {
-  const [data, setData] = React.useState<Product>({
-    productCode: "",
-    productName: "",
-    price: 0,
-  });
+  const [data, setData] = React.useState<Product>(
+    selectedProduct || {
+      productCode: "",
+      productName: "",
+      price: 0,
+      isActive: true,
+    },
+  );
 
   const handleInputChange = (e: any) => {
     const { name, value } = e.target;
@@ -22,9 +29,22 @@ const AddProductModal = ({
     }));
   };
 
+  const handleCheckboxChange = (e: any) => {
+    const { name, checked } = e.target;
+    setData((prev) => ({
+      ...prev,
+      [name]: checked,
+    }));
+  };
+
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    handleAddProduct(data);
+    if (selectedProduct) {
+      handleUpdateProduct(data);
+    } else {
+      console.log(`Adding new product: ${data.productName}`);
+      handleAddProduct(data);
+    }
     handleCloseModal();
   };
 
@@ -39,17 +59,20 @@ const AddProductModal = ({
         >
           &times;
         </button>
-        <h1 className="text-2xl font-semibold mb-6">Add New Product</h1>
+        <h1 className="text-2xl font-semibold mb-6">
+          {selectedProduct ? "Edit Product" : "Add New Product"}
+        </h1>
         <form className="gap-2 flex flex-col">
           <div>
             <label className="font-medium">Product Code: </label>
             <input
-              className="w-full border rounded px-2 py-1"
+              className="w-full border rounded px-2 py-1 disabled:bg-gray-200 disabled:text-gray-500"
               type="text"
               placeholder="Product Code"
               name="productCode"
               value={data.productCode}
               onChange={handleInputChange}
+              disabled={selectedProduct ? true : false}
             ></input>
           </div>
           <div>
@@ -74,6 +97,16 @@ const AddProductModal = ({
               onChange={handleInputChange}
             ></input>
           </div>
+          <div>
+            <input
+              className="mr-2"
+              type="checkbox"
+              name="isActive"
+              checked={data.isActive}
+              onChange={handleCheckboxChange}
+            ></input>
+            <label className="font-medium">Is Active</label>
+          </div>
           <button
             type="submit"
             className="bg-blue-500 text-white py-2 px-4 rounded-md font-semibold mt-2"
@@ -87,4 +120,4 @@ const AddProductModal = ({
   );
 };
 
-export default AddProductModal;
+export default AddEditProductModal;

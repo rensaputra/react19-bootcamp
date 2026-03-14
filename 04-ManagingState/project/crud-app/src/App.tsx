@@ -1,11 +1,14 @@
 import React from "react";
 import ProductCard from "./components/ProductCard";
-import AddProductModal from "./components/AddProductModal";
+import AddEditProductModal from "./components/AddEditProductModal";
 import { Product } from "./types";
 
 function App() {
   const [isOpen, setIsOpen] = React.useState(false);
   const [productList, setProductList] = React.useState<Product[]>([]);
+  const [selectedProduct, setSelectedProduct] = React.useState<Product | null>(
+    null,
+  );
 
   const handleOpenModal = () => {
     setIsOpen(true);
@@ -13,6 +16,7 @@ function App() {
 
   const handleCloseModal = () => {
     setIsOpen(false);
+    setSelectedProduct(null);
   };
 
   const handleAddProduct = (product: Product) => {
@@ -24,6 +28,23 @@ function App() {
       prev.filter((product) => product.productCode !== productCode),
     );
   };
+
+  const handleEditProduct = (product: Product) => {
+    console.log(product);
+    setSelectedProduct(product);
+    setIsOpen(true);
+  };
+
+  const handleUpdateProduct = (updatedProduct: Product) => {
+    setProductList((prev) =>
+      prev.map((product) =>
+        product.productCode === updatedProduct.productCode
+          ? updatedProduct
+          : product,
+      ),
+    );
+  };
+
   return (
     <>
       <div className="w-full max-w-5xl mx-auto">
@@ -39,15 +60,26 @@ function App() {
         </div>
         {productList.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-            {productList.map((product) => (
-              <ProductCard
-                key={product.productCode}
-                productCode={product.productCode}
-                productName={product.productName}
-                price={product.price}
-                handleDeleteProduct={handleDeleteProduct}
-              />
-            ))}
+            {productList
+              .filter((product) => product.isActive)
+              .map((product) => (
+                <ProductCard
+                  key={product.productCode}
+                  product={product}
+                  handleDeleteProduct={handleDeleteProduct}
+                  handleEditProduct={handleEditProduct}
+                />
+              ))}
+            {productList
+              .filter((product) => !product.isActive)
+              .map((product) => (
+                <ProductCard
+                  key={product.productCode}
+                  product={product}
+                  handleDeleteProduct={handleDeleteProduct}
+                  handleEditProduct={handleEditProduct}
+                />
+              ))}
           </div>
         ) : (
           <h1 className="text-xl font-medium text-center col-span-6">
@@ -56,9 +88,11 @@ function App() {
         )}
       </div>
       {isOpen && (
-        <AddProductModal
+        <AddEditProductModal
           handleCloseModal={handleCloseModal}
           handleAddProduct={handleAddProduct}
+          selectedProduct={selectedProduct}
+          handleUpdateProduct={handleUpdateProduct}
         />
       )}
     </>
