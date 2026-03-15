@@ -1,3 +1,5 @@
+import { Link, Outlet } from "react-router";
+
 const Products = () => {
   const products = [
     {
@@ -34,23 +36,28 @@ const Products = () => {
     },
   ];
   return (
-    <div className="m-6 flex gap-4">
-      {products.map((product) => (
-        <div
-          key={product.id}
-          className="border border-gray-50 rounded-md shadow-md w-fit"
-        >
-          <img
-            src={product.image}
-            alt={product.name}
-            className="h-[240px] w-[240px] object-contain"
-          />
-          <div className="bg-gray-300 text-xl text-center font-semibold p-2 rounded-b-md">
-            <span>{product.name}</span>
-          </div>
-        </div>
-      ))}
-    </div>
+    <>
+      <div className="m-6 flex gap-4">
+        {products.map((product) => (
+          <Link to={`/products/${product.id}`} key={product.id}>
+            <div
+              key={product.id}
+              className="border border-gray-50 rounded-md shadow-md w-fit"
+            >
+              <img
+                src={product.image}
+                alt={product.name}
+                className="h-[240px] w-[240px] object-contain"
+              />
+              <div className="bg-gray-300 text-xl text-center font-semibold p-2 rounded-b-md">
+                <span>{product.name}</span>
+              </div>
+            </div>
+          </Link>
+        ))}
+      </div>
+      <Outlet />
+    </>
   );
 };
 

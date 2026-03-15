@@ -81,5 +81,48 @@ function App() {
 ## Not found page (404)
 
 - **Creating a 404 Not Found Component**: Create a `notfound.tsx` file and define a component that returns the text '404 Not Found'.
-- **Configuring the Route**: In `app.js`, use the Route component with the path attribute set to an asterisk (*) to catch all invalid URLs and render the Not Found component.
+- **Configuring the Route**: In `app.js`, use the Route component with the path attribute set to an asterisk (`*`) to catch all invalid URLs and render the Not Found component.
 - **Wildcard Character**: The asterisk (`*`) acts as a wildcard to match any URL that doesn't match other defined routes. 
+```
+<Route path="*" element={<NotFound />} />
+```
+
+## Dynamically handling nested routes: Route parameter
+
+- **Dynamic Routes**: Use dynamic routes to handle multiple products by using the asterisk (*) or route parameters (e.g., `/product/:productName`).
+- **Route Parameters**: Replace static paths with route parameters to dynamically capture URL segments (e.g., `/product/:id)`.
+- **useParams Hook**: Utilize the `useParams` hook from React Router to extract and use route parameters within components.
+- **Rendering Components**: Configure routes to render the appropriate component based on the dynamic URL segment. 
+
+## Layout: Outlet/component
+
+- **Common Layout**: This part explains how to create a common layout for product detail pages, ensuring that the product list remains visible while displaying product details below the product cards.
+- **Parent and Child Routes**: The products component is set as a parent route, and the product details component is nested as a child route.
+- **Outlet Component**: Use the Outlet component from React Router to render child components within the parent component.
+- **Persistent Interface**: The layout ensures that the product cards are persistent even when navigating to the product detail route.
+![Feature Demo](./docs/screenshots/outlet.png)
+```
+function Products() {
+  return (
+    <div>
+      <h1>Products</h1>
+      <Outlet />
+    </div>
+  );
+}
+```
+```
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/products" element={<Products />}>
+          <Route path=":id" element={<ProductDetails />} />
+        </Route>
+      </Routes>
+    </Router>
+  );
+}
+```
