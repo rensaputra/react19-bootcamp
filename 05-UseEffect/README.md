@@ -33,3 +33,32 @@ function App() {
 
 export default App;
 ```
+## Using simple useEfect() hook
+
+- **useEffect Hook**: The `useEffect` hook is used to handle side effects in functional components, similar to lifecycle methods in class components.
+- **Dependency Array**: The `useEffect` hook takes a second argument called the dependency array, which determines when the effect should be run. If the dependency array is empty, the effect runs only once when the component mounts.
+- **Component Re-renders**: Without the dependency array, the `useEffect` hook runs on every re-render of the component. Including dependencies ensures it only runs when those specific values change.
+- The useEffect() hoook handles the `componentDidMount()`, `componentDidUpdate()` & the `componentWillUnmount()` methods of component life cycle.
+
+## useEffect(): Cleanup function
+
+- **useEffect Hook**: The useEffect hook is used to handle side effects in functional components, similar to lifecycle methods in class components.
+- **Cleanup Function**: The cleanup function in the `useEffect` hook helps to clean up resources or side effects when a component unmounts or before the effect reruns, preventing memory leaks and ensuring smooth application performance.
+- **Event Listeners**: The video demonstrates adding and removing event listeners using `window.addEventListener` and `window.removeEventListener` within the useEffect hook to manage side effects efficiently.
+```
+useEffect(() => {
+  // Code to run when the component mounts or updates
+  
+  return () => {
+    // Cleanup code to run when the component unmounts or before the effect runs again
+  };
+}, [/* dependencies */]);
+```
+## The right place to call the useEffect() hook
+
+- **useEffect Hook Usage**: The `useEffect` hook should only be called at the top level of your component or custom hooks, not inside loops or conditions.
+- **Error Handling**: Attempting to use `useEffect` inside a function, loop, or condition will result in an error.
+- **Consistent Order**: React hooks, including `useEffect`, must be called in the exact same order in every component render to avoid errors.  
+---
+- **useEffect Hook Usage**: The `useEffect` hook should only be used when synchronizing with external systems like APIs or event listeners.
+- **Avoid Unnecessary useEffect**: If you don't need to interact with external systems, avoid using the `useEffect` hook to prevent unnecessary re-renders**

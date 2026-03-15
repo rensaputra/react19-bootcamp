@@ -1,14 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
+import Counter from "./components/Counter";
 
 function App() {
-  useEffect(() => {
-    console.log("Component mounted");
-  });
+  const [show, setShow] = useState(true);
+  const toggleCounterSection = () => {
+    setShow(!show);
+  };
 
   return (
     <div>
-      <h1>Hello World</h1>
+      {show && <Counter />}
+      <button onClick={toggleCounterSection}>
+        {show ? "Hide" : "Show"} Counter
+      </button>
     </div>
   );
 }
