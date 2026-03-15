@@ -56,7 +56,7 @@ const Products = () => {
           </Link>
         ))}
       </div>
-      <Outlet />
+      <Outlet context={products} />
     </>
   );
 };

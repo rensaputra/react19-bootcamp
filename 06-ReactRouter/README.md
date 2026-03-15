@@ -144,3 +144,31 @@ function App() {
   </Route>
 </Routes>
 ```
+
+## Passing data to child component
+
+- **useOutletContext Hook**: The `useOutletContext` hook is used in the child component to fetch the data passed through the context attribute.
+```
+import { Outlet } from 'react-router-dom';
+import { useOutletContext } from 'react-router-dom';
+
+// Parent Component
+const ParentComponent = () => {
+  const products = [/* your products data */];
+  return (
+    <div>
+      <Outlet context={products} />
+    </div>
+  );
+};
+
+// Child Component
+const ChildComponent = () => {
+  const products = useOutletContext();
+  return (
+    <div>
+      {/* Use the products data here */}
+    </div>
+  );
+```
+
