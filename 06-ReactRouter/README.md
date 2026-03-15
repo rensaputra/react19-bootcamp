@@ -171,4 +171,67 @@ const ChildComponent = () => {
     </div>
   );
 ```
+---
+**IDEAL WAY**
+- **Passing Data with State Attribute**: You can pass data from a parent component to a child component using the state attribute in the link component.
+- **useLocation Hook**: The useLocation hook is used in the child component to fetch the data passed through the state attribute.
+- **Rendering Selected Product**: By using the state property, you can pass the selected product's data directly, which is a better practice than passing the entire product array. 
+```
+import { Link, useLocation } from 'react-router-dom';
 
+// Parent Component
+const ParentComponent = () => {
+  const products = [/* your products data */];
+  return (
+    <div>
+      {products.map(product => (
+        <Link to={`/product/${product.id}`} state={product} key={product.id}>
+          {product.name}
+        </Link>
+      ))}
+    </div>
+  );
+};
+
+// Child Component
+const ChildComponent = () => {
+  const location = useLocation();
+  const product = location.state;
+  return (
+    <div>
+      <h1>{product.name}</h1>
+      <p>{product.description}</p>
+    </div>
+  );
+};
+```
+## Understanding the useRoutes() hook
+
+- **useRoutes Hook**: The `useRoutes` hook allows you to configure routes using an array of objects instead of JSX components.
+- **Route Configuration**: Each object in the array represents a route, with properties like path, element, and children for nested routes.
+- **Parent and Child Routes**: You can configure parent routes with layout components and nest child routes within them.
+- **Rendering Routes**: The configured routes are rendered using the routeElements variable inside curly brackets.
+- **Flexibility**: Both the `useRoutes` hook and the traditional `route and routes` components can be used interchangeably based on **preference**. 
+```
+import { useRoutes } from 'react-router-dom';
+
+const App = () => {
+  const routes = [
+    { path: '/', element: <Home /> },
+    { path: 'about', element: <About /> },
+    { path: 'products', element: <Products />, children: [
+      { path: ':id', element: <ProductDetails /> }
+    ]},
+    { path: '*', element: <NotFound /> }
+  ];
+
+  const routeElements = useRoutes(routes);
+
+  return (
+    <div>
+      {routeElements}
+    </div>
+  );
+};
+
+```

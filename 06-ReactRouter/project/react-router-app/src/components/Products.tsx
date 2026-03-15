@@ -39,7 +39,7 @@ const Products = () => {
     <>
       <div className="m-6 flex gap-4">
         {products.map((product) => (
-          <Link to={`/products/${product.id}`} key={product.id}>
+          <Link to={`/products/${product.id}`} key={product.id} state={product}>
             <div
               key={product.id}
               className="border border-gray-50 rounded-md shadow-md w-fit"
@@ -56,7 +56,7 @@ const Products = () => {
           </Link>
         ))}
       </div>
-      <Outlet context={products} />
+      <Outlet />
     </>
   );
 };
