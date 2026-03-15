@@ -62,3 +62,23 @@ useEffect(() => {
 ---
 - **useEffect Hook Usage**: The `useEffect` hook should only be used when synchronizing with external systems like APIs or event listeners.
 - **Avoid Unnecessary useEffect**: If you don't need to interact with external systems, avoid using the `useEffect` hook to prevent unnecessary re-renders**
+---
+- **Strict Mode in React**: React's strict mode runs an extra development-only setup plus cleanup cycle before the first real setup to stress test the cleanup logic.
+- **useEffect Hook**: The `useEffect` hook runs an extra time in strict mode, which can cause issues if the cleanup function is missing or incomplete.
+- **Cleanup Function**: Implementing a cleanup function in the useEffect hook is crucial to ensure that any setup logic is fully undone, preventing issues like memory leaks.
+---
+- **useEffect Hook**: The useEffect hook in React reruns the effect whenever any dependency changes.
+- **Dependency Array**: Including objects or functions defined inside the component in the dependency array can cause the effect to rerun more often than needed.
+- **Optimization**: To avoid unnecessary re-renders, remove unnecessary object and function dependencies from the dependency array and extract state updates and non-reactive logic outside of the effect. 
+---
+- **useEffect Hook**: The useEffect hook runs asynchronously after the DOM has been painted, which can cause visual issues like flickering if the effect modifies the DOM.
+- **useLayoutEffect Hook**: The useLayoutEffect hook runs synchronously before the browser repaints the screen, making it suitable for effects that modify the DOM and need to avoid visual issues.
+- **Practical Example**: The video demonstrates how replacing useEffect with useLayoutEffect can prevent flickering in a tooltip component by ensuring the effect runs before the screen is repainted. 
+---
+- **Effect Timing: When an effect is caused by an interaction like a click, React may run the effect before the browser paints the updated screen.
+- **Blocking Tasks**: For blocking tasks like alerts, use the setTimeout method to defer the effect until after the browser completes its paint cycle.
+- **Practical Example**: The video demonstrates using setTimeout in the useEffect hook to ensure the screen updates before displaying an alert, preventing delays in visual updates. 
+---
+- **Client-Side Rendering**: The HTML or interface is generated on the browser at runtime.
+- **Server-Side Rendering**: The HTML is generated on the server for a specific request or device and then sent to the browser.
+- **useEffect Hook**: The `useEffect` hook only runs on the client side because it relies on browser APIs that are not available on the server. 
