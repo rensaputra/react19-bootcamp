@@ -4,6 +4,7 @@ import Home from "./components/Home";
 import Products from "./components/Products";
 import About from "./components/About";
 import { Routes, Route, Link } from "react-router";
+import NotFound from "./components/NotFound";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />
         <Route path="/about" element={<About />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );

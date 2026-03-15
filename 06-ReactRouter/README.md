@@ -78,3 +78,8 @@ function App() {
   );
 }
 ```
+## Not found page (404)
+
+- **Creating a 404 Not Found Component**: Create a `notfound.tsx` file and define a component that returns the text '404 Not Found'.
+- **Configuring the Route**: In `app.js`, use the Route component with the path attribute set to an asterisk (*) to catch all invalid URLs and render the Not Found component.
+- **Wildcard Character**: The asterisk (`*`) acts as a wildcard to match any URL that doesn't match other defined routes. 
