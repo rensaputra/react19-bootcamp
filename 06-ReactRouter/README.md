@@ -126,3 +126,21 @@ function App() {
   );
 }
 ```
+## index attribute: Referring the parent route
+
+- **Nested Routes**: The video explains how to configure nested routes, where subroutes are defined within a main route.
+- **Root Route**: All routes should be children of the root route (`/`).
+- **Index Route**: Use the `index` attribute to point to the parent route by default.
+- **Persistent Layout**: Ensure that components like product cards remain visible by assigning them to the parent route component. 
+```
+<Routes>
+  <Route path="/">
+    <Route index element={<Home />} />
+    <Route path="/products" element={<Products />}>
+      <Route path=":id" element={<ProductDetails />} />
+    </Route>
+    <Route path="/about" element={<About />} />
+    <Route path="*" element={<NotFound />} />
+  </Route>
+</Routes>
+```
