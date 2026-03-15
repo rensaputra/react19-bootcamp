@@ -235,3 +235,27 @@ const App = () => {
 };
 
 ```
+## Understanding NavLink Component
+
+- **NavLink Component**: Use the `NavLink` component instead of the link component to simplify highlighting the active menu link in a navbar.
+- **Active Class**: Define an active class in your CSS to style the active link (e.g., change color to blue and make it bold).
+- **isActive Flag**: Use the isActive flag within the `NavLink` component to conditionally apply styles or render content based on the active state.
+```
+import { NavLink } from 'react-router-dom';
+
+const Navbar = () => {
+  return (
+    <nav>
+      <NavLink to="/home" activeClassName="active" className={({ isActive }) => (isActive ? 'text-blue-500 font-bold' : '')}>
+        Home
+      </NavLink>
+      <NavLink to="/products" activeClassName="active" className={({ isActive }) => (isActive ? 'text-blue-500 font-bold' : '')}>
+        Products
+      </NavLink>
+      <NavLink to="/about" activeClassName="active" className={({ isActive }) => (isActive ? 'text-blue-500 font-bold' : '')}>
+        About
+      </NavLink>
+    </nav>
+  );
+};
+```
