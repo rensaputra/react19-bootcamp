@@ -1,9 +1,8 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import InputSection from './components/InputSection';
-import CalculateSection from './components/CalculateSection';
-import ResultSection from './components/ResultSection';
+import React from "react";
+import "./App.css";
+import InputSection from "./components/InputSection";
+import CalculateSection from "./components/CalculateSection";
+import ResultSection from "./components/ResultSection";
 
 function App() {
   return (
