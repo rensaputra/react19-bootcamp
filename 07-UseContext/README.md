@@ -48,3 +48,68 @@
   ```
   const value = useContext(MyContext);
   ```
+
+## Nested context provider
+
+```
+import React, { createContext, useState, useContext } from 'react';
+
+// Create ThemeContext
+const ThemeContext = createContext();
+
+// Create another context, e.g., UserContext
+const UserContext = createContext();
+
+// ThemeContextProvider component
+const ThemeContextProvider = ({ children }) => {
+  const [theme, setTheme] = useState('light');
+
+  const toggleTheme = () => {
+    setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
+  };
+
+  return (
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
+};
+
+// UserContextProvider component
+const UserContextProvider = ({ children }) => {
+  const [user, setUser] = useState({ name: 'John Doe' });
+
+  return (
+    <UserContext.Provider value={{ user, setUser }}>
+      {children}
+    </UserContext.Provider>
+  );
+};
+
+// App component with nested context providers
+const App = () => {
+  return (
+    <ThemeContextProvider>
+      <UserContextProvider>
+        <MyComponent />
+      </UserContextProvider>
+    </ThemeContextProvider>
+  );
+};
+
+// MyComponent consuming both contexts
+const MyComponent = () => {
+  const { theme, toggleTheme } = useContext(ThemeContext);
+  const { user } = useContext(UserContext);
+
+  return (
+    <div>
+      <p>Current theme: {theme}</p>
+      <button onClick={toggleTheme}>Toggle Theme</button>
+      <p>User: {user.name}</p>
+    </div>
+  );
+};
+
+export default App;
+```

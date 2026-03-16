@@ -1,16 +1,22 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { CalculatorContext } from "../store/CalculatorContext";
+import { ThemeContext } from "../store/ThemeContext";
 
 const InputSection = () => {
   const { inputData, handleInputChange } = useContext(CalculatorContext);
+  const { theme } = useContext(ThemeContext);
 
   return (
     <div className="border p-2 rounded-md h-[250px] w-[230px] space-y-3">
       <div className="grid gap-1">
-        <label className="text-gray-700 font-medium">First Number:</label>
+        <label
+          className={`text-gray-700 font-medium ${theme === "light" ? "text-black" : "text-white"}`}
+        >
+          First Number:
+        </label>
         <input
           type="number"
-          className="border border-gray-200"
+          className={`border ${theme === "light" ? "bg-white text-black" : "bg-gray-700 text-white"}`}
           placeholder="Enter first number"
           name="num1"
           value={inputData.num1}
@@ -18,10 +24,14 @@ const InputSection = () => {
         />
       </div>
       <div className="grid gap-1">
-        <label className="text-gray-700 font-medium">Second Number:</label>
+        <label
+          className={`text-gray-700 font-medium ${theme === "light" ? "text-black" : "text-white"}`}
+        >
+          Second Number:
+        </label>
         <input
           type="number"
-          className="border border-gray-200"
+          className={`border ${theme === "light" ? "bg-white text-black" : "bg-gray-700 text-white"}`}
           placeholder="Enter second number"
           name="num2"
           value={inputData.num2}
