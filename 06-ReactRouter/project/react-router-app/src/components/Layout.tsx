@@ -1,9 +1,9 @@
-import { Link, NavLink, Outlet } from "react-router";
+import { NavLink, Outlet } from "react-router";
 
 const Layout = () => {
   return (
     <>
-      <ul className="flex gap-4 p-5 bg-gray-50 shadow-md font-semibold">
+      <ul className="flex gap-4 p-5 bg-neutral-50 shadow-md font-semibold">
         <li>
           <NavLink
             to="/"
@@ -12,16 +12,6 @@ const Layout = () => {
             }
           >
             Home
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/products"
-            className={({ isActive }) =>
-              isActive ? "font-bold text-blue-500" : ""
-            }
-          >
-            Products
           </NavLink>
         </li>
         <li>

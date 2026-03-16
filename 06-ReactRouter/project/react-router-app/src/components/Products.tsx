@@ -4,7 +4,7 @@ const Products = () => {
   const products = [
     {
       id: "1",
-      image: "/apple.png",
+      image: "/apple.jpg",
       name: "Apple",
       price: 20,
       description:
@@ -12,7 +12,7 @@ const Products = () => {
     },
     {
       id: "2",
-      image: "/banana.png",
+      image: "/banana.jpg",
       name: "Banana",
       price: 30,
       description:
@@ -20,7 +20,7 @@ const Products = () => {
     },
     {
       id: "3",
-      image: "/orange.png",
+      image: "/orange.jpg",
       name: "Orange",
       price: 35,
       description:
@@ -28,7 +28,7 @@ const Products = () => {
     },
     {
       id: "4",
-      image: "/pineapple.png",
+      image: "/pineapple.jpg",
       name: "Pineapple",
       price: 50,
       description:
@@ -39,7 +39,11 @@ const Products = () => {
     <>
       <div className="m-6 flex gap-4">
         {products.map((product) => (
-          <Link to={`/products/${product.id}`} key={product.id} state={product}>
+          <Link
+            to={`/product-details/${product.id}`}
+            key={product.id}
+            state={product}
+          >
             <div
               key={product.id}
               className="border border-gray-50 rounded-md shadow-md w-fit"
@@ -47,16 +51,15 @@ const Products = () => {
               <img
                 src={product.image}
                 alt={product.name}
-                className="h-[240px] w-[240px] object-contain"
+                className="h-[240px] w-[240px] object-cover rounded-t-md"
               />
-              <div className="bg-gray-300 text-xl text-center font-semibold p-2 rounded-b-md">
+              <div className="border-t border-gray-200 bg-gray-300 text-xl text-center font-semibold p-2 rounded-b-md">
                 <span>{product.name}</span>
               </div>
             </div>
           </Link>
         ))}
       </div>
-      <Outlet />
     </>
   );
 };

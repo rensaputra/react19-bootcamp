@@ -259,3 +259,37 @@ const Navbar = () => {
   );
 };
 ```
+## Redirection
+
+**The old way**
+- **Redirecting Invalid URLs**: Use the navigate component to redirect users to a specific route when they access an invalid URL.
+- **Simple Usage**: The navigate component is easy to use; just render it with the to attribute set to the desired route.
+- **Modern Approach**: The modern approach for redirecting is to use the `useNavigate` hook, which will be covered in the next part.
+```
+import { Navigate } from 'react-router-dom';
+...
+<Navigate to="/home" />
+...
+```
+---
+**The modern way**
+- **Handling Invalid URLs**: When an invalid URL is entered, render a not found page to inform the user.
+- **Conditional Rendering**: Use state to conditionally render the navigate component based on user actions.
+- **useNavigate Hook**: Simplify redirections programmatically using the `useNavigate` hook instead of multiple states.
+- **Redirecting to Previous Page**: Use the `useNavigate` hook with a negative value to redirect to the previous page.
+```
+mport { useNavigate } from 'react-router-dom';
+
+const MyComponent = () => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    //navigate('/home'); // Redirect to the home page
+    navigate(-1); //navigate to the previous page
+  };
+
+  return (
+    <button onClick={handleClick}>Go to Home</button>
+  );
+};
+```

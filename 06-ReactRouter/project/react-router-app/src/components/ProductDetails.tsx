@@ -8,17 +8,18 @@ const ProductDetails = () => {
   const { state }: { state: Product } = useLocation();
   return (
     <div className="mx-auto max-w-[800px]">
-      <h1 className="text-3xl font-semibold">Selected Product</h1>
-      <div className="border border-gray-50 rounded-md shadow-md w-fit p-4 mt-2 bg-gray-200 grid grid-cols-4">
+      <div className="border border-neutral-50 rounded-md shadow-md w-fit mt-2 bg-gray-200 grid grid-cols-3">
         <img
           src={state.image}
           alt={state.name}
-          className="h-[160px] w-[160px] object-contain col-span-1 p-3"
+          className="h-[260px] w-[260px] object-cover col-span-1 rounded-l-md"
         />
-        <div className="flex flex-col gap-2 text-xl font-semibold col-span-3">
-          <span>{state.name}</span>
-          <span>{state.description}</span>
-          <span>Price: ${state.price}</span>
+        <div className="flex flex-col gap-2 col-span-2 px-5">
+          <span className="text-3xl font-semibold">{state.name}</span>
+          <span className="text-2xl font-medium">Price: ${state.price}</span>
+          <span className="text-md leading-5 text-neutral-500">
+            {state.description}
+          </span>
         </div>
       </div>
     </div>

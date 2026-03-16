@@ -1,9 +1,8 @@
 import React from "react";
 import "./App.css";
-import Home from "./components/Home";
 import Products from "./components/Products";
 import About from "./components/About";
-import { Routes, Route, Link, useRoutes } from "react-router";
+import { useRoutes } from "react-router";
 import NotFound from "./components/NotFound";
 import ProductDetails from "./components/ProductDetails";
 import Layout from "./components/Layout";
@@ -16,17 +15,15 @@ function App() {
       children: [
         {
           index: true,
-          element: <Home />,
+          element: <Products />,
         },
         {
-          path: "products",
+          path: "product-details",
           element: <Products />,
-          children: [
-            {
-              path: ":id",
-              element: <ProductDetails />,
-            },
-          ],
+        },
+        {
+          path: "product-details/:id",
+          element: <ProductDetails />,
         },
         {
           path: "about",
