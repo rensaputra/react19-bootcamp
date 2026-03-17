@@ -11,6 +11,8 @@ Full-stack code dump from my 2026 React 19 bootcamp. Features Stripe integration
 - NextJS
 - Redux and RTK
 - Tailwind CSS
+- NodeJS
+- ExpressJS
 
 ## Table of Contents
 
@@ -24,3 +26,4 @@ Full-stack code dump from my 2026 React 19 bootcamp. Features Stripe integration
 - [07 - useContext(): Global State Management](07-UseContext/)
 - [08 - Redux Tool Kit (RTK): Advanced Global State Handling](08-ReduxToolKit)
 - [09 - Handling HTTP Requests](09-HandlingHTTPRequests)
+- [10 - Server Side: NodeJS Basics + API Creation with ExpressJS](10-NodeJS+APIwExpressJS)
