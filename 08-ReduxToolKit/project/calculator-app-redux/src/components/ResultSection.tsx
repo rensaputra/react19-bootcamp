@@ -1,11 +1,8 @@
-import { useContext } from "react";
-import { CalculatorContext } from "../store/CalculatorContext";
 import { useSelector } from "react-redux";
 
 const ResultSection = () => {
-  const { result } = useContext(CalculatorContext);
   const theme = useSelector((state: any) => state.theme);
-
+  const { result } = useSelector((state: any) => state.calculator);
   return (
     <div
       className={`border p-5 rounded-md h-[250px] w-[230px] ${theme === "light" ? "text-black" : "text-white"}`}

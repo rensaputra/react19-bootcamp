@@ -1,11 +1,19 @@
-import { useContext } from "react";
-import { CalculatorContext } from "../store/CalculatorContext";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { handleInputChange } from "../store/calculatorSlice";
 
 const InputSection = () => {
-  const { inputData, handleInputChange } = useContext(CalculatorContext);
-
   const theme = useSelector((state: any) => state.theme);
+  const { inputData } = useSelector((state: any) => state.calculator);
+  const dispatch = useDispatch();
+
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(
+      handleInputChange({
+        name: e.target.name,
+        value: parseFloat(e.target.value),
+      }),
+    );
+  };
 
   return (
     <div className="border p-2 rounded-md h-[250px] w-[230px] space-y-3">
@@ -21,7 +29,7 @@ const InputSection = () => {
           placeholder="Enter first number"
           name="num1"
           value={inputData.num1}
-          onChange={handleInputChange}
+          onChange={handleInput}
         />
       </div>
       <div className="grid gap-1">
@@ -36,7 +44,7 @@ const InputSection = () => {
           placeholder="Enter second number"
           name="num2"
           value={inputData.num2}
-          onChange={handleInputChange}
+          onChange={handleInput}
         />
       </div>
     </div>

@@ -3,11 +3,10 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import CalculatorContextProvider from "./store/CalculatorContext";
-import { ThemeContextProvider } from "./store/ThemeContext";
 import { configureStore } from "@reduxjs/toolkit";
-import themeSlice from "./store/themeSlice";
+import themeReducer from "./store/themeSlice";
 import { Provider } from "react-redux";
+import calculatorReducer from "./store/calculatorSlice";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement,
@@ -15,18 +14,15 @@ const root = ReactDOM.createRoot(
 
 const store = configureStore({
   reducer: {
-    theme: themeSlice,
+    theme: themeReducer,
+    calculator: calculatorReducer,
   },
 });
 
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <CalculatorContextProvider>
-        <ThemeContextProvider>
-          <App />
-        </ThemeContextProvider>
-      </CalculatorContextProvider>
+      <App />
     </Provider>
   </React.StrictMode>,
 );

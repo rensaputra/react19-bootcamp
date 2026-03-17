@@ -55,5 +55,49 @@
     document.getElementById('root')
   );
   ```
-- **Theme Slice**: The video demonstrates exporting the reducer property of the theme slice and configuring it in the store to make the theme value globally available. 
+## Create actions in a slice
 
+- **Creating Actions**: Functions declared as reducers inside a slice.
+  ```
+  import { createSlice } from '@reduxjs/toolkit';
+  
+  const themeSlice = createSlice({
+    name: 'theme',
+    initialState: 'light',
+    reducers: {
+      toggleTheme: (state) => (state === 'light' ? 'dark' : 'light')
+    }
+  });
+  
+  export const { toggleTheme } = themeSlice.actions;
+  export default themeSlice.reducer;
+  ```
+- **Dispatching Actions**: To dispatch actions using the useDispatch hook, which is necessary to call actions in Redux.
+  ```
+  import React from 'react';
+  import { useDispatch } from 'react-redux';
+  import { toggleTheme } from './themeSlice';
+  
+  const ThemeToggleButton = () => {
+    const dispatch = useDispatch();
+  
+    return (
+      <button onClick={() => dispatch(toggleTheme())}>
+        Toggle Theme
+      </button>
+    );
+  };
+  
+  export default ThemeToggleButton;
+  ```
+- **Immutability**: Redux Toolkit handles immutability behind the scenes, allowing you to update the state directly without worrying about mutability.
+
+## How immutability in actions works behind the scenes
+
+- **Immutability in Redux**: Redux state is immutable, meaning it cannot be changed directly. Instead, a new state object must be created each time the state is updated.
+- **Immer Library**: Redux Toolkit uses the `Immer` library to handle immutability behind the scenes. This allows you to write code that looks like it mutates the state, but actually produces a new immutable state.
+- **Cleaner Code**: Using Immer makes the code cleaner and easier to read while ensuring the immutable approach is implemented.
+
+## Practice Project
+![Calculator app implemented using RTK](./docs/screenshots/practice-project.png)
+Calculator app implemented using RTK

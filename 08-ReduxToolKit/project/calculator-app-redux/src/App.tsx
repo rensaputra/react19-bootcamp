@@ -1,14 +1,14 @@
-import React, { useContext } from "react";
 import "./App.css";
 import InputSection from "./components/InputSection";
 import CalculateSection from "./components/CalculateSection";
 import ResultSection from "./components/ResultSection";
-import { ThemeContext } from "./store/ThemeContext";
-import { useSelector } from "react-redux";
+import { toggleTheme } from "./store/themeSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 function App() {
   const theme = useSelector((state: any) => state.theme);
-  const { toggleTheme } = useContext(ThemeContext);
+  const dispatch = useDispatch();
+
   return (
     <div
       className={`${theme === "light" ? "bg-gray-100 text-black" : "bg-black text-white"}`}
@@ -16,7 +16,7 @@ function App() {
       <button
         type="button"
         className="bg-blue-500 text-white px-3 py-1 rounded-md m-4"
-        onClick={toggleTheme}
+        onClick={() => dispatch(toggleTheme())}
       >
         Switch to {theme === "light" ? "dark" : "light"} theme
       </button>
