@@ -4,7 +4,7 @@
 - **Context API vs Redux**: The video explains that while the Context API is useful for managing global state, it can become complex with large applications. Redux offers a more predictable and centralized way to manage global state.
 - **Redux Structure**: Redux uses a single global store with reducers for each data set, making it easier to debug, test, and scale applications.
 - **Redux Toolkit**: The Redux Toolkit simplifies Redux configuration, reducing boilerplate code and making the overall coding experience better. It introduces functions like configureStore and slices to streamline the setup and usage of Redux.
-- **Practical Implementation**: The video demonstrates installing Redux Toolkit and React Redux, and sets the stage for implementing global state management with Redux Toolkit in the next lecture. 
+- **Installation**: To install Redux and RTK, you can use the following command in your terminal: `npm install @reduxjs/toolkit react-redux`
 
     | Redux | ContextAPI |
     |-------|------------|
@@ -99,5 +99,8 @@
 - **Cleaner Code**: Using Immer makes the code cleaner and easier to read while ensuring the immutable approach is implemented.
 
 ## Practice Project
-![Calculator app implemented using RTK](./docs/screenshots/practice-project.png)
-Calculator app implemented using RTK [Source code](project/calculator-app-redux)
+![Calculator app with RTK](./docs/screenshots/practice-project.png)
+Calculator app with RTK implementation | [Source code](project/calculator-app-redux)  
+
+![React router app with RTK](./docs/screenshots/react-router-rtk.png)
+React router app with RTK implementation | [Source code](project/react-router-app/)
