@@ -100,4 +100,4 @@
 
 ## Practice Project
 ![Calculator app implemented using RTK](./docs/screenshots/practice-project.png)
-Calculator app implemented using RTK [Source code](/project/calculator-app-redux)
+Calculator app implemented using RTK [Source code](project/calculator-app-redux)
