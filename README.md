@@ -23,3 +23,4 @@ Full-stack code dump from my 2026 React 19 bootcamp. Features Stripe integration
 - [06 - React Router](06-ReactRouter/)
 - [07 - useContext(): Global State Management](07-UseContext/)
 - [08 - Redux Tool Kit (RTK): Advanced Global State Handling](08-ReduxToolKit)
+- [09 - Handling HTTP Requests](09-HandlingHTTPRequests)
