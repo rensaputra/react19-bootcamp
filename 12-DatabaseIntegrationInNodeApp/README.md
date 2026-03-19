@@ -31,3 +31,129 @@ pool.getConnection((err, connection) => {
   connection.release(); // Release the connection back to the pool
 });
 ```
+## Fetching fata from database
+```
+pool.query('SELECT * FROM products', (err, rows) => {
+  if (err) {
+    return res.status(500).send(err);
+  }
+  res.status(200).send(rows);
+});
+```
+## Configuring organized routes with express.Router()
+
+- **Using express.router**: It introduces the express.router method to create a mini application that acts like a middleware and routing system, making the code structure more efficient.
+- **Configuring Routes**:
+  ```
+   // Create a folder called routes and inside it, create a file called products.js
+  const express = require('express');
+  const router = express.Router();
+  
+  // Define routes in products.js
+  router.get('/', (req, res) => {
+    // Your code to handle the GET request
+  });
+  
+  // Export the router
+  module.exports = router;
+  
+  // In your main application file (e.g., index.js)
+  const express = require('express');
+  const app = express();
+  const products = require('./routes/products'); // Adjust the path as necessary
+  
+  // Use the router in your main application
+  app.use('/products', products);
+  
+  // Start the server
+  app.listen(3000, () => {
+    console.log('Server is running on port 3000');
+  });
+  ```
+## Creating POST API for adding products
+
+- **Creating a POST API Endpoint**: Create a POST route to insert a product record into the products table in a MySQL database.
+- **Handling Request Body**: It explains how to receive data through the request body and parse JSON data using express.json middleware.
+- **Inserting Data into Database**: The video shows how to use the pool.query method to run an INSERT INTO query with dynamic values from the request body.
+- **Error Handling**: It covers how to handle errors by returning a 500 status with the error message if an error occurs during the database operation.
+- **Success Response**: Explains how to send a 201 status code and the inserted rows as a response if the data is successfully inserted. 
+
+  ```
+  index.js
+  app.use(express.json()); // Middleware to parse JSON data
+  app.use("/products", products);
+  ```
+  ```
+  products.js
+  router.post("/add", (req, res) => {
+    const { name, image, price, description } = req.body; //destructure the request body
+    pool.query(
+      "INSERT INTO products (name, image, price, description) VALUES (?, ?, ?, ?)",
+      [name, image, price, description],
+      (err, results) => {
+        if (err) {
+          return res.status(500).send("Error adding product to database");
+        }
+        res.status(201).send(results);
+      },
+    );
+  });
+  ```
+
+  ## Creating API to fetch a unique product
+  ```
+  router.get("/:id", (req, res) => {
+    const { id } = req.params;
+    pool.query("SELECT * FROM products WHERE id = ?", [id], (err, results) => {
+      if (err) {
+        return res
+          .status(500)
+          .send("Error fetching product details from database");
+      }
+      if (results.length === 0) {
+        return res.status(404).send("Product not found");
+      }
+      res.status(200).send(results);
+    });
+  });
+  ```
+
+## Creating API to update product's data
+
+  ```
+  router.put("/update/:id", (req, res) => {
+    const { id } = req.params;
+    const { name, image, price, description } = req.body;
+  
+    pool.query(
+      "UPDATE products SET name = ?, image = ?, price = ?, description = ? WHERE id = ?",
+      [name, image, price, description, id],
+      (err, results) => {
+        if (err) {
+          return res.status(500).send("Error updating product in database");
+        }
+        res.status(200).send({
+          message: "Product updated successfully",
+          productId: id,
+        });
+      },
+    );
+  });
+  ```
+
+## Creating API to delete a product
+
+  ```
+  router.delete("/delete/:id", (req, res) => {
+    const { id } = req.params;
+    pool.query("DELETE FROM products WHERE id =?", [id], (err, results) => {
+      if (err) {
+        return res.status(500).send("Error deleting product from database");
+      }
+      return res.status(200).send({
+        message: "Product deleted successfully",
+        productId: id,
+      });
+    });
+  });
+  ```
