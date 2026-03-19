@@ -157,3 +157,6 @@ pool.query('SELECT * FROM products', (err, rows) => {
     });
   });
   ```
+
+  ## Practice project
+  [Source code](project/node-app)
