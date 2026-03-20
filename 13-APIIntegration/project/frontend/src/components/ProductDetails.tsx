@@ -7,7 +7,7 @@ const ProductDetails = () => {
   //   const productObj: Product[] = useOutletContext();
   //   const selectedProduct = productObj.find((product) => product.id === id);
   const products = useSelector((state: RootState) => state.products.products);
-  const selectedProduct = products.find((product) => product.id === id);
+  const selectedProduct = products.find((product) => product.id === Number(id));
   if (!selectedProduct) {
     return <div>Product not found</div>;
   }
