@@ -1,20 +1,38 @@
-import { useParams } from "react-router";
+import { data, useParams } from "react-router";
 import { useSelector } from "react-redux";
 import { RootState } from "..";
+import { useEffect, useState } from "react";
+import { Product } from "../types";
+
 const ProductDetails = () => {
   const params = useParams();
   const { id } = params;
-  //   const productObj: Product[] = useOutletContext();
-  //   const selectedProduct = productObj.find((product) => product.id === id);
-  const products = useSelector((state: RootState) => state.products.products);
-  const selectedProduct = products.find((product) => product.id === Number(id));
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+
+  useEffect(() => {
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/products/${id}`)
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          throw new Error("Failed to fetch product details");
+        }
+      })
+      .then((data) => {
+        data.length > 0 && setSelectedProduct(data[0]);
+      })
+      .catch((error) => {
+        console.error("Error fetching product details:", error);
+      });
+  }, [id]);
+
   if (!selectedProduct) {
     return <div>Product not found</div>;
   }
 
   return (
     <div className="mx-auto max-w-[800px]">
-      <div className="border border-neutral-50 rounded-md shadow-md w-fit mt-2 bg-gray-200 grid grid-cols-3">
+      <div className="border border-neutral-50 rounded-md shadow-md w-fit mt-2 bg-neutral-50 grid grid-cols-3">
         <img
           src={selectedProduct.image}
           alt={selectedProduct.name}
