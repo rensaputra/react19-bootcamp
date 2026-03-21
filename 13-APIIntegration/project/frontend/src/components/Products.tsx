@@ -19,7 +19,6 @@ const Products = () => {
         }
       })
       .then((data) => {
-        console.log("Fetched products:", data);
         dispatch(setProducts(data));
       })
       .catch((error) => {
@@ -29,6 +28,15 @@ const Products = () => {
 
   return (
     <>
+      <div className="flex justify-between m-6">
+        <h1 className="text-3xl font-semibold">Products</h1>
+        <Link
+          to="/products/add"
+          className="bg-blue-500 text-white px-3 py-1 rounded-md m-6 inline-block"
+        >
+          Add product
+        </Link>
+      </div>
       <div className="m-6 grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {products.length > 0 ? (
           products.map((product) => (

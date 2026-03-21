@@ -6,7 +6,7 @@ import { useRoutes } from "react-router";
 import NotFound from "./components/NotFound";
 import ProductDetails from "./components/ProductDetails";
 import Layout from "./components/Layout";
-
+import AddProducts from "./components/AddProducts";
 
 function App() {
   const routeElements = useRoutes([
@@ -25,6 +25,10 @@ function App() {
         {
           path: "product-details/:id",
           element: <ProductDetails />,
+        },
+        {
+          path: "products/add",
+          element: <AddProducts />,
         },
         {
           path: "about",
