@@ -6,7 +6,7 @@ import { useRoutes } from "react-router";
 import NotFound from "./components/NotFound";
 import ProductDetails from "./components/ProductDetails";
 import Layout from "./components/Layout";
-import AddProducts from "./components/AddProducts";
+import AddEditProducts from "./components/AddEditProducts";
 
 function App() {
   const routeElements = useRoutes([
@@ -28,7 +28,11 @@ function App() {
         },
         {
           path: "products/add",
-          element: <AddProducts />,
+          element: <AddEditProducts />,
+        },
+        {
+          path: "product/edit/:id",
+          element: <AddEditProducts />,
         },
         {
           path: "about",

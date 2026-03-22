@@ -1,6 +1,4 @@
-import { data, useParams } from "react-router";
-import { useSelector } from "react-redux";
-import { RootState } from "..";
+import { Link, useParams } from "react-router";
 import { useEffect, useState } from "react";
 import { Product } from "../types";
 
@@ -46,6 +44,20 @@ const ProductDetails = () => {
           <span className="text-md leading-5 text-neutral-500">
             {selectedProduct.description}
           </span>
+          <div className="flex gap-2 mt-2">
+            <Link
+              to={`/product/edit/${selectedProduct.id}`}
+              className="border border-black bg-neutral-200 text-black p-2 rounded-md w-fit text-center"
+            >
+              Edit product
+            </Link>
+            <button
+              type="button"
+              className="border border-red-500 bg-red-500 text-white p-2 rounded-md w-fit text-center"
+            >
+              Delete product
+            </button>
+          </div>
         </div>
       </div>
     </div>

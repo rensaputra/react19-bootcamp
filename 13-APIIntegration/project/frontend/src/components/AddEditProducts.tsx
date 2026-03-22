@@ -1,9 +1,10 @@
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { Product } from "../types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const AddProducts = () => {
+const AddEditProducts = () => {
   const navigate = useNavigate();
+  const { id } = useParams();
   const [data, setData] = useState<Product>({
     name: "",
     price: 0,
@@ -20,7 +21,6 @@ const AddProducts = () => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    console.log("Submitting product data:", data);
     handleAddProduct();
   };
 
@@ -46,9 +46,34 @@ const AddProducts = () => {
       });
   };
 
+  useEffect(() => {
+    if (id) {
+      fetch(`${process.env.REACT_APP_API_BASE_URL}/products/${id}`)
+        .then((res) => {
+          if (res.ok) {
+            return res.json();
+          } else {
+            throw new Error("Failed to fetch product data");
+          }
+        })
+        .then((data) => {
+          if (data.length > 0) {
+            data = data[0]; // Assuming the API returns an array of products, we take the first one
+          }
+          setData(data);
+        })
+        .catch((error) => {
+          console.error(error);
+          alert("An error occurred while fetching the product data.");
+        });
+    }
+  }, [id]);
+
   return (
     <div className="border border-gray-50 shadow-lg rounded-md p-10 max-w-[1024px] m-6 mx-auto">
-      <h1 className="text-3xl font-semibold">Add Product</h1>
+      <h1 className="text-3xl font-semibold">
+        {id ? "Edit Product" : "Add Product"}
+      </h1>
       <div>
         <form className="grid grid-cols-2 gap-4 mt-4">
           <div className="flex flex-col gap-2">
@@ -56,6 +81,7 @@ const AddProducts = () => {
             <input
               type="text"
               name="name"
+              value={data.name}
               className="border border-gray-200 rounded-md p-2"
               onChange={handleChange}
               required
@@ -64,6 +90,7 @@ const AddProducts = () => {
             <input
               type="number"
               name="price"
+              value={data.price}
               className="border border-gray-200 rounded-md p-2"
               onChange={handleChange}
               required
@@ -74,6 +101,7 @@ const AddProducts = () => {
             <input
               type="text"
               name="image"
+              value={data.image}
               className="border border-gray-200 rounded-md p-2"
               onChange={handleChange}
               required
@@ -81,6 +109,7 @@ const AddProducts = () => {
             <label className="font-semibold">Description:</label>
             <textarea
               name="description"
+              value={data.description}
               className="border border-gray-200 rounded-md p-2"
               onChange={handleChange}
               required
@@ -99,4 +128,4 @@ const AddProducts = () => {
   );
 };
 
-export default AddProducts;
+export default AddEditProducts;
