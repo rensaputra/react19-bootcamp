@@ -21,7 +21,11 @@ const AddEditProducts = () => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    handleAddProduct();
+    if (id) {
+      handleEditProduct();
+    } else {
+      handleAddProduct();
+    }
   };
 
   const handleAddProduct = () => {
@@ -43,6 +47,28 @@ const AddEditProducts = () => {
       .catch((error) => {
         console.error(error);
         alert("An error occurred while adding the product.");
+      });
+  };
+
+  const handleEditProduct = () => {
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/products/update/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => {
+        if (res.ok) {
+          alert("Product updated successfully!");
+          navigate(`/product-details/${id}`);
+        } else {
+          throw new Error("Failed to update product");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        alert("An error occurred while updating the product.");
       });
   };
 

@@ -1,11 +1,30 @@
-import { Link, useParams } from "react-router";
+import { Link, useParams, useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 import { Product } from "../types";
 
 const ProductDetails = () => {
+  const navigate = useNavigate();
   const params = useParams();
   const { id } = params;
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+
+  const handleDeleteProduct = () => {
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/products/delete/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => {
+        if (res.ok) {
+          alert("Product deleted successfully!");
+          navigate("/");
+        } else {
+          throw new Error("Failed to delete product");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        alert("An error occurred while deleting the product.");
+      });
+  };
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_API_BASE_URL}/products/${id}`)
@@ -54,6 +73,7 @@ const ProductDetails = () => {
             <button
               type="button"
               className="border border-red-500 bg-red-500 text-white p-2 rounded-md w-fit text-center"
+              onClick={handleDeleteProduct}
             >
               Delete product
             </button>
