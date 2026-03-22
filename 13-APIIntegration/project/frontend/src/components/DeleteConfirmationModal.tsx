@@ -16,9 +16,9 @@ const DeleteConfirmationModal = ({
         >
           &times;
         </button>
-        <h1 className="text-black font-semibold text-center">
+        <p className="text-black font-semibold text-center">
           Are you sure you want to delete this product?
-        </h1>
+        </p>
         <div className="flex gap-2 mt-2 items-center justify-center">
           <button
             type="button"
@@ -30,6 +30,7 @@ const DeleteConfirmationModal = ({
           <button
             type="button"
             className="border border-red-500 bg-red-500 text-white p-2 rounded-md w-fit text-center"
+            onClick={handleDeleteProduct}
           >
             Delete
           </button>
