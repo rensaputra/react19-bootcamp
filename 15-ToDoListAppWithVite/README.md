@@ -23,3 +23,25 @@ Tailwind CSS offers several benefits:
 
   _**Tips**: Install `Tailwind CSS IntelliSense` extension in VS code that will provides autocomplete for Tailwind classes_  
   Create [tailwind.config.ts](/15-ToDoListAppWithVite/project/todo-app/tailwind.config.ts)
+
+## Data persistance with localStorage
+
+LocalStorage is a web storage API that allows you to store data in the browser. This data persists even after the browser is closed and reopened, making it useful for saving user preferences, session data, and more.
+
+- **Storing Data**: Use `localStorage.setItem(key, value)` to store data. The `key` is the name of the data, and the `value` is the data you want to store.
+  ```
+  localStorage.setItem('username', 'Rendy');
+  ```
+- **Retrieving Data**: Use `localStorage.getItem(key)` to retrieve data. The `key` is the name of the data you want to retrieve.
+  ```
+  const username = localStorage.getItem('username');
+  console.log(username); // Outputs: Rendy
+  ```
+- **Removing Data**: Use `localStorage.removeItem(key)` to remove data.
+  ```
+  localStorage.removeItem('username');
+  ```
+- **Clearing All Data**: Use `localStorage.clear()` to remove all data from localStorage.
+  ```
+  localStorage.clear();
+  ```

@@ -31,17 +31,19 @@ function App() {
   };
 
   return (
-    <div>
-      <TodoForm onAdd={addTodo} />
-      {todos.length > 0 ? (
-        <ToDoList
-          todos={todos}
-          toggleTodo={toggleTodo}
-          removeTodo={removeTodo}
-        />
-      ) : (
-        <p className="text-center text-gray-500">No task yet</p>
-      )}
+    <div className="flex items-center justify-center p-4 bg-linear-to-br from-indigo-500 to-purple-600 min-h-screen">
+      <div className="bg-white w-full max-w-xl overflow-hidden rounded-sm shadow-xl">
+        <TodoForm onAdd={addTodo} />
+        {todos.length > 0 ? (
+          <ToDoList
+            todos={todos}
+            toggleTodo={toggleTodo}
+            removeTodo={removeTodo}
+          />
+        ) : (
+          <p className="text-center text-gray-500">No task yet</p>
+        )}
+      </div>
     </div>
   );
 }
