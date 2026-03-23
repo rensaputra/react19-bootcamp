@@ -33,3 +33,4 @@ Full-stack code dump from my 2026 React 19 bootcamp. Features Stripe integration
 - [13 - Completing the Fullstack Application (API Integration)](13-APIIntegration)
 - [14 - Working With Custom Hooks](14-CustomHooks)
 - [15 - To-Do list App with Vite: Hands-on Practice App](15-ToDoListAppWithVite)
+- [16 - NextJS Introduction](16-NextJSintro)
