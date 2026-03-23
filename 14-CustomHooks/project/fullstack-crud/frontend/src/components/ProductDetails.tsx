@@ -1,14 +1,22 @@
 import { Link, useParams, useNavigate } from "react-router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Product } from "../types";
 import DeleteConfirmationModal from "./DeleteConfirmationModal";
-import useFetchProductData from "./hooks/useFetchProductData";
+import useFetchProductDetails from "./hooks/useFetchProductDetails";
 
 const ProductDetails = () => {
   const navigate = useNavigate();
   const params = useParams();
   const { id } = params;
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<Product>({
+    name: "",
+    price: 0,
+    image: "",
+    description: "",
+  } as Product);
+
+  const { loading, error } = useFetchProductDetails(id, setSelectedProduct);
 
   const handleDeleteProduct = () => {
     fetch(`${process.env.REACT_APP_API_BASE_URL}/products/delete/${id}`, {
@@ -35,8 +43,6 @@ const ProductDetails = () => {
   const handleModalClose = () => {
     setShowDeleteModal(false);
   };
-
-  const { data: selectedProduct, loading, error } = useFetchProductData(id);
 
   if (loading) {
     return <div>Loading...</div>;

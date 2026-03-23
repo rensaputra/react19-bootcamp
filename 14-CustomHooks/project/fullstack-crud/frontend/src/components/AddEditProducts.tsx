@@ -1,10 +1,18 @@
 import { useNavigate, useParams } from "react-router";
-import useFetchProductData from "./hooks/useFetchProductData";
+import useFetchProductDetails from "./hooks/useFetchProductDetails";
+import { useState } from "react";
+import { Product } from "../types";
 
 const AddEditProducts = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  const { data, setData } = useFetchProductData(id);
+  const [data, setData] = useState({
+    name: "",
+    price: 0,
+    image: "",
+    description: "",
+  } as Product);
+  const { loading, error } = useFetchProductDetails(id, setData);
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
@@ -65,6 +73,14 @@ const AddEditProducts = () => {
         alert("An error occurred while updating the product.");
       });
   };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   return (
     <div className="border border-gray-50 shadow-lg rounded-md p-10 max-w-[1024px] m-6 mx-auto">

@@ -3,6 +3,7 @@ import { Product } from "../../types";
 
 const useFetchProductData = (
   id: string | undefined,
+  callBackfn: (data: Product) => void = () => {},
 ): {
   data: Product;
   setData: React.Dispatch<React.SetStateAction<Product>>;
@@ -32,7 +33,8 @@ const useFetchProductData = (
           if (data.length > 0) {
             data = data[0]; // Assuming the API returns an array of products, we take the first one
           }
-          setData(data);
+
+          callBackfn(data);
         })
         .catch((error) => {
           console.error(error);
@@ -42,7 +44,7 @@ const useFetchProductData = (
           setLoading(false);
         });
     }
-  }, [id]);
+  }, [id, callBackfn]);
 
   return { data, setData, loading, error };
 };
