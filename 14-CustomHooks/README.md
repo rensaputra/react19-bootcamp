@@ -21,3 +21,14 @@ function App() {
   return <div>Check the console for the message.</div>;
 }
 ```
+
+So basically custom hooks are a normal JavaScript functions inside which we can call other hooks, it follow certain norms like:
+
+- Names start with the prefix `use`
+- Always used at the top level of the code
+- Can call other hooks inside them
+- Let us extract & reuse stateful logic between components
+
+When to use hooks?
+
+- When we have a logic that use react's built-in hooks & want to make it reusable
