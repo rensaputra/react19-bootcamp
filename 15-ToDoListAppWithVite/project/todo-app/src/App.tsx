@@ -11,6 +11,10 @@ function App() {
     setTodos((prev: Todo[]) => [...prev, todo]);
   };
 
+  const removeTodo = (id: number) => {
+    setTodos((prev: Todo[]) => prev.filter((todo) => todo.id !== id));
+  };
+
   const toggleTodo = (id: number) => {
     setTodos((prev: Todo[]) =>
       prev.map((todo) =>
@@ -23,7 +27,11 @@ function App() {
     <div>
       <TodoForm onAdd={addTodo} />
       {todos.length > 0 ? (
-        <ToDoList todos={todos} toggleTodo={toggleTodo} />
+        <ToDoList
+          todos={todos}
+          toggleTodo={toggleTodo}
+          removeTodo={removeTodo}
+        />
       ) : (
         <p className="text-center text-gray-500">No task yet</p>
       )}
