@@ -2,7 +2,7 @@ import React from "react";
 import useCounter from "../hooks/useCounter";
 
 const Component2 = () => {
-  const { counter, incrementCounter } = useCounter();
+  const { counter, incrementCounter } = useCounter(5, 5);
   return (
     <div className="card">
       <h1>Component2</h1>

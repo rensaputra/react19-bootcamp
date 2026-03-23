@@ -32,3 +32,8 @@ So basically custom hooks are a normal JavaScript functions inside which we can 
 When to use hooks?
 
 - When we have a logic that use react's built-in hooks & want to make it reusable
+
+## Create and use custom hook
+
+![Card counter component with custom hooks](/14-CustomHooks/docs/screenshots/card-counter-with-custom-hooks.png)
+[Source Code](/14-CustomHooks/project/react19-ts/src/hooks/useCounter.tsx)
