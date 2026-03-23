@@ -30,3 +30,4 @@ Full-stack code dump from my 2026 React 19 bootcamp. Features Stripe integration
 - [11 - MySQL Basics](11-MySQLBasics)
 - [12 - Database Integration in Node App](12-DatabaseIntegrationInNodeApp)
 - [13 - Completing the Fullstack Application (API Integration)](13-APIIntegration)
+- [14 - Working With Custom Hooks](14-CustomHooks)
