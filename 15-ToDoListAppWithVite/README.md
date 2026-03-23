@@ -45,3 +45,8 @@ LocalStorage is a web storage API that allows you to store data in the browser. 
   ```
   localStorage.clear();
   ```
+
+## Project
+
+![To-do list app using Vite](/15-ToDoListAppWithVite/docs/screenshots/todo-app.png)  
+[Source code](/15-ToDoListAppWithVite/project/todo-app/)

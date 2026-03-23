@@ -3,7 +3,7 @@ import TodoForm from "./components/TodoForm";
 import ToDoList from "./components/TodoList";
 import { useState, useEffect } from "react";
 import type { Todo } from "./types";
-
+import TodoHeader from "./components/TodoHeader";
 function App() {
   const [todos, setTodos] = useState<Todo[]>(() => {
     const savedTodos = localStorage.getItem("todos");
@@ -33,6 +33,7 @@ function App() {
   return (
     <div className="flex items-center justify-center p-4 bg-linear-to-br from-indigo-500 to-purple-600 min-h-screen">
       <div className="bg-white w-full max-w-xl overflow-hidden rounded-sm shadow-xl">
+        <TodoHeader todos={todos} />
         <TodoForm onAdd={addTodo} />
         {todos.length > 0 ? (
           <ToDoList
