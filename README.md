@@ -13,6 +13,7 @@ Full-stack code dump from my 2026 React 19 bootcamp. Features Stripe integration
 - Tailwind CSS
 - NodeJS
 - ExpressJS
+- Vite
 
 ## Table of Contents
 
@@ -31,3 +32,4 @@ Full-stack code dump from my 2026 React 19 bootcamp. Features Stripe integration
 - [12 - Database Integration in Node App](12-DatabaseIntegrationInNodeApp)
 - [13 - Completing the Fullstack Application (API Integration)](13-APIIntegration)
 - [14 - Working With Custom Hooks](14-CustomHooks)
+- [15 - To-Do list App with Vite: Hands-on Practice App](15-ToDoListAppWithVite)
