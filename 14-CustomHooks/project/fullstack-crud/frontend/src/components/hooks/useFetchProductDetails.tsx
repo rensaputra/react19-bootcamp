@@ -10,12 +10,6 @@ const useFetchProductData = (
   loading: boolean;
   error: string | null;
 } => {
-  const [data, setData] = useState<Product>({
-    name: "",
-    price: 0,
-    image: "",
-    description: "",
-  } as Product);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -33,7 +27,6 @@ const useFetchProductData = (
           if (data.length > 0) {
             data = data[0]; // Assuming the API returns an array of products, we take the first one
           }
-
           callBackfn(data);
         })
         .catch((error) => {
