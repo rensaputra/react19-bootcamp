@@ -1,6 +1,6 @@
 import styles from "./page.module.css";
 import Link from "next/link";
-import Counter from "@/components/Counter";
+import Counter from "@/components/counter";
 
 export default function Home() {
   return (
