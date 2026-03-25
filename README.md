@@ -4,7 +4,7 @@
 
 Full-stack code dump from my 2026 React 19 bootcamp. Features Stripe integration, JWT auth, and full CRUD with MySQL. Powered by Next.js & TypeScript.
 
-## Skills upgraded 🔋
+## Tech used 🏗️
 
 - React
 - TypeScript
@@ -14,6 +14,8 @@ Full-stack code dump from my 2026 React 19 bootcamp. Features Stripe integration
 - NodeJS
 - ExpressJS
 - Vite
+- MySQL
+- SQlite
 
 ## Table of Contents
 
