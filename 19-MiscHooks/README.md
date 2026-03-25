@@ -56,3 +56,22 @@
 ### Practice source code
 
 [Source code](/19-MiscHooks/project/try-app/src/app/useActionState/page.tsx)
+
+## The magic of memoization
+
+- Memoization is an optimization technique that caches the results of expensive function calls to avoid unnecessary recomputations, making React apps faster and more efficient.
+- The `react.memo` higher-order component memoizes functional components, preventing them from re-rendering when their props haven't changed.
+- Using `react.memo` helps avoid unnecessary child component re-renders caused by unrelated state changes in the parent component.
+
+  ```
+  import React from 'react';
+
+  const MyComponent = (props) => {
+    // component logic and JSX
+    return <div>{props.value}</div>;
+  };
+
+  export default React.memo(MyComponent);
+  ```
+
+  Note: If I use React compiler, it has Auto-memoization. The compiler identifies that my child component only needs to change if its specific `props` change.
