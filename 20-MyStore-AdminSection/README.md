@@ -36,3 +36,9 @@
 
 - Organizing routes with a folder group and layout.js to apply the sidebar only to specific pages, avoiding it on pages like login.
 - Using Tailwind CSS grid classes to style the layout, placing the sidebar and main content side by side with appropriate spacing and borders.
+
+## Working on sidebar
+
+- Replace repeated list items with an array mapped to JSX elements for better code management.
+- Use React Router's Link component to enable single-page routing in the sidebar menu.
+- Add a user avatar and name section to personalize the sidebar, preparing for dynamic data later.
