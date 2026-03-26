@@ -6,7 +6,7 @@ export default function Sidebar() {
   const menuItems = [
     {
       text: "Dashboard",
-      url: "/dashboard",
+      url: "/",
       icon: <HomeIcon />,
     },
     {
