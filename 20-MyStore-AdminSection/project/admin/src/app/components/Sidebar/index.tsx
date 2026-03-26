@@ -22,7 +22,7 @@ export default function Sidebar() {
   ];
 
   return (
-    <div>
+    <div className="sidebar-main">
       <div>
         <h1>eStore</h1>
       </div>

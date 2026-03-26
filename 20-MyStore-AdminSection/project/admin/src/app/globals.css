@@ -1,1 +1,5 @@
 @import "tailwindcss";
+
+.sidebar-main {
+  @apply top-0 left-0 h-screen w-64 flex flex-col shadow-xl rounded-e-lg text-gray-800;
+}
