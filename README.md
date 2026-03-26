@@ -39,4 +39,4 @@ Full-stack code dump from my 2026 React 19 bootcamp. Features Stripe integration
 - [17 - NextJS Basics with App Router](17-NextJSBasicswAppRouter)
 - [18 - Caching in NextJS](18-CachingInNextJS)
 - [19 - Miscellaneous Hooks](19-MiscHooks)
-- [20 - MyStore: Admin Section](20-MyStore:AdminSection)
+- [20 - MyStore: Admin Section](20-MyStore-AdminSection)
