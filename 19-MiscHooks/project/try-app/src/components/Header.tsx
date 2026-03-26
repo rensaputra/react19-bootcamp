@@ -9,11 +9,31 @@ const Header = () => {
         </Link>{" "}
         {"|"}
         <Link href="/useActionState" className="text-blue-500">
-          Use Action State
+          useActionState()
         </Link>{" "}
         {"|"}
         <Link href="/memo" className="text-blue-500">
-          Memo
+          React.Memo
+        </Link>
+        {"|"}
+        <Link href="/useCallback" className="text-blue-500">
+          useCallback()
+        </Link>
+        {"|"}
+        <Link href="/useMemo" className="text-blue-500">
+          useMemo()
+        </Link>
+        {"|"}
+        <Link href="/useOptimistic" className="text-blue-500">
+          useOptimistic()
+        </Link>
+        {"|"}
+        <Link href="/useFormStatus" className="text-blue-500">
+          useFormStatus()
+        </Link>
+        {"|"}
+        <Link href="/useDebugValue" className="text-blue-500">
+          useDebugValue()
         </Link>
       </nav>
     </header>
