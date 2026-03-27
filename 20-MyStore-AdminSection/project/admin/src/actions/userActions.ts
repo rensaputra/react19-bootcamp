@@ -1,9 +1,16 @@
 import { db } from "@/lib/db";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import * as bcrypt from "bcrypt";
 
 export const createUser = async (formData: FormData) => {
   "use server";
+
+  const salt = bcrypt.genSaltSync(5);
+  const hashedPassword = await bcrypt.hash(
+    String(formData.get("password")),
+    salt,
+  );
 
   const data = {
     userName: formData.get("userName"),
@@ -16,7 +23,7 @@ export const createUser = async (formData: FormData) => {
     data: {
       userName: String(data.userName),
       userType: String(data.userType),
-      password: String(data.password),
+      password: hashedPassword,
     },
   });
 
