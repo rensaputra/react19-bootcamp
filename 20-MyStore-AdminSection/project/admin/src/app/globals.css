@@ -23,3 +23,16 @@
 .custom-table .th {
   @apply p-3;
 }
+
+.custom-input {
+  @apply w-full border border-neutral-300 text-black rounded-sm p-3 text-base
+  placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2
+  focus-visible:ring-blue-400 disabled:cursor-not-allowed disabled:opacity-50 
+  hover:border-gray-400;
+}
+
+.custom-submit-btn {
+  @apply rounded font-medium text-white text-base lg:text-lg leading-5
+  lg:leading-6 bg-blue-700 hover:shadow-xl disabled:pointer-events-none
+  disabled:bg-gray-50 disabled:text-black/50 px-5 py-3;
+}
