@@ -9,6 +9,7 @@ export function Input({
   placeholder?: string;
   id?: string;
   className?: string;
+  name?: string;
 }) {
   return (
     <input type={type} className={cn("custom-input", className)} {...props} />
