@@ -1,3 +1,5 @@
+import Label from "@/app/components/ui/Label";
+
 export default function AddUser() {
   return (
     <div>
@@ -5,9 +7,7 @@ export default function AddUser() {
 
       <form action="" className="grid gap-x-6 gap-y-4 mt-10 grid-cols-2 px-2">
         <div className="grid gap-2">
-          <div className="text-sm lg:text-base h-fit">
-            <label htmlFor="username">Username</label>
-          </div>
+          <Label required>Username</Label>
           <input
             type="text"
             placeholder="Enter username"
@@ -16,9 +16,7 @@ export default function AddUser() {
           />
         </div>
         <div className="grid gap-2">
-          <div className="text-sm lg:text-base h-fit">
-            <label htmlFor="usertype">User Type</label>
-          </div>
+          <Label required>User Type</Label>
           <select
             id="usertype"
             className="custom-input appearance-none cursor-pointer"
@@ -30,9 +28,7 @@ export default function AddUser() {
           </select>
         </div>
         <div className="grid gap-2">
-          <div className="text-sm lg:text-base h-fit">
-            <label htmlFor="password">Password</label>
-          </div>
+          <Label required>Password</Label>
           <input
             type="password"
             placeholder="Example@123"
@@ -41,9 +37,7 @@ export default function AddUser() {
           />
         </div>
         <div className="grid gap-2">
-          <div className="text-sm lg:text-base h-fit">
-            <label htmlFor="confirmPassword">Confirm Password</label>
-          </div>
+          <Label required>Confirm Password</Label>
           <input
             type="password"
             placeholder="Re-enter password"
