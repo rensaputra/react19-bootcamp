@@ -1,5 +1,6 @@
 import Label from "@/app/components/ui/Label";
-
+import { Button } from "@/app/components/ui/Button";
+import { Input } from "@/app/components/ui/Input";
 export default function AddUser() {
   return (
     <div>
@@ -8,7 +9,7 @@ export default function AddUser() {
       <form action="" className="grid gap-x-6 gap-y-4 mt-10 grid-cols-2 px-2">
         <div className="grid gap-2">
           <Label required>Username</Label>
-          <input
+          <Input
             type="text"
             placeholder="Enter username"
             id="username"
@@ -29,7 +30,7 @@ export default function AddUser() {
         </div>
         <div className="grid gap-2">
           <Label required>Password</Label>
-          <input
+          <Input
             type="password"
             placeholder="Example@123"
             id="password"
@@ -38,16 +39,16 @@ export default function AddUser() {
         </div>
         <div className="grid gap-2">
           <Label required>Confirm Password</Label>
-          <input
+          <Input
             type="password"
             placeholder="Re-enter password"
             id="confirmPassword"
             className="custom-input"
           />
         </div>
-        <button type="submit" className="custom-submit-btn">
+        <Button className="w-52 col-span-2 mt-2" type="submit">
           Submit
-        </button>
+        </Button>
       </form>
     </div>
   );
