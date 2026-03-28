@@ -1,9 +1,13 @@
 import AddUserScreen from "@/screens/users/add";
 
-export default function AddUser() {
+export default function AddUser({
+  searchParams,
+}: {
+  searchParams: { error?: string };
+}) {
   return (
     <>
-      <AddUserScreen />
+      <AddUserScreen searchParams={searchParams} />
     </>
   );
 }

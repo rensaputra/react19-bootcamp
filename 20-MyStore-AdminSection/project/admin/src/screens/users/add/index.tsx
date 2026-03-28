@@ -3,15 +3,27 @@ import { Button } from "@/app/components/ui/Button";
 import { Input } from "@/app/components/ui/Input";
 import { createUser } from "@/actions/userActions";
 
-export default function AddUser() {
+export default async function AddUser({
+  searchParams,
+}: {
+  searchParams: { error?: string };
+}) {
+  const { error } = await searchParams;
+
   return (
     <div>
       <h1 className="text-3xl font-semibold p-2">Add User</h1>
-
       <form
         action={createUser}
         className="grid gap-x-6 gap-y-4 mt-10 grid-cols-2 px-2"
       >
+        {error && (
+          <div className="col-span-2 border border-red-500 rounded-xl px-5 py-3 bg-red-50 w-fit">
+            <span className="text-red-500 col-span-2 text-md my-0 font-medium">
+              {error}
+            </span>
+          </div>
+        )}
         <div className="grid gap-2">
           <Label required>Username</Label>
           <Input
