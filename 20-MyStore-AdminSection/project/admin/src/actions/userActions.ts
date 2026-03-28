@@ -44,3 +44,12 @@ export const getUsers = async () => {
   const users = await db.adminUser.findMany();
   return users;
 };
+
+export const getUniqueUser = async (id: number) => {
+  const user = await db.adminUser.findUnique({
+    where: {
+      id: id,
+    },
+  });
+  return user;
+};

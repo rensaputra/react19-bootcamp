@@ -10,6 +10,8 @@ export function Input({
   id?: string;
   className?: string;
   name?: string;
+  defaultValue?: string;
+  value?: string;
 }) {
   return (
     <input type={type} className={cn("custom-input", className)} {...props} />
