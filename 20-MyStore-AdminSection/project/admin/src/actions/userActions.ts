@@ -1,11 +1,11 @@
+"use server";
+
 import { db } from "@/lib/db";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import * as bcrypt from "bcrypt";
 
 export const createUser = async (formData: FormData) => {
-  "use server";
-
   const data = {
     userName: formData.get("userName"),
     userType: formData.get("userType"),
@@ -52,4 +52,34 @@ export const getUniqueUser = async (id: number) => {
     },
   });
   return user;
+};
+
+export const updateUser = async (formData: FormData) => {
+  const userId = Number(formData.get("userId"));
+  const data = {
+    userName: formData.get("userName"),
+    userType: formData.get("userType"),
+    password: formData.get("password"),
+    confirmPassword: formData.get("confirmPassword"),
+  };
+
+  let hashedPassword = "";
+  if (data.password) {
+    const salt = bcrypt.genSaltSync(5);
+    hashedPassword = await bcrypt.hash(String(data.password), salt);
+  }
+
+  await db.adminUser.update({
+    where: {
+      id: userId,
+    },
+    data: {
+      userName: String(data.userName),
+      userType: String(data.userType),
+      ...(data.password && { password: hashedPassword }),
+    },
+  });
+
+  revalidatePath("/users", "page");
+  redirect("/users");
 };
