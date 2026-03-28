@@ -20,11 +20,20 @@
   @apply overflow-y-auto w-10/12 mx-auto;
 }
 
-.custom-table .th {
+.custom-table th {
   @apply p-3;
 }
 
-.custom-input {
+.custom-table th,
+.custom-table td {
+  @apply px-6 py-2 text-start;
+}
+
+.custom-table tr {
+  @apply border-b border-gray-300;
+}
+
+.custom-table .custom-input {
   @apply w-full border border-neutral-300 text-black rounded-sm p-3 text-base
   placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2
   focus-visible:ring-blue-400 disabled:cursor-not-allowed disabled:opacity-50 

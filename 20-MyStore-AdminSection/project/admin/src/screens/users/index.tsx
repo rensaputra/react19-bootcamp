@@ -1,6 +1,9 @@
+import { getUsers } from "@/actions/userActions";
+import { Button } from "@/app/components/ui/Button";
 import Link from "next/link";
-
-export default function Users() {
+import { EditIcon, TrashIcon } from "@/app/components/icons";
+export default async function Users() {
+  const users = await getUsers();
   return (
     <div>
       <div className="flex justify-between">
@@ -23,6 +26,22 @@ export default function Users() {
               <th>Action</th>
             </tr>
           </thead>
+          <tbody className="text-gray-700 font-medium text-lg text-center">
+            {users.map((user, index) => (
+              <tr key={user.id}>
+                <td>{index + 1}</td>
+                <td>{user.userName}</td>
+                <td className="flex items-center gap-x-3">
+                  <Link href={`/users/edit/${user.id}`} className="w-fit">
+                    <EditIcon />
+                  </Link>
+                  <Button className="bg-transparent p-0 px-2 border-none text-red-500 hover:shadow-none hover:cursor-pointer">
+                    <TrashIcon />
+                  </Button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
         </table>
       </div>
     </div>
