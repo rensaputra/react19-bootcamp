@@ -1,9 +1,11 @@
 import { getUsers } from "@/actions/userActions";
-import { Button } from "@/app/components/ui/Button";
 import Link from "next/link";
-import { EditIcon, TrashIcon } from "@/app/components/icons";
+import { EditIcon } from "@/app/components/icons";
+import { DeleteButton } from "@/app/components/ui/DeleteButton";
+
 export default async function Users() {
   const users = await getUsers();
+
   return (
     <div>
       <div className="flex justify-between">
@@ -35,9 +37,7 @@ export default async function Users() {
                   <Link href={`/users/edit/${user.id}`} className="w-fit">
                     <EditIcon />
                   </Link>
-                  <Button className="bg-transparent p-0 px-2 border-none text-red-500 hover:shadow-none hover:cursor-pointer">
-                    <TrashIcon />
-                  </Button>
+                  <DeleteButton userId={user.id} />
                 </td>
               </tr>
             ))}
