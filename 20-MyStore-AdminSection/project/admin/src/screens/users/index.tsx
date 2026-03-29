@@ -2,7 +2,6 @@ import { getUsers, deleteUser } from "@/actions/userActions";
 import Link from "next/link";
 import { EditIcon } from "@/app/components/icons";
 import { DeleteButton } from "@/app/components/ui/DeleteButton";
-import DeleteConfirmationModal from "@/app/components/ui/DeleteConfirmationModal";
 
 export default async function Users() {
   const users = await getUsers();
@@ -38,7 +37,11 @@ export default async function Users() {
                   <Link href={`/users/edit/${user.id}`} className="w-fit">
                     <EditIcon />
                   </Link>
-                  <DeleteButton userId={user.id} onDelete={deleteUser} />
+                  <DeleteButton
+                    id={user.id}
+                    onDelete={deleteUser}
+                    deleteType="user"
+                  />
                 </td>
               </tr>
             ))}

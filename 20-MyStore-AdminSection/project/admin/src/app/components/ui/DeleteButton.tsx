@@ -6,14 +6,16 @@ import DeleteConfirmationModal from "@/app/components/ui/DeleteConfirmationModal
 import { useState } from "react";
 
 export function DeleteButton({
-  userId,
+  id,
   onDelete,
+  deleteType,
 }: {
-  userId: number;
-  onDelete: (userId: number) => Promise<void>;
+  id: number;
+  onDelete: (id: number) => Promise<void>;
+  deleteType?: string;
 }) {
   const handleDelete = async () => {
-    await onDelete(userId);
+    await onDelete(id);
   };
 
   const [showModal, setShowModal] = useState(false);
@@ -30,6 +32,7 @@ export function DeleteButton({
         <DeleteConfirmationModal
           onConfirm={handleDelete}
           onCancel={() => setShowModal(false)}
+          message={`Are you sure you want to delete this ${deleteType || "item"}?`}
         />
       )}
     </>
