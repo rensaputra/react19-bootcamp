@@ -9,7 +9,7 @@ const DeleteConfirmationModal = ({
 }) => {
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50">
-      <div className="bg-black/50 fixed inset-0" />
+      <div className="bg-black/50 fixed inset-0" onClick={onCancel} />
       <div className="relative p-6 w-full max-w-lg h-full md:h-auto">
         <div className="relative text-center bg-white rounded-lg shadow-lg p-6">
           <p className="my-3 font-semibold text-md text-gray-700">
