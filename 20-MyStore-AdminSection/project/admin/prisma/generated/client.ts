@@ -46,3 +46,13 @@ export { Prisma }
  * 
  */
 export type AdminUser = Prisma.AdminUserModel
+/**
+ * Model ProductType
+ * 
+ */
+export type ProductType = Prisma.ProductTypeModel
+/**
+ * Model Product
+ * 
+ */
+export type Product = Prisma.ProductModel

@@ -2,12 +2,9 @@ import { EditIcon } from "@/app/components/icons";
 import Link from "next/link";
 import { DeleteButton } from "@/app/components/ui/DeleteButton";
 import { deleteUser } from "@/actions/userActions";
-export default function ProductTypeScreen() {
-  const productTypes = [
-    { id: 1, name: "Electronics" },
-    { id: 2, name: "Clothing" },
-    { id: 3, name: "Books" },
-  ];
+import { getProductTypes } from "@/actions/productTypeActions";
+export default async function ProductTypeScreen() {
+  const productTypes = await getProductTypes();
 
   return (
     <div>
