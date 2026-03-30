@@ -1,6 +1,7 @@
 import { Button } from "@/app/components/ui/Button";
 import { Input } from "@/app/components/ui/Input";
 import Label from "@/app/components/ui/Label";
+import Switch from "@/app/components/ui/Switch";
 
 const ProductAddScreen = async ({
   searchParams,
@@ -74,16 +75,12 @@ const ProductAddScreen = async ({
             name="largeSize"
           />
         </div>
-        <div>
-          <div className="grid gap-2 items-start">
+        <div className="col-span-2 grid gap-y-4">
+          <div className="grid gap-2">
             <Label required>Product Status</Label>
-            <input
-              type="checkbox"
-              name="isActive"
-              className="ml-1.5 self-start justify-self-start"
-            />
+            <Switch name="isActive" />
           </div>
-          <div className="grid grid-col-span-2 gap-2">
+          <div className="grid gap-2">
             <Label required>Description</Label>
             <textarea
               className="custom-input h-auto"
