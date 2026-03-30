@@ -1,7 +1,7 @@
 import { EditIcon } from "@/app/components/icons";
 import Link from "next/link";
 import { DeleteButton } from "@/app/components/ui/DeleteButton";
-import { deleteUser } from "@/actions/userActions";
+import { deleteProductType } from "@/actions/productTypeActions";
 import { getProductTypes } from "@/actions/productTypeActions";
 export default async function ProductTypeScreen() {
   const productTypes = await getProductTypes();
@@ -45,7 +45,7 @@ export default async function ProductTypeScreen() {
                   </Link>
                   <DeleteButton
                     id={type.id}
-                    onDelete={deleteUser}
+                    onDelete={deleteProductType}
                     deleteType="product type"
                   />
                 </td>

@@ -4,20 +4,24 @@ import { db } from "@/lib/db";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
+async function checkProductTypeExists(name: string, redirectPath: string) {
+  const existingProductType = await db.productType.findUnique({
+    where: {
+      name: name,
+    },
+  });
+
+  if (existingProductType) {
+    return redirect(`${redirectPath}?error=Product Type already exists`);
+  }
+}
+
 export async function createProductType(formData: FormData) {
   const data = {
     name: formData.get("name") as string,
   };
 
-  const existingProductType = await db.productType.findUnique({
-    where: {
-      name: data.name,
-    },
-  });
-
-  if (existingProductType) {
-    return redirect("/product-type/add?error=Product Type already exists");
-  }
+  await checkProductTypeExists(data.name, "/product-type/add");
 
   await db.productType.create({
     data: {
@@ -30,4 +34,43 @@ export async function createProductType(formData: FormData) {
 
 export async function getProductTypes() {
   return await db.productType.findMany();
+}
+
+export async function getProductTypeById(id: number) {
+  return await db.productType.findUnique({
+    where: {
+      id,
+    },
+  });
+}
+
+export async function updateProductType(formData: FormData) {
+  const data = {
+    id: Number(formData.get("typeId")),
+    name: formData.get("name") as string,
+  };
+
+  await checkProductTypeExists(data.name, `/product-type/edit/${data.id}`);
+
+  await db.productType.update({
+    where: {
+      id: data.id,
+    },
+    data: {
+      name: data.name,
+    },
+  });
+
+  revalidatePath("/product-type", "page");
+  redirect("/product-type");
+}
+
+export async function deleteProductType(id: number) {
+  await db.productType.delete({
+    where: {
+      id,
+    },
+  });
+  revalidatePath("/product-type", "page");
+  redirect("/product-type");
 }

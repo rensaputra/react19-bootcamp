@@ -1,10 +1,15 @@
+import EditProductTypePageScreen from "@/screens/product-type/edit";
+
 const EditProductTypePage = async ({
   params,
+  searchParams,
 }: {
   params: { typeid: string };
+  searchParams: { error?: string };
 }) => {
-  const { typeid } = await params;
-  return <div>Edit Product Type {typeid}</div>;
+  return (
+    <EditProductTypePageScreen params={params} searchParams={searchParams} />
+  );
 };
 
 export default EditProductTypePage;
