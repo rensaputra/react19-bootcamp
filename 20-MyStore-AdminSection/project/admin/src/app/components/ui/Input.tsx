@@ -12,6 +12,7 @@ export function Input({
   name?: string;
   defaultValue?: string;
   value?: string;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
 }) {
   return (
     <input type={type} className={cn("custom-input", className)} {...props} />

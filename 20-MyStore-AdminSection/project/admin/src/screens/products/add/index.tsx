@@ -1,4 +1,5 @@
 import { Button } from "@/app/components/ui/Button";
+import CustomFileInput from "@/app/components/ui/CustomFileInput";
 import { Input } from "@/app/components/ui/Input";
 import Label from "@/app/components/ui/Label";
 import Switch from "@/app/components/ui/Switch";
@@ -49,7 +50,7 @@ const ProductAddScreen = async ({
         </div>
         <div className="grid gap-2">
           <Label required>Image</Label>
-          <Input type="file" name="image" />
+          <CustomFileInput />
         </div>
         <div className="grid gap-2">
           <Label required>Stock of Small Size</Label>
