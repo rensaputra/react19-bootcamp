@@ -37,7 +37,7 @@ const CustomFileInput = ({
         <ArrowUpIcon />
         Choose file
       </label>
-      <span className="ml-2 text-gray-600">{fileName}</span>
+      <span className="ml-2 text-gray-600 truncate">{fileName}</span>
     </div>
   );
 };

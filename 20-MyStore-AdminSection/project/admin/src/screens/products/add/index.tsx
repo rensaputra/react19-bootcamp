@@ -50,7 +50,7 @@ const ProductAddScreen = async ({
         </div>
         <div className="grid gap-2">
           <Label required>Image</Label>
-          <CustomFileInput />
+          <CustomFileInput name="image" required />
         </div>
         <div className="grid gap-2">
           <Label required>Stock of Small Size</Label>
