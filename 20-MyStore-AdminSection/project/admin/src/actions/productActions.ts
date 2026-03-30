@@ -77,3 +77,12 @@ export async function createProduct(formData: FormData) {
   revalidatePath("/products", "page");
   redirect("/products");
 }
+
+export async function getProducts() {
+  const products = await db.product.findMany({
+    include: {
+      productType: true,
+    },
+  });
+  return products;
+}
