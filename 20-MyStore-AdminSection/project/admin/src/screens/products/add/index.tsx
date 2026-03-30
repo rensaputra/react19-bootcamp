@@ -3,6 +3,8 @@ import CustomFileInput from "@/app/components/ui/CustomFileInput";
 import { Input } from "@/app/components/ui/Input";
 import Label from "@/app/components/ui/Label";
 import Switch from "@/app/components/ui/Switch";
+import { getProductTypes } from "@/actions/productTypeActions";
+import { createProduct } from "@/actions/productActions";
 
 const ProductAddScreen = async ({
   searchParams,
@@ -10,10 +12,15 @@ const ProductAddScreen = async ({
   searchParams: { error?: string };
 }) => {
   const { error } = await searchParams;
+  const productTypes = await getProductTypes();
+
   return (
     <div>
       <h1 className="text-3xl font-bold mb-4">Add Product</h1>
-      <form action="" className="grid gap-x-6 gap-y-4 mt-10 grid-cols-2 px-2">
+      <form
+        action={createProduct}
+        className="grid gap-x-6 gap-y-4 mt-10 grid-cols-2 px-2"
+      >
         {error && (
           <div className="col-span-2 border border-red-500 rounded-xl px-5 py-3 bg-red-50 w-fit">
             <span className="text-red-500 col-span-2 text-md my-0 font-medium">
@@ -31,9 +38,11 @@ const ProductAddScreen = async ({
             name="productType"
             className="custom-input appearance-none cursor-pointer"
           >
-            <option value="">Select Product Type</option>
-            <option value="Kid's Clothing">Kid's Clothing</option>
-            <option value="Men's Clothing">Men's Clothing</option>
+            {productTypes?.map((type) => (
+              <option key={type.id} value={type.id}>
+                {type.name}
+              </option>
+            ))}
           </select>
         </div>
         <div className="grid gap-2">
