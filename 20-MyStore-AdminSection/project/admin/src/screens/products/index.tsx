@@ -3,6 +3,7 @@ import Image from "next/image";
 import { EditIcon, TrashIcon } from "@/app/components/icons";
 import { DeleteButton } from "@/app/components/ui/DeleteButton";
 import { getProducts } from "@/actions/productActions";
+import { deleteProduct } from "@/actions/productActions";
 
 const ProductsScreen = async () => {
   const products = await getProducts();
@@ -68,9 +69,11 @@ const ProductsScreen = async () => {
                     <Link href={`/products/edit/${product.id}`}>
                       <EditIcon />
                     </Link>
-                    <DeleteButton>
-                      <TrashIcon />
-                    </DeleteButton>
+                    <DeleteButton
+                      id={product.id}
+                      onDelete={deleteProduct}
+                      deleteType="product"
+                    />
                   </div>
                 </td>
               </tr>

@@ -121,8 +121,6 @@ export async function updateProduct(formData: FormData) {
   const existingImage = formData.get("existingImage") as string;
   const productId = formData.get("productId") as string;
 
-  console.log("Received form data:", data);
-
   const productType = await db.productType.findUnique({
     where: {
       id: Number(data.productTypeId),
@@ -190,4 +188,24 @@ export async function handleDeleteImage(imagePath: string) {
       fs.unlinkSync(existingImageFullPath); // Delete the existing image file
     }
   }
+}
+
+export async function deleteProduct(id: number) {
+  const product = await db.product.findUnique({
+    where: {
+      id: Number(id),
+    },
+  });
+
+  if (product) {
+    await handleDeleteImage(product.image);
+    await db.product.delete({
+      where: {
+        id: Number(id),
+      },
+    });
+  }
+
+  revalidatePath("/products", "page");
+  redirect("/products");
 }
