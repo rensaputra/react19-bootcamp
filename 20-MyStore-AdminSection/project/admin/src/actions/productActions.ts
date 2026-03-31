@@ -86,3 +86,16 @@ export async function getProducts() {
   });
   return products;
 }
+
+export async function getProductById(id: number) {
+  const product = await db.product.findUnique({
+    where: {
+      id: parseInt(id as unknown as string),
+    },
+    include: {
+      productType: true,
+    },
+  });
+
+  return product;
+}
