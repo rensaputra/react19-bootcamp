@@ -21,7 +21,6 @@ export async function createProduct(formData: FormData) {
     productTypeId: formData.get("productType") as string,
     isActive: formData.get("isActive") === "on" ? true : false,
   };
-  console.log("Received form data:", data);
 
   const productType = await db.productType.findUnique({
     where: {
@@ -36,6 +35,13 @@ export async function createProduct(formData: FormData) {
   }
 
   const file = formData.get("image") as File;
+
+  if (!file || file.size === 0) {
+    return redirect(
+      "/products/add?error=Image file is required. Please choose an image to upload.",
+    );
+  }
+
   let imagePath = "";
 
   if (file) {
@@ -98,4 +104,90 @@ export async function getProductById(id: number) {
   });
 
   return product;
+}
+
+export async function updateProduct(formData: FormData) {
+  const data = {
+    name: formData.get("name") as string,
+    description: formData.get("description") as string,
+    sellPrice: formData.get("sellPrice") as string,
+    mrp: formData.get("mrp") as string,
+    smallSize: formData.get("smallSize") as string,
+    mediumSize: formData.get("mediumSize") as string,
+    largeSize: formData.get("largeSize") as string,
+    productTypeId: formData.get("productType") as string,
+    isActive: formData.get("isActive") === "on" ? true : false,
+  };
+  const existingImage = formData.get("existingImage") as string;
+  const productId = formData.get("productId") as string;
+
+  console.log("Received form data:", data);
+
+  const productType = await db.productType.findUnique({
+    where: {
+      id: Number(data.productTypeId),
+    },
+  });
+
+  if (!productType) {
+    return redirect(
+      "/products/add?error=Product type not found. Please try with different product type.",
+    );
+  }
+
+  const file = formData.get("image") as File;
+  let imagePath = existingImage;
+
+  if (file && file.size > 0) {
+    const bytes = await file.arrayBuffer();
+    const buffer = Buffer.from(bytes);
+
+    if (!fs.existsSync(UPLOAD_DIR)) {
+      fs.mkdirSync(UPLOAD_DIR, { recursive: true });
+    }
+
+    const fileName = Date.now() + path.extname(file.name);
+    imagePath = `/uploads/${fileName}`;
+
+    const fullPath = path.join(process.cwd(), "public", imagePath);
+    await writeFile(fullPath, buffer);
+  }
+
+  const totalStock =
+    parseInt(data.smallSize) +
+    parseInt(data.mediumSize) +
+    parseInt(data.largeSize);
+
+  await handleDeleteImage(existingImage);
+
+  await db.product.update({
+    where: {
+      id: Number(productId),
+    },
+    data: {
+      name: data.name,
+      description: data.description,
+      sellPrice: parseFloat(data.sellPrice),
+      mrp: parseFloat(data.mrp),
+      smallSize: parseInt(data.smallSize),
+      mediumSize: parseInt(data.mediumSize),
+      largeSize: parseInt(data.largeSize),
+      currentStock: totalStock,
+      productTypeId: Number(data.productTypeId),
+      isActive: data.isActive,
+      image: imagePath,
+    },
+  });
+
+  revalidatePath("/products", "page");
+  redirect("/products");
+}
+
+export async function handleDeleteImage(imagePath: string) {
+  if (imagePath) {
+    const existingImageFullPath = path.join(process.cwd(), "public", imagePath);
+    if (fs.existsSync(existingImageFullPath)) {
+      fs.unlinkSync(existingImageFullPath); // Delete the existing image file
+    }
+  }
 }

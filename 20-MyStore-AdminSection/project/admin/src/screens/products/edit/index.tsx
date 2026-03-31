@@ -4,8 +4,7 @@ import { getProductTypes } from "@/actions/productTypeActions";
 import CustomFileInput from "@/app/components/ui/CustomFileInput";
 import Switch from "@/app/components/ui/Switch";
 import { Button } from "@/app/components/ui/Button";
-import { get } from "http";
-import { getProductById } from "@/actions/productActions";
+import { getProductById, updateProduct } from "@/actions/productActions";
 
 const EditProductPageScreen = async ({
   params,
@@ -23,7 +22,10 @@ const EditProductPageScreen = async ({
     <div>
       <div>
         <h1 className="text-3xl font-bold mb-4">Edit Product</h1>
-        <form action="" className="grid gap-x-6 gap-y-4 mt-10 grid-cols-2 px-2">
+        <form
+          action={updateProduct}
+          className="grid gap-x-6 gap-y-4 mt-10 grid-cols-2 px-2"
+        >
           {error && (
             <div className="col-span-2 border border-red-500 rounded-xl px-5 py-3 bg-red-50 w-fit">
               <span className="text-red-500 col-span-2 text-md my-0 font-medium">
@@ -31,6 +33,16 @@ const EditProductPageScreen = async ({
               </span>
             </div>
           )}
+          <input
+            type="hidden"
+            name="existingImage"
+            value={product?.image as unknown as string}
+          />
+          <input
+            type="hidden"
+            name="productId"
+            value={product?.id as unknown as number}
+          />
           <div className="grid gap-2">
             <Label required>Product Name</Label>
             <Input
@@ -76,7 +88,6 @@ const EditProductPageScreen = async ({
             <Label required>Image</Label>
             <CustomFileInput
               name="image"
-              required
               defaultValue={product?.image as unknown as string}
             />
           </div>

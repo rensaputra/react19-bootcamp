@@ -6,11 +6,9 @@ import { useState } from "react";
 
 const CustomFileInput = ({
   name,
-  required,
   defaultValue,
 }: {
   name: string;
-  required?: boolean;
   defaultValue?: string;
 }) => {
   const [fileName, setFileName] = useState(
@@ -29,13 +27,11 @@ const CustomFileInput = ({
         name={name}
         id="fileInput"
         className="sr-only"
-        {...(required && { required: true })}
         onChange={handleFileChange}
       />
       <label
         htmlFor="fileInput"
-        className="px-4 py-2 bg-blue-500 text-white rounded-lg 
-        cursor-pointer hover:bg-blue-600 w-fit flex items-center gap-x-2 border border-neutral-300
+        className="px-4 py-2 bg-blue-500 text-white rounded-lg cursor-pointer hover:bg-blue-600 w-fit flex items-center gap-x-2 border border-neutral-300
          disabled:cursor-not-allowed disabled:opacity-50 hover:border-gray-400"
       >
         <ArrowUpIcon />
