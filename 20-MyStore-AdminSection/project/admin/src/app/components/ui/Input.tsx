@@ -13,6 +13,7 @@ export function Input({
   defaultValue?: string;
   value?: string;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  defaultChecked?: boolean;
 }) {
   return (
     <input type={type} className={cn("custom-input", className)} {...props} />

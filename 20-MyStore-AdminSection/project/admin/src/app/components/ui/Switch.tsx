@@ -20,12 +20,25 @@ import { cn } from "@/lib/utils";
  *   - `after:transition-all` makes the slide animated smoothly.
  */
 
-const Switch = ({ name, className }: { name: string; className?: string }) => {
+const Switch = ({
+  name,
+  className,
+  defaultValue,
+}: {
+  name: string;
+  className?: string;
+  defaultValue?: string;
+}) => {
   return (
     <label
       className={cn("inline-flex items-center cursor-pointer w-fit", className)}
     >
-      <Input type="checkbox" name={name} className="sr-only peer" />
+      <Input
+        type="checkbox"
+        name={name}
+        className="sr-only peer"
+        defaultChecked={defaultValue === "on"}
+      />
       <div
         className="relative w-16 h-8 bg-gray-200 rounded-full after:content-['']
                     after:absolute after:top-0.5 after:start-[4px] after:bg-white after:rounded-full

@@ -113,7 +113,7 @@ const EditProductPageScreen = async ({
               <Switch
                 name="isActive"
                 defaultValue={
-                  (product?.isActive as unknown as boolean) ? "on" : null
+                  (product?.isActive as unknown as boolean) ? "on" : undefined
                 }
               />
             </div>

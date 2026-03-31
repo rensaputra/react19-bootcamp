@@ -7,11 +7,15 @@ import { useState } from "react";
 const CustomFileInput = ({
   name,
   required,
+  defaultValue,
 }: {
   name: string;
   required?: boolean;
+  defaultValue?: string;
 }) => {
-  const [fileName, setFileName] = useState("No file chosen.");
+  const [fileName, setFileName] = useState(
+    defaultValue ? defaultValue.split("/").pop() : "No file chosen.",
+  );
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
