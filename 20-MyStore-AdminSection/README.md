@@ -343,3 +343,9 @@ console.log(absoluteImagePath);
 - The associated product image is also deleted from the server to avoid leftover files.
 - After deletion, the products page is revalidated to update the UI dynamically.
 - On the client side, the delete action is called asynchronously, and the modal is closed with the selected product state reset to null.
+
+## Project
+
+### Dashboard Screen
+
+![Dashboard page](/20-MyStore-AdminSection/docs/screenshots/Admin-dashboard.png)
