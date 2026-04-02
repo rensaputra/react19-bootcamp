@@ -11,3 +11,10 @@ body {
 .container {
   @apply mx-auto px-4;
 }
+
+.custom-input {
+  @apply h-12 w-full border text-black bg-gray-100 rounded-md p-3 text-base
+  placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2
+  focus-visible:ring-neutral-400 disabled:cursor-not-allowed disabled:opacity-50
+  group-hover/input:shadow-none;
+}
