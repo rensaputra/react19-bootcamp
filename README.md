@@ -17,7 +17,7 @@ Full-stack code dump from my 2026 React 19 bootcamp. Features Stripe integration
 - SQlite and MySQL
 - Prisma ORM
 
-## Table of Contents
+## Chapters
 
 - [00 - Introduction](00-Introduction/)
 - [01 - React Fundamentals](01-ReactFundamentals/)
@@ -40,3 +40,4 @@ Full-stack code dump from my 2026 React 19 bootcamp. Features Stripe integration
 - [18 - Caching in NextJS](18-CachingInNextJS)
 - [19 - Miscellaneous Hooks](19-MiscHooks)
 - [20 - MyStore: Admin Section](20-MyStore-AdminSection)
+- [21 - MyStore: Client Section](21-MyStore-ClientSection)
