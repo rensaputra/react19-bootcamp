@@ -2,14 +2,37 @@
 
 import { SearchIcon, UserIcon, CartIcon } from "./icons";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+import Input from "./ui/Input";
 
 const Header = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const toggleDropdown = () => {
     setDropdownOpen((prev) => !prev);
   };
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target as Node)
+    ) {
+      setDropdownOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    if (dropdownOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [dropdownOpen]);
 
   return (
     <div className="navbar">
@@ -18,12 +41,9 @@ const Header = () => {
           <h1 className="text-3xl font-semibold">MyStore</h1>
           <div className="relative w-full max-w-lg ">
             <SearchIcon className="absolute left-2 top-2 w-7 h-7" />
-            <input
-              placeholder="Search Product..."
-              className="pl-10! custom-input"
-            />
+            <Input placeholder="Search Product..." className="pl-10! " />
           </div>
-          <div className="relative">
+          <div className="relative" ref={dropdownRef}>
             <div className="flex gap-3">
               <CartIcon className="w-7 h-7" />
               <button className="icon-button" onClick={toggleDropdown}>
