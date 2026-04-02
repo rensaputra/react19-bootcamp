@@ -1,6 +1,16 @@
+"use client";
+
 import { SearchIcon, UserIcon, CartIcon } from "./icons";
+import Link from "next/link";
+import { useState } from "react";
 
 const Header = () => {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setDropdownOpen((prev) => !prev);
+  };
+
   return (
     <div className="navbar">
       <div className="container">
@@ -13,9 +23,26 @@ const Header = () => {
               className="pl-10! custom-input"
             />
           </div>
-          <div className="flex gap-3">
-            <CartIcon />
-            <UserIcon />
+          <div className="relative">
+            <div className="flex gap-3">
+              <CartIcon className="w-7 h-7" />
+              <button className="icon-button" onClick={toggleDropdown}>
+                <UserIcon className="w-7 h-7" />
+              </button>
+            </div>
+            {dropdownOpen && (
+              <div className="dropdown-menu">
+                <Link
+                  href="/"
+                  className="block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:rounded-md"
+                >
+                  My Wishlist
+                </Link>
+                <button className="block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:rounded-md text-left w-full">
+                  Logout
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
