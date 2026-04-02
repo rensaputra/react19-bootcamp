@@ -8,7 +8,10 @@ const Header = () => {
           <h1 className="text-3xl font-semibold">MyStore</h1>
           <div className="relative w-full max-w-lg ">
             <SearchIcon className="absolute left-2 top-2 w-7 h-7" />
-            <input placeholder="Search Product..." className="custom-input" />
+            <input
+              placeholder="Search Product..."
+              className="pl-10! custom-input"
+            />
           </div>
           <div className="flex gap-3">
             <CartIcon />

@@ -1,11 +1,12 @@
-export const SearchIcon = () => (
+import { cn } from "@/lib/utils";
+export const SearchIcon = ({ className }: { className?: string }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
     viewBox="0 0 24 24"
     strokeWidth={1.5}
     stroke="currentColor"
-    className="size-6"
+    className={cn("size-6", className)}
   >
     <path
       strokeLinecap="round"
@@ -15,14 +16,14 @@ export const SearchIcon = () => (
   </svg>
 );
 
-export const UserIcon = () => (
+export const UserIcon = ({ className }: { className?: string }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
     viewBox="0 0 24 24"
     strokeWidth={1.5}
     stroke="currentColor"
-    className="size-6"
+    className={cn("size-6", className)}
   >
     <path
       strokeLinecap="round"
@@ -32,14 +33,14 @@ export const UserIcon = () => (
   </svg>
 );
 
-export const CartIcon = () => (
+export const CartIcon = ({ className }: { className?: string }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
     viewBox="0 0 24 24"
     strokeWidth={1.5}
     stroke="currentColor"
-    className="size-6"
+    className={cn("size-6", className)}
   >
     <path
       strokeLinecap="round"
