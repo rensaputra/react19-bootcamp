@@ -349,3 +349,24 @@ console.log(absoluteImagePath);
 ### Dashboard Screen
 
 ![Dashboard page](/20-MyStore-AdminSection/docs/screenshots/Admin-dashboard.png)
+
+### User management screen
+
+![List all users](/20-MyStore-AdminSection/docs/screenshots/Admin-user-list.png)
+![Add new user](/20-MyStore-AdminSection/docs/screenshots/Admin-user-add.png)
+![Edit existing user](/20-MyStore-AdminSection/docs/screenshots/Admin-user-edit.png)
+![Delete user](/20-MyStore-AdminSection/docs/screenshots/Admin-user-delete.png)
+
+### Product type management screen
+
+![List all product types](/20-MyStore-AdminSection/docs/screenshots/Admin-productType-list.png)
+![Add new product type](/20-MyStore-AdminSection/docs/screenshots/Admin-productType-add.png)
+![Edit existing product type](/20-MyStore-AdminSection/docs/screenshots/Admin-productType-edit.png)
+![Delete product type](/20-MyStore-AdminSection/docs/screenshots/Admin-productType-delete.png)
+
+### Product management
+
+![List all products](/20-MyStore-AdminSection/docs/screenshots/Admin-products-list.png)
+![Add new product](/20-MyStore-AdminSection/docs/screenshots/Admin-products-add.png)
+![Edit existing product](/20-MyStore-AdminSection/docs/screenshots/Admin-products-edit.png)
+![Delete product](/20-MyStore-AdminSection/docs/screenshots/Admin-products-delete.png)

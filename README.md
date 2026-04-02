@@ -14,8 +14,8 @@ Full-stack code dump from my 2026 React 19 bootcamp. Features Stripe integration
 - NodeJS
 - ExpressJS
 - Vite
-- MySQL
-- SQlite
+- SQlite and MySQL
+- Prisma ORM
 
 ## Table of Contents
 
