@@ -1,9 +1,9 @@
 "use client";
 
-import { ChevronDownIcon } from "@/components/icons";
 import { useRouter } from "next/navigation";
 import { SearchParams } from "next/dist/server/request/search-params";
-import { objectToQueryString } from "@/lib/utils";
+import { cn, objectToQueryString } from "@/lib/utils";
+import Accordion from "@/components/ui/Accordion";
 
 const FilterSection = ({ searchParams }: { searchParams: SearchParams }) => {
   const CategoryItems = [
@@ -51,43 +51,32 @@ const FilterSection = ({ searchParams }: { searchParams: SearchParams }) => {
   return (
     <div className="rounded-lg shadow-lg space-y-3 p-5 bg-white h-fit">
       <h1 className="text-2xl mb-8 font-semibold">Filters</h1>
-
-      <div className="space-y-2 border-b border-b-gray-300 pb-3">
-        <div
-          className="accordion-button"
-          onClick={() => handleAccordion("category")}
-        >
-          <span>Category</span>
-          <ChevronDownIcon />
+      <Accordion
+        title="Category"
+        type="category"
+        isOpened={openAccordionArr.includes("category")}
+        handleAccordion={handleAccordion}
+      >
+        <div className="flex flex-wrap gap-3 pt-2">
+          {CategoryItems.map((item, index) => {
+            return (
+              <div key={index}>
+                <input
+                  type="checkbox"
+                  id={`productType-${item.value}`}
+                  className="hidden peer"
+                />
+                <label
+                  htmlFor={`productType-${item.value}`}
+                  className="checkbox-button-label"
+                >
+                  {item.label}
+                </label>
+              </div>
+            );
+          })}
         </div>
-        <div
-          className={
-            openAccordionArr.includes("category")
-              ? "max-h-40 overflow-hidden transition-all duration-300"
-              : "max-h-0 overflow-hidden transition-all duration-300"
-          }
-        >
-          <div className="flex flex-wrap gap-3 pt-2">
-            {CategoryItems.map((item, index) => {
-              return (
-                <div key={index}>
-                  <input
-                    type="checkbox"
-                    id={`productType-${item.value}`}
-                    className="hidden peer"
-                  />
-                  <label
-                    htmlFor={`productType-${item.value}`}
-                    className="checkbox-button-label"
-                  >
-                    {item.label}
-                  </label>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </div>
+      </Accordion>
     </div>
   );
 };
