@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { StarIcon } from "../icons";
-
+import Button from "./Button";
 const ProductCard = () => {
   return (
     <div className="bg-white rounded-xl shadow-lg w-full h-full min-h-[624px] px-5">
@@ -43,10 +43,8 @@ const ProductCard = () => {
       </div>
 
       <div className="flex gap-x-2 mt-5">
-        <button className="custom-btn w-full custom-outline-btn">
-          Add to Cart
-        </button>
-        <button className="custom-btn w-full">Buy Now</button>
+        <Button className="custom-outline-btn w-full">Add to Basket</Button>
+        <Button className="w-full">Buy Now</Button>
       </div>
     </div>
   );

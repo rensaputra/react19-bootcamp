@@ -1,0 +1,25 @@
+import { cn } from "@/lib/utils";
+import { ComponentPropsWithoutRef } from "react";
+
+type ButtonProps = ComponentPropsWithoutRef<"button">;
+
+const Button = ({
+  type = "button",
+  onClick,
+  className,
+  children,
+  ...props
+}: ButtonProps) => {
+  return (
+    <button
+      type={type}
+      onClick={onClick}
+      className={cn("custom-btn", className)}
+      {...props}
+    >
+      {children}
+    </button>
+  );
+};
+
+export default Button;
