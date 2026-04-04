@@ -1,5 +1,6 @@
 import HomeScreen from "@/screens/home";
 import { SearchParams } from "next/dist/server/request/search-params";
+import { getProducts } from "@/actions/productActions";
 
 export default async function Home({
   searchParams,
@@ -7,5 +8,9 @@ export default async function Home({
   searchParams: SearchParams;
 }) {
   const searchParamsObj = await searchParams;
-  return <HomeScreen searchParams={searchParamsObj} />;
+
+  const products = await getProducts();
+  console.log("Fetched products:", products);
+
+  return <HomeScreen searchParams={searchParamsObj} products={products} />;
 }
