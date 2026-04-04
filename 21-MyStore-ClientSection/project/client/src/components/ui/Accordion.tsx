@@ -1,7 +1,19 @@
 import { ChevronDownIcon } from "../icons";
 import { cn } from "@/lib/utils";
 
-const Accordion = ({ title, type, children, isOpened, handleAccordion }) => {
+const Accordion = ({
+  title,
+  type,
+  children,
+  isOpened,
+  handleAccordion,
+}: {
+  title: string;
+  type: string;
+  children: React.ReactNode;
+  isOpened: boolean;
+  handleAccordion: (type: string) => void;
+}) => {
   return (
     <div className="space-y-2 border-b border-b-gray-300 pb-3">
       <div className="accordion-button" onClick={() => handleAccordion(type)}>
