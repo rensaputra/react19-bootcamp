@@ -17,7 +17,7 @@ const HomeScreen = async ({
         <FilterSection searchParams={searchParams} />
         <div className="col-span-3 grid grid-cols-2 gap-5">
           {products.map((product) => {
-            return <ProductCard key={product.id} />;
+            return <ProductCard key={product.id} product={product} />;
           })}
         </div>
       </div>
