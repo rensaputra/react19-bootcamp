@@ -5,23 +5,15 @@ import { SearchParams } from "next/dist/server/request/search-params";
 import { objectToQueryString } from "@/lib/utils";
 import Accordion from "@/components/ui/Accordion";
 import PriceRangeSlider from "@/components/ui/PriceRangeSlider";
+import { ProductType } from "@/types/product";
 
-const FilterSection = ({ searchParams }: { searchParams: SearchParams }) => {
-  const CategoryItems = [
-    {
-      label: "All",
-      value: "all",
-    },
-    {
-      label: "Kid's Clothing",
-      value: "Kid's Clothing",
-    },
-    {
-      label: "Men's Clothing",
-      value: "Men's Clothing",
-    },
-  ];
-
+const FilterSection = ({
+  searchParams,
+  productTypes,
+}: {
+  searchParams: SearchParams;
+  productTypes: ProductType[];
+}) => {
   const SortByItems = [
     {
       label: "All",
@@ -132,7 +124,7 @@ const FilterSection = ({ searchParams }: { searchParams: SearchParams }) => {
         handleAccordion={handleAccordion}
       >
         <div className="flex flex-wrap gap-3 pt-2">
-          {CategoryItems.map((item, index) => {
+          {productTypes.map((item, index) => {
             return (
               <div key={index}>
                 <input
