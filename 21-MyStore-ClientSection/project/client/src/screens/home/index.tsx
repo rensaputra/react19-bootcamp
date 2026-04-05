@@ -1,7 +1,7 @@
 import { SearchParams } from "next/dist/server/request/search-params";
 import FilterSection from "./FilterSection";
 import ProductCard from "@/components/ui/ProductCard";
-import { Product, ProductType } from "@/types";
+import { FilterOption, Product } from "@/types";
 
 const HomeScreen = async ({
   searchParams,
@@ -10,7 +10,7 @@ const HomeScreen = async ({
 }: {
   searchParams: SearchParams;
   products: Product[];
-  productTypes: ProductType[];
+  productTypes: FilterOption[];
 }) => {
   return (
     <div className="my-10">

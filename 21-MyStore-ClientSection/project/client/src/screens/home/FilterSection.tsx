@@ -5,14 +5,14 @@ import { SearchParams } from "next/dist/server/request/search-params";
 import { objectToQueryString } from "@/lib/utils";
 import Accordion from "@/components/ui/Accordion";
 import PriceRangeSlider from "@/components/ui/PriceRangeSlider";
-import { ProductType } from "@/types/product";
+import { FilterOption } from "@/types";
 
 const FilterSection = ({
   searchParams,
   productTypes,
 }: {
   searchParams: SearchParams;
-  productTypes: ProductType[];
+  productTypes: FilterOption[];
 }) => {
   const SortByItems = [
     {
@@ -71,6 +71,11 @@ const FilterSection = ({
     },
   ];
 
+  const productTypeId = searchParams.productTypeId || "all";
+  const sortBy = searchParams.sortBy || "all";
+  const rating = searchParams.rating || "all";
+  const inStock = searchParams.inStock || "all";
+
   const router = useRouter();
   const openAccordionArr =
     String(searchParams.openAccordion ?? "").split(",") || [];
@@ -79,10 +84,11 @@ const FilterSection = ({
     newParamsArray: Record<string, string | null>[],
   ) => {
     const updatedSearchParams = { ...searchParams }; // Create a copy of current search params
+    //What search params looks like: { productTypeId: '1', sortBy: 'priceLowToHigh', openAccordion: 'productTypeId,sortBy' }
     newParamsArray?.forEach((param) => {
       Object.entries(param).forEach(([key, value]) => {
-        if (value === null || value === "") {
-          delete updatedSearchParams[key]; // Remove the key if value is null or empty string
+        if (value === null || value === "" || value === "all") {
+          delete updatedSearchParams[key]; // Remove the key if value is null, empty or all
         } else {
           updatedSearchParams[key] = value as string; // Update or add the key-value pair
         }
@@ -114,6 +120,12 @@ const FilterSection = ({
       { maxPrice: String(value[1]) },
     ]);
   };
+
+  const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    updateSearchParams([{ [name]: value }]);
+  };
+
   return (
     <div className="rounded-lg shadow-lg space-y-3 p-5 bg-white h-fit">
       <h1 className="text-2xl mb-8 font-semibold">Filters</h1>
@@ -131,6 +143,10 @@ const FilterSection = ({
                   type="checkbox"
                   id={`productType-${item.value}`}
                   className="hidden peer"
+                  name="productTypeId"
+                  defaultValue={item.value}
+                  checked={String(productTypeId) === String(item.value)}
+                  onChange={handleFilterChange}
                 />
                 <label
                   htmlFor={`productType-${item.value}`}
@@ -158,6 +174,10 @@ const FilterSection = ({
                   type="checkbox"
                   id={`sortBy-${item.value}`}
                   className="hidden peer"
+                  name="sortBy"
+                  defaultValue={item.value}
+                  checked={String(sortBy) === String(item.value)}
+                  onChange={handleFilterChange}
                 />
                 <label
                   htmlFor={`sortBy-${item.value}`}
@@ -205,6 +225,10 @@ const FilterSection = ({
                   type="checkbox"
                   id={`rating-${item.value}`}
                   className="hidden peer"
+                  name="rating"
+                  defaultValue={item.value}
+                  checked={String(rating) === String(item.value)}
+                  onChange={handleFilterChange}
                 />
                 <label
                   htmlFor={`rating-${item.value}`}
@@ -232,6 +256,10 @@ const FilterSection = ({
                   type="checkbox"
                   id={`availability-${item.value}`}
                   className="hidden peer"
+                  name="inStock"
+                  defaultValue={item.value}
+                  checked={String(inStock) === String(item.value)}
+                  onChange={handleFilterChange}
                 />
                 <label
                   htmlFor={`availability-${item.value}`}
