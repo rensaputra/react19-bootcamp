@@ -2,6 +2,7 @@ import Image from "next/image";
 import { StarIcon } from "../icons";
 import Button from "./Button";
 import { Product } from "@/types";
+import Link from "next/link";
 
 const ProductCard = ({ product }: { product: Product }) => {
   return (
@@ -17,9 +18,12 @@ const ProductCard = ({ product }: { product: Product }) => {
 
       <div className="space-y-4">
         <div className="space-y-1">
-          <span className="text-2xl font-semibold leading-5">
+          <Link
+            href={`/product/${product.id}`}
+            className="text-2xl font-semibold leading-5"
+          >
             {product.name}
-          </span>
+          </Link>
           <p className="text-md text-gray-400 truncate">
             {product.description}
           </p>
