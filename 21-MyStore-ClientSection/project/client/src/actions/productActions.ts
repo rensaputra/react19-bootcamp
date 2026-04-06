@@ -1,15 +1,25 @@
 "use server";
 
 import { ApiResponse, Product, ProductType } from "@/types";
-
-export async function getProducts(): Promise<Product[]> {
+import { SearchParams } from "next/dist/server/request/search-params";
+import { objectToQueryString } from "@/lib/utils";
+export async function getProducts(
+  searchParams: SearchParams,
+): Promise<Product[]> {
   try {
-    const response = await fetch(`${process.env.MYSTORE_API_URL}/products`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
+    const filteredSearchParams = { ...searchParams };
+    delete filteredSearchParams.openAccordion;
+    const queryString = objectToQueryString(filteredSearchParams);
+
+    const response = await fetch(
+      `${process.env.MYSTORE_API_URL}/products?${queryString}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
       },
-    });
+    );
 
     if (!response.ok) {
       throw new Error(`Failed to fetch products: ${response.statusText}`);

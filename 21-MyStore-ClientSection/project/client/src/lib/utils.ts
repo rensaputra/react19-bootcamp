@@ -10,7 +10,7 @@ export function objectToQueryString(obj: {
 }): string {
   const params = [];
   for (const [key, value] of Object.entries(obj)) {
-    if (value !== null && value !== undefined && value !== "") {
+    if (value && value !== null && value !== undefined && value !== "") {
       params.push(
         `${encodeURIComponent(key)}=${encodeURIComponent(String(value))}`,
       );

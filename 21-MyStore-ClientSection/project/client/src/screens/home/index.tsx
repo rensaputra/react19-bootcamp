@@ -21,9 +21,15 @@ const HomeScreen = async ({
           productTypes={productTypes}
         />
         <div className="col-span-3 grid grid-cols-2 gap-5">
-          {products.map((product) => {
-            return <ProductCard key={product.id} product={product} />;
-          })}
+          {products?.length > 0 ? (
+            products.map((product) => {
+              return <ProductCard key={product.id} product={product} />;
+            })
+          ) : (
+            <div className="flex justify-center items-center col-span-2">
+              <span className="text-xl font-medium">No products found.</span>
+            </div>
+          )}
         </div>
       </div>
     </div>

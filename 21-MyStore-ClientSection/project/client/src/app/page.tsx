@@ -10,7 +10,7 @@ export default async function Home({
 }) {
   const searchParamsObj = await searchParams;
 
-  const products = await getProducts();
+  const products = await getProducts(searchParamsObj);
   const productTypes: FilterOption[] = [
     { label: "All", value: "all" },
     ...(await getProductTypes()).map((type) => ({
