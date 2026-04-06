@@ -20,16 +20,11 @@ export async function getProducts(
         },
       },
     );
-
-    if (!response.ok) {
+    if (!response.ok || response.status !== 200) {
       throw new Error(`Failed to fetch products: ${response.statusText}`);
     }
 
     const apiResponse: ApiResponse<Product[]> = await response.json();
-
-    if (apiResponse.status !== 200) {
-      throw new Error(apiResponse.message);
-    }
 
     return apiResponse.data;
   } catch (error) {
@@ -50,15 +45,11 @@ export async function getProductTypes(): Promise<ProductType[]> {
       },
     );
 
-    if (!response.ok) {
+    if (!response.ok || response.status !== 200) {
       throw new Error(`Failed to fetch product types: ${response.statusText}`);
     }
 
     const apiResponse: ApiResponse<ProductType[]> = await response.json();
-
-    if (apiResponse.status !== 200) {
-      throw new Error(apiResponse.message);
-    }
 
     return apiResponse.data;
   } catch (error) {
