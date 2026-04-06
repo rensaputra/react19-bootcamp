@@ -23,6 +23,7 @@ export async function GET(
         ? Number(searchParams.get("rating"))
         : undefined,
       inStock: searchParams.get("inStock") || undefined,
+      search: searchParams.get("search") || undefined,
     };
 
     const whereClause = {
@@ -49,6 +50,13 @@ export async function GET(
         : filters.inStock === "false"
           ? { currentStock: 0 }
           : {}),
+      ...(filters.search
+        ? {
+            name: {
+              contains: filters.search?.toLocaleLowerCase(),
+            },
+          }
+        : {}),
     };
 
     const products = await db.product.findMany({

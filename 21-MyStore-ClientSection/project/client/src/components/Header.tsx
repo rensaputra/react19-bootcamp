@@ -4,8 +4,50 @@ import { SearchIcon, UserIcon, CartIcon } from "./icons";
 import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
 import Input from "./ui/Input";
+import { useSearchParams } from "next/navigation";
+import { objectToQueryString } from "@/lib/utils";
+import { useRouter } from "next/navigation";
 
 const Header = () => {
+  const searchParams = useSearchParams();
+  const search = searchParams.get("search") || "";
+
+  const existingSearchParams: Record<string, string | string[] | undefined> = {
+    productTypeId: searchParams.get("productTypeId") || undefined,
+    sortBy: searchParams.get("sortBy") || undefined,
+    minPrice: searchParams.get("minPrice") || "0",
+    maxPrice: searchParams.get("maxPrice") || "100",
+    rating: searchParams.get("rating") || undefined,
+    inStock: searchParams.get("inStock") || undefined,
+    openAccordion: searchParams.get("openAccordion") || undefined,
+  };
+
+  const router = useRouter();
+
+  const updateSearchParams = (
+    newParamsArray: Record<string, string | null>[],
+  ) => {
+    const updatedSearchParams: Record<string, string | string[] | undefined> = {
+      ...existingSearchParams,
+      search: search,
+    };
+    newParamsArray?.forEach((param) => {
+      Object.entries(param).forEach(([key, value]) => {
+        if (value === null || value === "" || value === "all") {
+          delete updatedSearchParams[key];
+        } else {
+          updatedSearchParams[key] = value as string;
+        }
+      });
+    });
+    router.push(`/?${objectToQueryString(updatedSearchParams)}`);
+  };
+
+  const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    updateSearchParams([{ [name]: value }]);
+  };
+
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -41,7 +83,13 @@ const Header = () => {
           <h1 className="text-3xl font-semibold">MyStore</h1>
           <div className="relative w-full max-w-lg ">
             <SearchIcon className="absolute left-2 top-2 w-7 h-7" />
-            <Input placeholder="Search Product..." className="pl-10! " />
+            <Input
+              placeholder="Search Product..."
+              className="pl-10!"
+              value={search}
+              onChange={handleFilterChange}
+              name="search"
+            />
           </div>
           <div className="relative" ref={dropdownRef}>
             <div className="flex gap-3">
