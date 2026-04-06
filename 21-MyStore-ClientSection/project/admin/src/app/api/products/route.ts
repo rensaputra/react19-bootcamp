@@ -74,17 +74,25 @@ export async function GET(
       },
     });
 
-    return NextResponse.json({
-      status: 200,
-      message: "Products fetched successfully",
-      data: products,
-    });
+    return NextResponse.json(
+      {
+        message: "Products fetched successfully",
+        data: products,
+      },
+      {
+        status: 200,
+      },
+    );
   } catch (error) {
     console.error("Error fetching products:", error);
-    return NextResponse.json({
-      status: 500,
-      message: "An error occurred while fetching products",
-      data: null,
-    });
+    return NextResponse.json(
+      {
+        message: "An error occurred while fetching products",
+        data: null,
+      },
+      {
+        status: 500,
+      },
+    );
   }
 }

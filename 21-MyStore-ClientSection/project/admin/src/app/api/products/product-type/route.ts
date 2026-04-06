@@ -6,18 +6,26 @@ import { ApiResponse, ProductType } from "@/types";
 const GET = async (): Promise<NextResponse<ApiResponse<ProductType[]>>> => {
   try {
     const res = await db.productType.findMany();
-    return NextResponse.json({
-      status: 200,
-      message: "Product types fetched successfully",
-      data: res,
-    });
+    return NextResponse.json(
+      {
+        message: "Product types fetched successfully",
+        data: res,
+      },
+      {
+        status: 200,
+      },
+    );
   } catch (error) {
     console.error("Error fetching product types:", error);
-    return NextResponse.json({
-      status: 500,
-      message: "Failed to fetch product types",
-      data: [],
-    });
+    return NextResponse.json(
+      {
+        message: "Failed to fetch product types",
+        data: [],
+      },
+      {
+        status: 500,
+      },
+    );
   }
 };
 
