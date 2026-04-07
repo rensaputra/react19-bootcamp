@@ -14,7 +14,7 @@ const Button = ({
     <button
       type={type}
       onClick={onClick}
-      className={cn("custom-btn", className)}
+      className={cn(className, "custom-btn")}
       {...props}
     >
       {children}
