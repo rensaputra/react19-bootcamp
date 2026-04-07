@@ -14,6 +14,7 @@ export async function GET(
     const product = await db.product.findUnique({
       where: {
         id: parseInt(productId),
+        isActive: true,
       },
       include: {
         productType: true,

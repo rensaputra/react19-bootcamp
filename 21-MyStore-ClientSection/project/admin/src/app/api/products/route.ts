@@ -63,7 +63,7 @@ export async function GET(
       include: {
         productType: true,
       },
-      where: whereClause,
+      where: { ...whereClause, isActive: true },
       orderBy: {
         sellPrice:
           filters.sortBy === "priceLowToHigh"
