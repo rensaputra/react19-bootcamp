@@ -57,3 +57,28 @@ export async function getProductTypes(): Promise<ProductType[]> {
     throw error;
   }
 }
+
+export async function getProductById(productId: number): Promise<Product> {
+  try {
+    const res = await fetch(
+      `${process.env.MYSTORE_API_URL}/products/${productId}`,
+      {
+        method: "GET",
+        headers: {
+          "content-type": "application/json",
+        },
+      },
+    );
+
+    if (!res.ok || res.status !== 200) {
+      throw new Error(`Failed to get product,: ${res.statusText}`);
+    }
+
+    const apiResponse: ApiResponse<Product> = await res.json();
+
+    return apiResponse.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
