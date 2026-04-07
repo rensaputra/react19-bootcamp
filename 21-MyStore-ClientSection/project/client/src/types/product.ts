@@ -3,7 +3,7 @@ export type ProductType = {
   name: string;
 };
 
-export type Product: Record<string, string| number| boolean| Date| ProductType> = {
+export type Product = {
   id: number;
   name: string;
   description: string;

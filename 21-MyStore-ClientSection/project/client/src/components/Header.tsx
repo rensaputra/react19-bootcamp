@@ -80,7 +80,9 @@ const Header = () => {
     <div className="navbar">
       <div className="container">
         <div className="flex justify-between items-center">
-          <h1 className="text-3xl font-semibold">MyStore</h1>
+          <Link href="/">
+            <h1 className="text-3xl font-semibold">MyStore</h1>
+          </Link>
           <div className="relative w-full max-w-lg ">
             <SearchIcon className="absolute left-2 top-2 w-7 h-7" />
             <Input
@@ -93,7 +95,14 @@ const Header = () => {
           </div>
           <div className="relative" ref={dropdownRef}>
             <div className="flex gap-3">
-              <CartIcon className="w-7 h-7" />
+              <Link href="/cart">
+                <div className="relative">
+                  <div className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-red-500 text-white flex justify-center items-center text-xs font-semibold">
+                    2
+                  </div>
+                  <CartIcon className="w-7 h-7" />
+                </div>
+              </Link>
               <button className="icon-button" onClick={toggleDropdown}>
                 <UserIcon className="w-7 h-7" />
               </button>
