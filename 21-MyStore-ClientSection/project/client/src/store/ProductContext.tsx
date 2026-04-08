@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useState } from "react";
-import { Product, ProductInCart } from "@/types/product";
+import { ProductInCart } from "@/types/product";
 
 type ProductContextProviderProps = {
   children: React.ReactNode;
@@ -12,6 +12,8 @@ type ProductContextType = {
   addProductToCart: (productInCart: ProductInCart) => void;
   removeProductFromCart: (productId: number) => void;
   setCartItems: (items: ProductInCart[]) => void;
+  increaseQuantity: (productId: number) => void;
+  decreaseQuantity: (productId: number) => void;
 };
 
 const ProductContext = createContext<ProductContextType>({
@@ -19,6 +21,8 @@ const ProductContext = createContext<ProductContextType>({
   addProductToCart: () => {},
   removeProductFromCart: () => {},
   setCartItems: () => {},
+  increaseQuantity: () => {},
+  decreaseQuantity: () => {},
 });
 
 export const ProductProvider = ({ children }: ProductContextProviderProps) => {
@@ -36,6 +40,24 @@ export const ProductProvider = ({ children }: ProductContextProviderProps) => {
     console.log(cartItems);
   };
 
+  const increaseQuantity = (productId: number) => {
+    setCartItems(
+      cartItems.map((item) =>
+        item.id === productId ? { ...item, quantity: item.quantity + 1 } : item,
+      ),
+    );
+  };
+
+  const decreaseQuantity = (productId: number) => {
+    setCartItems(
+      cartItems.map((item) =>
+        item.id === productId && item.quantity > 1
+          ? { ...item, quantity: item.quantity - 1 }
+          : item,
+      ),
+    );
+  };
+
   return (
     <ProductContext.Provider
       value={{
@@ -43,6 +65,8 @@ export const ProductProvider = ({ children }: ProductContextProviderProps) => {
         addProductToCart,
         removeProductFromCart,
         setCartItems,
+        increaseQuantity,
+        decreaseQuantity,
       }}
     >
       {children}

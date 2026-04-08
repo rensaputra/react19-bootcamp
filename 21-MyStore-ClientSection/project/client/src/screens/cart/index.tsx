@@ -18,8 +18,14 @@ const CartScreen = () => {
     { label: "L", value: "largeSize" },
   ] as const;
 
-  const { cartItems, setCartItems } = useProductContext();
-  console.log("cartItems", cartItems);
+  const {
+    cartItems,
+    setCartItems,
+    increaseQuantity,
+    decreaseQuantity,
+    removeProductFromCart,
+  } = useProductContext();
+
   return (
     <div className="my-10">
       <h1 className="text-3xl font-semibold">Cart</h1>
@@ -65,11 +71,19 @@ const CartScreen = () => {
 
                   <div className="flex items-centers justify-between">
                     <div className="flex gap-x-4 items-center">
-                      <Button className="p-0! bg-transparent! text-black!">
+                      <Button
+                        className="p-0! bg-transparent! text-black!"
+                        onClick={() => decreaseQuantity(item.id)}
+                      >
                         <MinusCircleIcon className="w-8 h-8" />
                       </Button>
-                      <span className="text-xl font-semibold">1</span>
-                      <Button className="p-0! bg-transparent! text-black!">
+                      <span className="text-xl font-semibold">
+                        {item.quantity}
+                      </span>
+                      <Button
+                        className="p-0! bg-transparent! text-black!"
+                        onClick={() => increaseQuantity(item.id)}
+                      >
                         <PlusCircleIcon className="w-8 h-8" />
                       </Button>
                     </div>
@@ -110,7 +124,10 @@ const CartScreen = () => {
                       </div>
                     </div>
                     <div>
-                      <Button className="bg-red-500! w-fit! flex! gap-2! items-center!">
+                      <Button
+                        className="bg-red-500! w-fit! flex! gap-2! items-center!"
+                        onClick={() => removeProductFromCart(item.id)}
+                      >
                         <TrashIcon />
                         <span>Remove</span>
                       </Button>
