@@ -20,7 +20,6 @@ export type Product = {
   createdAt: Date;
   updatedAt: Date;
   productType: ProductType;
-  [key: string]: any;
 };
 
 export type ProductSize = "smallSize" | "mediumSize" | "largeSize";
