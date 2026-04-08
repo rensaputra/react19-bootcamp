@@ -1,12 +1,13 @@
 "use client";
 
-import { SearchIcon, UserIcon, CartIcon } from "./icons";
+import { SearchIcon, UserIcon, CartIcon } from "@/components/icons";
 import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
-import Input from "./ui/Input";
+import Input from "@/components/ui/Input";
 import { useSearchParams } from "next/navigation";
 import { objectToQueryString } from "@/lib/utils";
 import { useRouter } from "next/navigation";
+import { useProductContext } from "@/store/ProductContext";
 
 const Header = () => {
   const searchParams = useSearchParams();
@@ -76,6 +77,8 @@ const Header = () => {
     };
   }, [dropdownOpen]);
 
+  const { cartItems } = useProductContext();
+
   return (
     <div className="navbar">
       <div className="container">
@@ -98,7 +101,7 @@ const Header = () => {
               <Link href="/cart">
                 <div className="relative">
                   <div className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-red-500 text-white flex justify-center items-center text-xs font-semibold">
-                    2
+                    {cartItems.length}
                   </div>
                   <CartIcon className="w-7 h-7" />
                 </div>

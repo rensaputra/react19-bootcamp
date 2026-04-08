@@ -1,7 +1,12 @@
+"use client";
+
 import { StarIcon } from "@/components/icons";
 import Button from "@/components/ui/Button";
-import { Product } from "@/types/product";
+import { cn } from "@/lib/utils";
+import { useProductContext } from "@/store/ProductContext";
+import { Product, ProductSize } from "@/types/product";
 import Image from "next/image";
+import { useState } from "react";
 
 const ProductScreen = ({
   productId,
@@ -10,6 +15,25 @@ const ProductScreen = ({
   productId: string;
   product: Product;
 }) => {
+  const { cartItems, addProductToCart, removeProductFromCart } =
+    useProductContext();
+
+  const isProductInCart = cartItems.some((item) => item.id === product.id);
+
+  const handleCartItems = () => {
+    if (isProductInCart) {
+      removeProductFromCart(product.id);
+    } else {
+      addProductToCart({
+        ...product,
+        quantity: 1,
+        size: selectedSize,
+      });
+    }
+  };
+
+  const [selectedSize, setSelectedSize] = useState<ProductSize>("smallSize");
+
   const sizeOptions = [
     { label: "S", value: "smallSize" },
     { label: "M", value: "mediumSize" },
@@ -63,6 +87,9 @@ const ProductScreen = ({
                   id={`sizes-${item.value}`}
                   name="sizes"
                   className="hidden peer"
+                  value={item.value}
+                  checked={selectedSize === item.value}
+                  onChange={() => setSelectedSize(item.value)}
                 />
                 <label
                   htmlFor={`sizes-${item.value}`}
@@ -78,7 +105,15 @@ const ProductScreen = ({
         <p className="text-gray-600">{product.description}</p>
 
         <div className="my-7 flex gap-x-5">
-          <Button className="custom-outline-btn w-full">Add to Cart</Button>
+          <Button
+            className={cn(
+              "w-full custom-outline-btn",
+              isProductInCart && "border-red-400! text-red-500!",
+            )}
+            onClick={handleCartItems}
+          >
+            {isProductInCart ? "Remove from Cart" : "Add to Cart"}
+          </Button>
           <Button className="w-full">Buy Now</Button>
         </div>
       </div>
