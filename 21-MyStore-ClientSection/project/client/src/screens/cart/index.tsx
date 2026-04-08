@@ -21,7 +21,7 @@ const CartScreen = () => {
         <div className="col-span-3 space-y-5">
           <div className="w-full bg-white shadow-md rounded-xl grid grid-cols-[auto_1fr]">
             <Image
-              src={`${process.env.BASE_URL}/uploads/1774863561305.jpg`}
+              src={`${process.env.NEXT_PUBLIC_BASE_URL}/uploads/1774863561305.jpg`}
               alt="Product Name"
               width={0}
               height={0}

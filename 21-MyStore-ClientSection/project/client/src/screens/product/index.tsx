@@ -24,7 +24,7 @@ const ProductScreen = ({
       <div className="w-full h-full bg-gray-100 rounded-xl p-3">
         <Image
           className="w-full h-full max-h-[calc(100vh-150px)] rounded-xl m-auto object-contain"
-          src={`${process.env.BASE_URL}${product.image}`}
+          src={`${process.env.NEXT_PUBLIC_BASE_URL}${product.image}`}
           alt={product.name}
           width={0}
           height={0}

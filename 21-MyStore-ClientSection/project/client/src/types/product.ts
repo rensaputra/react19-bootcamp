@@ -21,3 +21,10 @@ export type Product = {
   updatedAt: Date;
   productType: ProductType;
 };
+
+export type ProductSize = "smallSize" | "mediumSize" | "largeSize";
+
+export type ProductInCart = Product & {
+  quantity: number;
+  size: ProductSize;
+};

@@ -1,15 +1,35 @@
+"use client";
+
 import Image from "next/image";
 import { StarIcon } from "../icons";
 import Button from "./Button";
 import { Product } from "@/types";
 import Link from "next/link";
+import { useProductContext } from "@/store/ProductContext";
 
 const ProductCard = ({ product }: { product: Product }) => {
+  const { addProductToCart, removeProductFromCart, cartItems } =
+    useProductContext();
+
+  const isProductInCart = cartItems.some((item) => item.id === product.id);
+
+  const handleCartItems = () => {
+    if (isProductInCart) {
+      removeProductFromCart(product.id);
+    } else {
+      addProductToCart({
+        ...product,
+        quantity: 1,
+        size: "smallSize",
+      });
+    }
+  };
+
   return (
     <div className="bg-white rounded-xl shadow-lg w-full h-full min-h-[624px] px-5">
       <Image
         className="w-full h-full rounded-t-xl max-h-96 object-contain"
-        src={`${process.env.BASE_URL}${product.image}`}
+        src={`${process.env.NEXT_PUBLIC_BASE_URL}${product.image}`}
         width={0}
         height={0}
         sizes="100vw"
@@ -53,7 +73,9 @@ const ProductCard = ({ product }: { product: Product }) => {
       </div>
 
       <div className="flex gap-x-2 mt-5">
-        <Button className="custom-outline-btn w-full">Add to Basket</Button>
+        <Button className="custom-outline-btn w-full" onClick={handleCartItems}>
+          {isProductInCart ? "Remove from Cart" : "Add to Cart"}
+        </Button>
         <Button className="w-full">Buy Now</Button>
       </div>
     </div>
