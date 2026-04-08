@@ -10,6 +10,7 @@ import {
 import Button from "@/components/ui/Button";
 import { useProductContext } from "@/store/ProductContext";
 import { ProductSize } from "@/types";
+import { discoverValidationDepths } from "next/dist/server/app-render/instant-validation/instant-validation";
 
 const CartScreen = () => {
   const sizeOptions = [
@@ -72,8 +73,11 @@ const CartScreen = () => {
                   <div className="flex items-centers justify-between">
                     <div className="flex gap-x-4 items-center">
                       <Button
-                        className="p-0! bg-transparent! text-black!"
-                        onClick={() => decreaseQuantity(item.id)}
+                        className="p-0! bg-transparent! text-black! disabled:cursor-not-allowed disabled:opacity-50!"
+                        onClick={() =>
+                          item.quantity > 1 && decreaseQuantity(item.id)
+                        }
+                        disabled={item.quantity === 1}
                       >
                         <MinusCircleIcon className="w-8 h-8" />
                       </Button>
@@ -81,8 +85,9 @@ const CartScreen = () => {
                         {item.quantity}
                       </span>
                       <Button
-                        className="p-0! bg-transparent! text-black!"
+                        className="p-0! bg-transparent! text-black! disabled:cursor-not-allowed disabled:opacity-50!"
                         onClick={() => increaseQuantity(item.id)}
+                        disabled={item.quantity === item[item.size]}
                       >
                         <PlusCircleIcon className="w-8 h-8" />
                       </Button>
@@ -90,37 +95,39 @@ const CartScreen = () => {
                     <div className="flex gap-x-4 items-center mt-auto">
                       <span>Size:</span>
                       <div className="flex gap-x-2">
-                        {sizeOptions.map((size, index) => (
-                          <div key={index}>
-                            <input
-                              type="radio"
-                              id={`sizes-${size.value}-${item.id}`}
-                              name={`sizes-${item.id}`}
-                              className="hidden peer"
-                              checked={item.size === size.value}
-                              value={size.value}
-                              onChange={() =>
-                                setCartItems(
-                                  cartItems.map((product) =>
-                                    product.id === item.id
-                                      ? {
-                                          ...product,
-                                          size: size.value as ProductSize,
-                                          quantity: 1,
-                                        }
-                                      : product,
-                                  ),
-                                )
-                              }
-                            />
-                            <label
-                              htmlFor={`sizes-${size.value}-${item.id}`}
-                              className="checkbox-button-label"
-                            >
-                              {size.label}
-                            </label>
-                          </div>
-                        ))}
+                        {sizeOptions
+                          .filter((size) => item[size.value] > 0)
+                          .map((size, index) => (
+                            <div key={index}>
+                              <input
+                                type="radio"
+                                id={`sizes-${size.value}-${item.id}`}
+                                name={`sizes-${item.id}`}
+                                className="hidden peer"
+                                checked={item.size === size.value}
+                                value={size.value}
+                                onChange={() =>
+                                  setCartItems(
+                                    cartItems.map((product) =>
+                                      product.id === item.id
+                                        ? {
+                                            ...product,
+                                            size: size.value as ProductSize,
+                                            quantity: 1,
+                                          }
+                                        : product,
+                                    ),
+                                  )
+                                }
+                              />
+                              <label
+                                htmlFor={`sizes-${size.value}-${item.id}`}
+                                className="checkbox-button-label"
+                              >
+                                {size.label}
+                              </label>
+                            </div>
+                          ))}
                       </div>
                     </div>
                     <div>
@@ -148,18 +155,33 @@ const CartScreen = () => {
             <h1 className="border-b font-semibold text-2xl border-gray-400">
               Cart Summary
             </h1>
-
-            <div className="space-y-3">
-              <div className="flex justify-between">
-                <span className="truncate">Product Name</span>
-                <span className="text-end">$12.99</span>
-              </div>
-            </div>
+            {cartItems.length > 0 ? (
+              cartItems.map((item) => (
+                <div key={item.id} className="space-y-3">
+                  <div className="flex justify-between">
+                    <span className="truncate">{item.name}</span>
+                    <span className="text-end">
+                      ${(item.sellPrice * item.quantity).toFixed(2)}
+                    </span>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <span>N/A</span>
+            )}
 
             <div className="border-t border-gray-400">
               <div className="grid grid-cols-2 gap-2 text-xl font-semibold mt-2">
                 <span>Total Amount</span>
-                <span className="text-end">$12.99</span>
+                <span className="text-end">
+                  $
+                  {cartItems
+                    .reduce(
+                      (acc, item) => acc + item.sellPrice * item.quantity,
+                      0,
+                    )
+                    .toFixed(2)}
+                </span>
               </div>
             </div>
           </div>
