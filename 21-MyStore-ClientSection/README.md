@@ -262,3 +262,26 @@ We learned about the React useRef hook and its key benefits:
 - The total cart amount is calculated using the `Array.reduce` method, summing all product totals and updating dynamically with quantity changes.
 
 ## Project
+
+## Homepage
+
+![Homepage](/21-MyStore-ClientSection/docs/screenshots/Homepage.png)
+Homepage showing product listing with filters section on the left side. The header contains the store name, search bar, and user/cart icons.
+
+![Homepage with filters](/21-MyStore-ClientSection/docs/screenshots/Homepage-with-filter-section-expanded.png)
+Filters section expanded showing different filter options like category, price range, rating, stock availability, and sort by.
+
+## Product page
+
+![Product page](/21-MyStore-ClientSection/docs/screenshots/Product-page.png)
+Product page showing detailed information about a specific product, including image, name, type, ratings, price, stock availability, size options, description, and action buttons.
+
+## Cart page
+
+![Cart page](/21-MyStore-ClientSection/docs/screenshots/Cart-page.png)
+Cart page displaying products added to the cart with details like name, type, ratings, price, quantity controls, size options, and a summary section with total amount and checkout button.
+
+## Header component
+
+![Header component](/21-MyStore-ClientSection/docs/screenshots/Header.png)
+Header component with the store name on the left, a search bar in the center, and user and cart icons on the right. The user icon has a dropdown menu for profile options, and the cart icon shows the number of items in the cart.
