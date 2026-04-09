@@ -1,0 +1,279 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+import { SearchParams } from "next/dist/server/request/search-params";
+import { objectToQueryString } from "@/lib/utils";
+import Accordion from "@/components/ui/Accordion";
+import PriceRangeSlider from "@/components/ui/PriceRangeSlider";
+import { FilterOption } from "@/types";
+
+const FilterSection = ({
+  searchParams,
+  productTypes,
+}: {
+  searchParams: SearchParams;
+  productTypes: FilterOption[];
+}) => {
+  const SortByItems = [
+    {
+      label: "All",
+      value: "all",
+    },
+    {
+      label: "Price: Low to High",
+      value: "priceLowToHigh",
+    },
+    {
+      label: "Price: High to Low",
+      value: "priceHighToLow",
+    },
+  ];
+
+  const RatingItems = [
+    {
+      label: "All",
+      value: "all",
+    },
+    {
+      label: "1 Star & Up",
+      value: "1",
+    },
+    {
+      label: "2 Stars & Up",
+      value: "2",
+    },
+    {
+      label: "3 Stars & Up",
+      value: "3",
+    },
+    {
+      label: "4 Stars & Up",
+      value: "4",
+    },
+    {
+      label: "5 Stars",
+      value: "5",
+    },
+  ];
+
+  const AvailabilityItems = [
+    {
+      label: "All",
+      value: "all",
+    },
+    {
+      label: "In Stock",
+      value: "true",
+    },
+    {
+      label: "Out of Stock",
+      value: "false",
+    },
+  ];
+
+  const productTypeId = searchParams.productTypeId || "all";
+  const sortBy = searchParams.sortBy || "all";
+  const rating = searchParams.rating || "all";
+  const inStock = searchParams.inStock || "all";
+
+  const router = useRouter();
+  const openAccordionArr =
+    String(searchParams.openAccordion ?? "").split(",") || [];
+
+  const updateSearchParams = (
+    newParamsArray: Record<string, string | null>[],
+  ) => {
+    const updatedSearchParams = { ...searchParams }; // Create a copy of current search params
+    //What search params looks like: { productTypeId: '1', sortBy: 'priceLowToHigh', openAccordion: 'productTypeId,sortBy' }
+    newParamsArray?.forEach((param) => {
+      Object.entries(param).forEach(([key, value]) => {
+        if (value === null || value === "" || value === "all") {
+          delete updatedSearchParams[key]; // Remove the key if value is null, empty or all
+        } else {
+          updatedSearchParams[key] = value as string; // Update or add the key-value pair
+        }
+      });
+    });
+    router.push(`/?${objectToQueryString(updatedSearchParams)}`); // Update the URL with new search params
+  };
+
+  const handleAccordion = (accordionName: string) => {
+    // add and remove accordion name from openAccordionArr based on if it already exists in the array or not
+    const newOpenAccordion = openAccordionArr.includes(accordionName)
+      ? openAccordionArr.filter((name) => name !== accordionName)
+      : [...openAccordionArr, accordionName];
+    updateSearchParams([{ openAccordion: newOpenAccordion.join(",") }]);
+  };
+
+  const sliderMinPrice = 0;
+  const sliderMaxPrice = 100;
+  const minPrice = Number(searchParams.minPrice ?? sliderMinPrice);
+  const maxPrice = Number(searchParams.maxPrice ?? sliderMaxPrice);
+
+  const handlePriceRangeChange = (value: number | number[]) => {
+    if (!Array.isArray(value) || value.length !== 2) {
+      return;
+    }
+
+    updateSearchParams([
+      { minPrice: String(value[0]) },
+      { maxPrice: String(value[1]) },
+    ]);
+  };
+
+  const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    updateSearchParams([{ [name]: value }]);
+  };
+
+  return (
+    <div className="rounded-lg shadow-lg space-y-3 p-5 bg-white h-fit">
+      <h1 className="text-2xl mb-8 font-semibold">Filters</h1>
+      <Accordion
+        title="Category"
+        type="productTypeId"
+        isOpened={openAccordionArr.includes("productTypeId")}
+        handleAccordion={handleAccordion}
+      >
+        <div className="flex flex-wrap gap-3 pt-2">
+          {productTypes.map((item, index) => {
+            return (
+              <div key={index}>
+                <input
+                  type="checkbox"
+                  id={`productType-${item.value}`}
+                  className="hidden peer"
+                  name="productTypeId"
+                  defaultValue={item.value}
+                  checked={String(productTypeId) === String(item.value)}
+                  onChange={handleFilterChange}
+                />
+                <label
+                  htmlFor={`productType-${item.value}`}
+                  className="checkbox-button-label"
+                >
+                  {item.label}
+                </label>
+              </div>
+            );
+          })}
+        </div>
+      </Accordion>
+
+      <Accordion
+        title="Sort By"
+        type="sortBy"
+        isOpened={openAccordionArr.includes("sortBy")}
+        handleAccordion={handleAccordion}
+      >
+        <div className="flex flex-wrap gap-3 pt-2">
+          {SortByItems.map((item, index) => {
+            return (
+              <div key={index}>
+                <input
+                  type="checkbox"
+                  id={`sortBy-${item.value}`}
+                  className="hidden peer"
+                  name="sortBy"
+                  defaultValue={item.value}
+                  checked={String(sortBy) === String(item.value)}
+                  onChange={handleFilterChange}
+                />
+                <label
+                  htmlFor={`sortBy-${item.value}`}
+                  className="checkbox-button-label"
+                >
+                  {item.label}
+                </label>
+              </div>
+            );
+          })}
+        </div>
+      </Accordion>
+
+      <Accordion
+        title="Price Range"
+        type="priceRange"
+        isOpened={openAccordionArr.includes("priceRange")}
+        handleAccordion={handleAccordion}
+      >
+        <div className="p-3">
+          <PriceRangeSlider
+            minValue={sliderMinPrice}
+            maxValue={sliderMaxPrice}
+            value={[minPrice, maxPrice]}
+            handleChange={handlePriceRangeChange}
+          />
+        </div>
+        <div className="flex justify-between">
+          <span>${minPrice}</span>
+          <span>${maxPrice}</span>
+        </div>
+      </Accordion>
+
+      <Accordion
+        title="Rating"
+        type="rating"
+        isOpened={openAccordionArr.includes("rating")}
+        handleAccordion={handleAccordion}
+      >
+        <div className="flex flex-wrap gap-3 pt-2">
+          {RatingItems.map((item, index) => {
+            return (
+              <div key={index}>
+                <input
+                  type="checkbox"
+                  id={`rating-${item.value}`}
+                  className="hidden peer"
+                  name="rating"
+                  defaultValue={item.value}
+                  checked={String(rating) === String(item.value)}
+                  onChange={handleFilterChange}
+                />
+                <label
+                  htmlFor={`rating-${item.value}`}
+                  className="checkbox-button-label"
+                >
+                  {item.label}
+                </label>
+              </div>
+            );
+          })}
+        </div>
+      </Accordion>
+
+      <Accordion
+        title="Availability"
+        type="availability"
+        isOpened={openAccordionArr.includes("availability")}
+        handleAccordion={handleAccordion}
+      >
+        <div className="flex flex-wrap gap-3 pt-2">
+          {AvailabilityItems.map((item, index) => {
+            return (
+              <div key={index}>
+                <input
+                  type="checkbox"
+                  id={`availability-${item.value}`}
+                  className="hidden peer"
+                  name="inStock"
+                  defaultValue={item.value}
+                  checked={String(inStock) === String(item.value)}
+                  onChange={handleFilterChange}
+                />
+                <label
+                  htmlFor={`availability-${item.value}`}
+                  className="checkbox-button-label"
+                >
+                  {item.label}
+                </label>
+              </div>
+            );
+          })}
+        </div>
+      </Accordion>
+    </div>
+  );
+};
+
+export default FilterSection;
