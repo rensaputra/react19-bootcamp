@@ -1,8 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import { HomeIcon, UsersIcon, SwatchIcon, ShoppingIcon } from "../icons";
+import { User } from "@/types/user";
 
-export default function Sidebar() {
+export default async function Sidebar({ userData }: { userData: User | null }) {
   const menuItems = [
     {
       text: "Dashboard",
@@ -54,7 +55,7 @@ export default function Sidebar() {
             style={{ borderRadius: "50%" }}
             className="border-gray-600 rounded-full border-2"
           ></Image>
-          <div className="m-auto text-lg"> Rendy Saputra </div>
+          <div className="m-auto text-lg">{userData?.userName}</div>
         </div>
       </div>
     </div>

@@ -1,10 +1,12 @@
 "use server";
 
 import { db } from "@/lib/db";
-import { createJWT } from "@/lib/utils";
+import { createJWT, verifyJWT } from "@/lib/utils";
 import bcrypt from "bcrypt";
 import { redirect } from "next/navigation";
-import { setCookie } from "@/lib/cookies";
+import { setCookie, getCookie } from "@/lib/cookies";
+import { verify } from "crypto";
+import { User } from "@/types/user";
 
 export async function loginUser(formData: FormData) {
   const data = {
@@ -32,4 +34,26 @@ export async function loginUser(formData: FormData) {
   const token = await createJWT(user);
   await setCookie({ name: "jwt_token", value: token, maxAge: 2 * 60 * 60 }); // 2 hours
   redirect("/");
+}
+
+export async function jwtTokenVerification() {
+  const token = await getCookie("jwt_token");
+  const tokenData = await verifyJWT(token || "");
+
+  if (!tokenData) {
+    redirect("/login");
+  }
+
+  return tokenData;
+}
+
+export async function getUserData(): Promise<User | null> {
+  const decodedToken = await jwtTokenVerification();
+  const userData = await db.adminUser.findUnique({
+    where: {
+      id: decodedToken.id as number,
+    },
+  });
+
+  return userData;
 }
