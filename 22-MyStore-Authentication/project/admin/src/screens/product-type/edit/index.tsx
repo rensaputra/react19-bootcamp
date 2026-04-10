@@ -14,7 +14,6 @@ const EditProductTypePageScreen = async ({
   const { typeid } = await params;
   const { error } = await searchParams;
   const productType = await getProductTypeById(Number(typeid));
-  console.log(typeid, error);
   return (
     <div>
       <h1 className="text-3xl font-semibold p-2">Edit Product Type</h1>
