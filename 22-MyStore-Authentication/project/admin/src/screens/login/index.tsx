@@ -1,13 +1,14 @@
 import { Button } from "@/app/components/ui/Button";
 import { Input } from "@/app/components/ui/Input";
 import Label from "@/app/components/ui/Label";
+import { loginUser } from "@/actions/authActions";
 
 const LoginScreen = () => {
   return (
     <div className="h-screen bg-gray-100 flex items-center justify-center">
       <div className="w-full max-w-xl rounded-xl shadow-lg p-10 border border-gray-100 bg-white">
         <h1 className="text-4xl font-medium text-center mb-7">Admin Login</h1>
-        <form className="grid gap-6">
+        <form className="grid gap-6" action={loginUser}>
           <div className="grid gap-2">
             <Label htmlFor="username" required>
               Username
