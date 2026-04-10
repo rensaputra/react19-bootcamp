@@ -4,6 +4,7 @@ import { db } from "@/lib/db";
 import { createJWT } from "@/lib/utils";
 import bcrypt from "bcrypt";
 import { redirect } from "next/navigation";
+import { setCookie } from "@/lib/cookies";
 
 export async function loginUser(formData: FormData) {
   const data = {
@@ -29,5 +30,6 @@ export async function loginUser(formData: FormData) {
   }
 
   const token = await createJWT(user);
-  console.log("Generated JWT:", token);
+  await setCookie({ name: "jwt_token", value: token, maxAge: 2 * 60 * 60 }); // 2 hours
+  redirect("/");
 }
