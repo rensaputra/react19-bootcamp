@@ -6,10 +6,13 @@ import path from "path";
 import fs from "fs";
 import { writeFile } from "fs/promises";
 import { revalidatePath } from "next/cache";
+import { jwtTokenVerification } from "@/actions/authActions";
 
 const UPLOAD_DIR = path.resolve("public/uploads");
 
 export async function createProduct(formData: FormData) {
+  await jwtTokenVerification();
+
   const data = {
     name: formData.get("name") as string,
     description: formData.get("description") as string,
@@ -85,6 +88,8 @@ export async function createProduct(formData: FormData) {
 }
 
 export async function getProducts() {
+  await jwtTokenVerification();
+
   const products = await db.product.findMany({
     include: {
       productType: true,
@@ -94,6 +99,8 @@ export async function getProducts() {
 }
 
 export async function getProductById(id: number) {
+  await jwtTokenVerification();
+
   const product = await db.product.findUnique({
     where: {
       id: parseInt(id as unknown as string),
@@ -107,6 +114,8 @@ export async function getProductById(id: number) {
 }
 
 export async function updateProduct(formData: FormData) {
+  await jwtTokenVerification();
+
   const data = {
     name: formData.get("name") as string,
     description: formData.get("description") as string,
@@ -182,6 +191,8 @@ export async function updateProduct(formData: FormData) {
 }
 
 export async function handleDeleteImage(imagePath: string) {
+  await jwtTokenVerification();
+
   if (imagePath) {
     const existingImageFullPath = path.join(process.cwd(), "public", imagePath);
     if (fs.existsSync(existingImageFullPath)) {
@@ -191,6 +202,8 @@ export async function handleDeleteImage(imagePath: string) {
 }
 
 export async function deleteProduct(id: number) {
+  await jwtTokenVerification();
+
   const product = await db.product.findUnique({
     where: {
       id: Number(id),

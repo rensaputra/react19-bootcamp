@@ -3,8 +3,11 @@
 import { db } from "@/lib/db";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { jwtTokenVerification } from "@/actions/authActions";
 
 async function checkProductTypeExists(name: string, redirectPath: string) {
+  await jwtTokenVerification();
+
   const existingProductType = await db.productType.findUnique({
     where: {
       name: name,
@@ -17,6 +20,8 @@ async function checkProductTypeExists(name: string, redirectPath: string) {
 }
 
 export async function createProductType(formData: FormData) {
+  await jwtTokenVerification();
+
   const data = {
     name: formData.get("name") as string,
   };
@@ -33,10 +38,13 @@ export async function createProductType(formData: FormData) {
 }
 
 export async function getProductTypes() {
+  await jwtTokenVerification();
   return await db.productType.findMany();
 }
 
 export async function getProductTypeById(id: number) {
+  await jwtTokenVerification();
+
   return await db.productType.findUnique({
     where: {
       id,
@@ -45,6 +53,8 @@ export async function getProductTypeById(id: number) {
 }
 
 export async function updateProductType(formData: FormData) {
+  await jwtTokenVerification();
+
   const data = {
     id: Number(formData.get("typeId")),
     name: formData.get("name") as string,
@@ -66,6 +76,8 @@ export async function updateProductType(formData: FormData) {
 }
 
 export async function deleteProductType(id: number) {
+  await jwtTokenVerification();
+
   await db.productType.delete({
     where: {
       id,
