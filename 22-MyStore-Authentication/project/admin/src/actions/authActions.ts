@@ -4,8 +4,7 @@ import { db } from "@/lib/db";
 import { createJWT, verifyJWT } from "@/lib/utils";
 import bcrypt from "bcrypt";
 import { redirect } from "next/navigation";
-import { setCookie, getCookie } from "@/lib/cookies";
-import { verify } from "crypto";
+import { setCookie, getCookie, deleteCookie } from "@/lib/cookies";
 import { User } from "@/types/user";
 
 export async function loginUser(formData: FormData) {
@@ -32,7 +31,7 @@ export async function loginUser(formData: FormData) {
   }
 
   const token = await createJWT(user);
-  await setCookie({ name: "jwt_token", value: token, maxAge: 2 * 60 * 60 }); // 2 hours
+  await setCookie({ name: "jwt_token", value: token, maxAge: 2 * 60 * 60 }); // 2 hour
   redirect("/");
 }
 
@@ -41,6 +40,7 @@ export async function jwtTokenVerification() {
   const tokenData = await verifyJWT(token || "");
 
   if (!tokenData) {
+    deleteCookie("jwt_token");
     redirect("/login");
   }
 
@@ -56,4 +56,9 @@ export async function getUserData(): Promise<User | null> {
   });
 
   return userData;
+}
+
+export async function logout() {
+  await deleteCookie("jwt_token");
+  redirect("/login");
 }

@@ -1,9 +1,19 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
-import { HomeIcon, UsersIcon, SwatchIcon, ShoppingIcon } from "../icons";
+import {
+  HomeIcon,
+  UsersIcon,
+  SwatchIcon,
+  ShoppingIcon,
+  LogoutIcon,
+} from "../icons";
 import { User } from "@/types/user";
+import { Button } from "../ui/Button";
+import { logout } from "@/actions/authActions";
 
-export default async function Sidebar({ userData }: { userData: User | null }) {
+export default function Sidebar({ userData }: { userData: User | null }) {
   const menuItems = [
     {
       text: "Dashboard",
@@ -46,7 +56,7 @@ export default async function Sidebar({ userData }: { userData: User | null }) {
       </ul>
 
       <div className="sidebar-usercard">
-        <div className="flex flex-row m-5 mb-8">
+        <div className="flex flex-row m-5 mb-8 items-center">
           <Image
             height={50}
             width={50}
@@ -56,6 +66,9 @@ export default async function Sidebar({ userData }: { userData: User | null }) {
             className="border-gray-600 rounded-full border-2"
           ></Image>
           <div className="m-auto text-lg">{userData?.userName}</div>
+          <Button className="bg-transparent text-black p-0" onClick={logout}>
+            <LogoutIcon className="h-7 w-7" />
+          </Button>
         </div>
       </div>
     </div>
