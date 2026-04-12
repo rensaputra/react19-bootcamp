@@ -11,4 +11,5 @@
 export type * from './models/AdminUser'
 export type * from './models/ProductType'
 export type * from './models/Product'
+export type * from './models/BuyerMaster'
 export type * from './commonInputTypes'

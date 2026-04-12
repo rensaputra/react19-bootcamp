@@ -386,7 +386,8 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 export const ModelName = {
   AdminUser: 'AdminUser',
   ProductType: 'ProductType',
-  Product: 'Product'
+  Product: 'Product',
+  BuyerMaster: 'BuyerMaster'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -402,7 +403,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "adminUser" | "productType" | "product"
+    modelProps: "adminUser" | "productType" | "product" | "buyerMaster"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -628,6 +629,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    BuyerMaster: {
+      payload: Prisma.$BuyerMasterPayload<ExtArgs>
+      fields: Prisma.BuyerMasterFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.BuyerMasterFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BuyerMasterPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.BuyerMasterFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BuyerMasterPayload>
+        }
+        findFirst: {
+          args: Prisma.BuyerMasterFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BuyerMasterPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.BuyerMasterFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BuyerMasterPayload>
+        }
+        findMany: {
+          args: Prisma.BuyerMasterFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BuyerMasterPayload>[]
+        }
+        create: {
+          args: Prisma.BuyerMasterCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BuyerMasterPayload>
+        }
+        createMany: {
+          args: Prisma.BuyerMasterCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.BuyerMasterCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BuyerMasterPayload>[]
+        }
+        delete: {
+          args: Prisma.BuyerMasterDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BuyerMasterPayload>
+        }
+        update: {
+          args: Prisma.BuyerMasterUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BuyerMasterPayload>
+        }
+        deleteMany: {
+          args: Prisma.BuyerMasterDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.BuyerMasterUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.BuyerMasterUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BuyerMasterPayload>[]
+        }
+        upsert: {
+          args: Prisma.BuyerMasterUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BuyerMasterPayload>
+        }
+        aggregate: {
+          args: Prisma.BuyerMasterAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateBuyerMaster>
+        }
+        groupBy: {
+          args: Prisma.BuyerMasterGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BuyerMasterGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.BuyerMasterCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BuyerMasterCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -701,6 +776,19 @@ export const ProductScalarFieldEnum = {
 } as const
 
 export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeof ProductScalarFieldEnum]
+
+
+export const BuyerMasterScalarFieldEnum = {
+  id: 'id',
+  customerName: 'customerName',
+  email: 'email',
+  password: 'password',
+  address: 'address',
+  city: 'city',
+  createdAt: 'createdAt'
+} as const
+
+export type BuyerMasterScalarFieldEnum = (typeof BuyerMasterScalarFieldEnum)[keyof typeof BuyerMasterScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -857,6 +945,7 @@ export type GlobalOmitConfig = {
   adminUser?: Prisma.AdminUserOmit
   productType?: Prisma.ProductTypeOmit
   product?: Prisma.ProductOmit
+  buyerMaster?: Prisma.BuyerMasterOmit
 }
 
 /* Types for Logging */

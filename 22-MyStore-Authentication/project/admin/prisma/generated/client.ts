@@ -56,3 +56,8 @@ export type ProductType = Prisma.ProductTypeModel
  * 
  */
 export type Product = Prisma.ProductModel
+/**
+ * Model BuyerMaster
+ * 
+ */
+export type BuyerMaster = Prisma.BuyerMasterModel
