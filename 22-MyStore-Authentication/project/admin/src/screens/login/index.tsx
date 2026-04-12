@@ -1,5 +1,5 @@
-import { Button } from "@/app/components/ui/Button";
-import { Input } from "@/app/components/ui/Input";
+import Button from "@/app/components/ui/Button";
+import Input from "@/app/components/ui/Input";
 import Label from "@/app/components/ui/Label";
 import { loginUser } from "@/actions/authActions";
 
