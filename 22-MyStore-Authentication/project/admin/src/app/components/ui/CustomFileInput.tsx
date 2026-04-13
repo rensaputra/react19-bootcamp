@@ -7,9 +7,11 @@ import { useState } from "react";
 const CustomFileInput = ({
   name,
   defaultValue,
+  required,
 }: {
   name: string;
   defaultValue?: string;
+  required?: boolean;
 }) => {
   const [fileName, setFileName] = useState(
     defaultValue ? defaultValue.split("/").pop() : "No file chosen.",
@@ -28,6 +30,7 @@ const CustomFileInput = ({
         id="fileInput"
         className="sr-only"
         onChange={handleFileChange}
+        required={required}
       />
       <label
         htmlFor="fileInput"

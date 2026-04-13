@@ -6,7 +6,7 @@ import { ApiResponse, Product } from "@/types";
 
 export async function GET(
   request: Request,
-  { params }: { params: { productId: string } },
+  { params }: { params: Promise<{ productId: string }> },
 ): Promise<NextResponse<ApiResponse<Product | null>>> {
   try {
     const { productId } = await params;

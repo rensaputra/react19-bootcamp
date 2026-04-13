@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-export default function Button({
+export function Button({
   type,
   onClick,
   className,

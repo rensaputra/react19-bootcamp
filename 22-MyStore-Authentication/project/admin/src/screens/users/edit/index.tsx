@@ -5,8 +5,12 @@ import { getUniqueUser } from "@/actions/userActions";
 import { User } from "@/types/user";
 import { updateUser } from "@/actions/userActions";
 
-const EditUser = async ({ params }: { params: { userid: string } }) => {
-  const { userid, error } = await params;
+const EditUser = async ({
+  params,
+}: {
+  params: Promise<{ userid: string }>;
+}) => {
+  const { userid } = await params;
   const user: User | null = await getUniqueUser(Number(userid));
 
   return (
@@ -17,13 +21,6 @@ const EditUser = async ({ params }: { params: { userid: string } }) => {
         className="grid gap-x-6 gap-y-4 mt-10 grid-cols-2 px-2"
       >
         <input type="hidden" name="userId" value={userid} />
-        {error && (
-          <div className="col-span-2 border border-red-500 rounded-xl px-5 py-3 bg-red-50 w-fit">
-            <span className="text-red-500 col-span-2 text-md my-0 font-medium">
-              {error}
-            </span>
-          </div>
-        )}
         <div className="grid gap-2">
           <Label required>Username</Label>
           <Input
