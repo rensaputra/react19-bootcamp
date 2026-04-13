@@ -8,7 +8,7 @@ import { useSearchParams } from "next/navigation";
 import { objectToQueryString } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { useProductContext } from "@/store/ProductContext";
-import { getCustomerData } from "@/actions/authActions";
+import { logoutUser, getCustomerData } from "@/actions/authActions";
 
 const Header = () => {
   const searchParams = useSearchParams();
@@ -92,6 +92,11 @@ const Header = () => {
     fetchData();
   }, [setCustomerData]);
 
+  const handleLogout = () => {
+    logoutUser();
+    setCustomerData(null);
+    setDropdownOpen(false);
+  };
   return (
     <div className="navbar">
       <div className="container">
@@ -141,7 +146,10 @@ const Header = () => {
                 >
                   My Wishlist
                 </Link>
-                <button className="block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:rounded-md text-left w-full">
+                <button
+                  className="block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:rounded-md text-left w-full"
+                  onClick={handleLogout}
+                >
                   Logout
                 </button>
               </div>

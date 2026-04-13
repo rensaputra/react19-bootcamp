@@ -81,3 +81,7 @@ export async function getCustomerData(): Promise<User | null> {
   console.log("Customer data response:", data);
   return data?.data || null;
 }
+
+export async function logoutUser() {
+  await deleteCookie("customer_jwt_token");
+}
