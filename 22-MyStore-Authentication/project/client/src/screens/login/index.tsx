@@ -11,13 +11,15 @@ const Login = ({ searchParams }: { searchParams: SearchParams }) => {
     <div className="h-screen bg-gray-100 flex items-center justify-center">
       <div className="w-full max-w-xl rounded-xl shadow-lg p-10 border border-gray-100 bg-white">
         <h1 className="text-4xl font-medium text-center mb-7">Login</h1>
-        <div className="border border-red-500 rounded-xl p-3 bg-red-50 w-full text-center my-3">
-          {errorMessage && (
+
+        {errorMessage && (
+          <div className="border border-red-500 rounded-xl p-3 bg-red-50 w-full text-center my-3">
             <span className="text-red-500 text-lg font-medium">
               {errorMessage}
             </span>
-          )}
-        </div>
+          </div>
+        )}
+
         <form className="grid gap-6" action={loginUser}>
           <div className="grid gap-2">
             <Label htmlFor="Email" required>
