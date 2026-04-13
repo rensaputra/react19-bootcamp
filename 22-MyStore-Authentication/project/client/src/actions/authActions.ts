@@ -32,3 +32,33 @@ export async function registerUser(formData: FormData) {
   });
   redirect("/");
 }
+
+export async function loginUser(formData: FormData) {
+  const data = {
+    email: formData.get("email") as string,
+    password: formData.get("password") as string,
+  };
+
+  const res = await fetch(`${process.env.MYSTORE_API_URL}/auth/login`, {
+    method: "POST",
+    headers: {
+      "content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (!res.ok) {
+    const errRes = await res.json();
+    return redirect(
+      `/login?errorMessage=${errRes.message || "Something went wrong. Please try again."}`,
+    );
+  }
+
+  const resData = await res.json();
+  await setCookie({
+    name: "customer_jwt_token",
+    value: resData.token,
+    maxAge: 2 * 60 * 60,
+  }); // 2 hours
+  redirect("/");
+}
