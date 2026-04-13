@@ -21,7 +21,7 @@ body {
 }
 
 .dropdown-menu {
-  @apply absolute right-0 mt-2 w-30 bg-white border rounded-md shadow-lg font-medium;
+  @apply absolute right-0 mt-2 w-35 bg-white border rounded-md shadow-lg font-medium;
 }
 
 .icon-button {

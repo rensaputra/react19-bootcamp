@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useState } from "react";
 import { ProductInCart } from "@/types/product";
+import { User } from "@/types";
 
 type ProductContextProviderProps = {
   children: React.ReactNode;
@@ -9,24 +10,29 @@ type ProductContextProviderProps = {
 
 type ProductContextType = {
   cartItems: ProductInCart[];
+  customerData: User | null;
   addProductToCart: (productInCart: ProductInCart) => void;
   removeProductFromCart: (productId: number) => void;
   setCartItems: (items: ProductInCart[]) => void;
+  setCustomerData: (customerData: User | null) => void;
   increaseQuantity: (productId: number) => void;
   decreaseQuantity: (productId: number) => void;
 };
 
 const ProductContext = createContext<ProductContextType>({
   cartItems: [],
+  customerData: null,
   addProductToCart: () => {},
   removeProductFromCart: () => {},
   setCartItems: () => {},
+  setCustomerData: () => {},
   increaseQuantity: () => {},
   decreaseQuantity: () => {},
 });
 
 export const ProductProvider = ({ children }: ProductContextProviderProps) => {
   const [cartItems, setCartItems] = useState<ProductInCart[]>([]);
+  const [customerData, setCustomerData] = useState<User | null>(null);
 
   const addProductToCart = (productInCart: ProductInCart) => {
     setCartItems((prevCartItems) => [...prevCartItems, productInCart]);
@@ -60,9 +66,11 @@ export const ProductProvider = ({ children }: ProductContextProviderProps) => {
     <ProductContext.Provider
       value={{
         cartItems,
+        customerData,
         addProductToCart,
         removeProductFromCart,
         setCartItems,
+        setCustomerData,
         increaseQuantity,
         decreaseQuantity,
       }}

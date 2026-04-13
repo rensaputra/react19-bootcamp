@@ -8,6 +8,7 @@ import { useSearchParams } from "next/navigation";
 import { objectToQueryString } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { useProductContext } from "@/store/ProductContext";
+import { getCustomerData } from "@/actions/authActions";
 
 const Header = () => {
   const searchParams = useSearchParams();
@@ -53,7 +54,11 @@ const Header = () => {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const toggleDropdown = () => {
-    setDropdownOpen((prev) => !prev);
+    if (customerData?.id) {
+      setDropdownOpen((prev) => !prev);
+    } else {
+      router.push("/login");
+    }
   };
 
   const handleClickOutside = (event: MouseEvent) => {
@@ -77,7 +82,15 @@ const Header = () => {
     };
   }, [dropdownOpen]);
 
-  const { cartItems } = useProductContext();
+  const { cartItems, customerData, setCustomerData } = useProductContext();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await getCustomerData();
+      setCustomerData(res);
+    };
+    fetchData();
+  }, [setCustomerData]);
 
   return (
     <div className="navbar">
@@ -112,6 +125,16 @@ const Header = () => {
             </div>
             {dropdownOpen && (
               <div className="dropdown-menu">
+                {customerData ? (
+                  <div className="px-4 py-2 border-b">
+                    <p className="text-sm font-light">Welcome,</p>
+                    <p className="text-lg">{customerData.customerName}</p>
+                  </div>
+                ) : (
+                  <p className="block px-4 py-2 text-base text-gray-700">
+                    Please log in.
+                  </p>
+                )}
                 <Link
                   href="/"
                   className="block px-4 py-2 text-base text-gray-700 hover:bg-gray-100 hover:rounded-md"

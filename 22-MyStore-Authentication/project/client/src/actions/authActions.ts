@@ -1,6 +1,8 @@
 "use server";
+
 import { redirect } from "next/navigation";
-import { setCookie } from "@/lib/cookies";
+import { deleteCookie, getCookie, setCookie } from "@/lib/cookies";
+import { User } from "@/types/users";
 
 export async function registerUser(formData: FormData) {
   const data = {
@@ -61,4 +63,21 @@ export async function loginUser(formData: FormData) {
     maxAge: 2 * 60 * 60,
   }); // 2 hours
   redirect("/");
+}
+
+export async function getCustomerData(): Promise<User | null> {
+  const res = await fetch(`${process.env.MYSTORE_API_URL}/customer`, {
+    credentials: "include",
+    headers: {
+      Cookie: "customer_jwt_token=" + (await getCookie("customer_jwt_token")),
+    },
+  });
+
+  if (!res.ok) {
+    await deleteCookie("customer_jwt_token");
+  }
+
+  const data = await res.json();
+  console.log("Customer data response:", data);
+  return data?.data || null;
 }
