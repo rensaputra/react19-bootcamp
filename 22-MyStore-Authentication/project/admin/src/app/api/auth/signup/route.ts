@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 import { createJWT } from "@/lib/utils";
 
-const POST = async (req: Request) => {
+export const POST = async (req: Request) => {
   try {
     const { name, email, password } = await req.json();
 
@@ -32,13 +32,13 @@ const POST = async (req: Request) => {
         city: "",
       },
     });
-
+    const { password: _, ...customerWithoutPassword } = newCustomer;
     const token = await createJWT(newCustomer);
 
     return NextResponse.json(
       {
         message: "User registered successfully",
-        data: newCustomer,
+        data: customerWithoutPassword,
         token,
       },
       { status: 201 },
@@ -55,5 +55,3 @@ const POST = async (req: Request) => {
     );
   }
 };
-
-export { POST };

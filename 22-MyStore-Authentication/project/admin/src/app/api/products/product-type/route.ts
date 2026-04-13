@@ -3,7 +3,9 @@
 import { db } from "@/lib/db";
 import { NextResponse } from "next/server";
 import { ApiResponse, ProductType } from "@/types";
-const GET = async (): Promise<NextResponse<ApiResponse<ProductType[]>>> => {
+export const GET = async (): Promise<
+  NextResponse<ApiResponse<ProductType[]>>
+> => {
   try {
     const res = await db.productType.findMany();
     return NextResponse.json(
@@ -28,5 +30,3 @@ const GET = async (): Promise<NextResponse<ApiResponse<ProductType[]>>> => {
     );
   }
 };
-
-export { GET };
