@@ -1,8 +1,8 @@
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import { verifyJWT } from "@/lib/utils";
 import { db } from "@/lib/db";
 
-export async function GET(request: Request) {
+export async function GET(request: NextRequest) {
   try {
     const token = request?.cookies?.get("customer_jwt_token")?.value;
     const decodedToken = await verifyJWT(token || "");

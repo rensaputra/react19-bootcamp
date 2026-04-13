@@ -3,6 +3,10 @@ import { SignJWT } from "jose/jwt/sign";
 import { jwtVerify } from "jose/jwt/verify";
 import { twMerge } from "tailwind-merge";
 import { Buyer, User } from "@/types/user";
+
+// Cache the encoded secret to avoid creating new Uint8Array on every JWT operation
+const jwtSecret = new TextEncoder().encode(process.env.JWT_SECRET);
+
 export function cn(...classNames: (string | boolean | undefined)[]) {
   return twMerge(clsx(classNames));
 }
@@ -31,17 +35,14 @@ export async function createJWT(user: User | Buyer): Promise<string> {
     .setProtectedHeader({ alg: "HS256", typ: "JWT" })
     .setIssuedAt()
     .setExpirationTime("2h")
-    .sign(new TextEncoder().encode(process.env.JWT_SECRET));
+    .sign(jwtSecret);
 
   return token;
 }
 
 export async function verifyJWT(token: string) {
   try {
-    const { payload } = await jwtVerify(
-      token,
-      new TextEncoder().encode(process.env.JWT_SECRET),
-    );
+    const { payload } = await jwtVerify(token, jwtSecret);
     return payload;
   } catch (error) {
     console.error("JWT verification failed:", error);
