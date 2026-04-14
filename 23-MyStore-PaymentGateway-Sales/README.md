@@ -33,3 +33,19 @@ Key takeaways from the video on implementing the Stripe checkout flow:
     );
     ```
     Here, `loadStripe` takes your publishable key (stored securely in an environment variable) and returns a promise that resolves when StripeJS is ready to use. This setup is essential before embedding Stripe components in your checkout page.
+
+## Rendering Stripe's embedded checkout form
+
+- To keep the secret key safe, a server action is created to pass the client secret securely to the client side without exposing it publicly.
+- The embedded checkout form is rendered only after the client secret is set in state to avoid errors
+- **EmbeddedCheckoutProvider** acts as a wrapper or context provider that initializes Stripe's payment environment. It takes the Stripe promise object and options (including the client secret) to securely set up the checkout session.
+- **EmbeddedCheckout** is the actual component that renders the pre-built Stripe checkout form inside your app.
+- To securely pass the Stripe secret key value to the client side, you create a server action on the server that does the following:
+  - In a file like `StripeActions.js`, define an async function (e.g., `createCheckoutSession`).
+  - Inside this function, initialize a Stripe instance using the secret key from your environment variables (`process.env.StripeSecretKey`).
+  - Use this Stripe instance to create a checkout session with the necessary configuration (like payment mode, customer email, product details, and return URL).
+  - The checkout session object includes a `client_secret` which you return from this server action
+- When you call `stripeInstance.checkout.sessions.create`, it sends a request to Stripe's backend servers to set up a new checkout session.
+  - Validates the payment details and configuration you provide (like payment mode, customer info, products, and return URLs).
+  - Creates a secure payment intent and session that manages the payment flow.
+  - Generates a client secret token within the session object, which your frontend uses to securely render the embedded checkout form.
