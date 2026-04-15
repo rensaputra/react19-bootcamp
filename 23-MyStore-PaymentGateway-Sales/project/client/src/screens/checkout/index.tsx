@@ -7,19 +7,22 @@ import {
 } from "@stripe/react-stripe-js";
 import { createCheckoutSession } from "@/actions/stripeActions";
 import { useEffect, useState } from "react";
+import { useProductContext } from "@/store/ProductContext";
+
+const stripePromise = loadStripe(
+  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!,
+);
 
 const Checkout = () => {
   const [options, setOptions] = useState({ clientSecret: "" });
-  const stripePromise = loadStripe(
-    process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!,
-  );
+  const { cartItems, customerData } = useProductContext();
 
   useEffect(() => {
     let isMounted = true;
 
     (async () => {
       try {
-        const session = await createCheckoutSession();
+        const session = await createCheckoutSession(cartItems, customerData);
         if (isMounted) {
           setOptions({ clientSecret: session.clientSecret! });
         }
