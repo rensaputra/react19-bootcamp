@@ -49,3 +49,5 @@ Key takeaways from the video on implementing the Stripe checkout flow:
   - Validates the payment details and configuration you provide (like payment mode, customer info, products, and return URLs).
   - Creates a secure payment intent and session that manages the payment flow.
   - Generates a client secret token within the session object, which your frontend uses to securely render the embedded checkout form.
+
+Pull request: https://github.com/rensaputra/react19-bootcamp/pull/3
