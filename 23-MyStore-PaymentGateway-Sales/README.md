@@ -51,3 +51,14 @@ Key takeaways from the video on implementing the Stripe checkout flow:
   - Generates a client secret token within the session object, which your frontend uses to securely render the embedded checkout form.
 
 Pull request: https://github.com/rensaputra/react19-bootcamp/pull/3
+
+## Creating checkout session dynamically
+
+- The checkout session is created dynamically by passing the logged-in customer's data and cart products to Stripe's API, replacing static values with real-time data.
+- Validation is added to restrict access to the checkout page only for logged-in users with non-empty carts, improving security and user experience.
+- The checkout button in the cart is disabled if the cart is empty or the user is not logged in, with a prompt to log in before proceeding.
+- In addition to that access to the checkout page is also protected by checking the user's authentication status and cart contents before allowing access, this is implemented using React's `useEffect` hook to redirect unauthorized users back to the cart page.
+- The video demonstrates a complete payment flow including test payment with Stripe and handling redirection after payment.
+
+https://github.com/rensaputra/react19-bootcamp/pull/4
+https://github.com/rensaputra/react19-bootcamp/pull/5
