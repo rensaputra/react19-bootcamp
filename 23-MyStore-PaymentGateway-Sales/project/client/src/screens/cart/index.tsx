@@ -21,6 +21,7 @@ const CartScreen = () => {
 
   const {
     cartItems,
+    customerData,
     setCartItems,
     increaseQuantity,
     decreaseQuantity,
@@ -29,7 +30,11 @@ const CartScreen = () => {
 
   const router = useRouter();
   const handleCheckout = () => {
-    router.push("/checkout");
+    if (customerData?.id) {
+      router.push("/checkout");
+    } else {
+      router.push("/login");
+    }
   };
 
   return (
@@ -190,8 +195,12 @@ const CartScreen = () => {
               </div>
             </div>
           </div>
-          <Button className="w-full mt-2" onClick={handleCheckout}>
-            Checkout
+          <Button
+            className="w-full mt-2"
+            onClick={handleCheckout}
+            disabled={cartItems.length === 0}
+          >
+            {customerData?.id ? "Checkout" : "Login to Checkout"}
           </Button>
         </div>
       </div>
