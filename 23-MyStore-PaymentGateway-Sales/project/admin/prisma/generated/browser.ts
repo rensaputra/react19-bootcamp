@@ -37,3 +37,13 @@ export type Product = Prisma.ProductModel
  * 
  */
 export type BuyerMaster = Prisma.BuyerMasterModel
+/**
+ * Model SalesMaster
+ * 
+ */
+export type SalesMaster = Prisma.SalesMasterModel
+/**
+ * Model SalesTransaction
+ * 
+ */
+export type SalesTransaction = Prisma.SalesTransactionModel

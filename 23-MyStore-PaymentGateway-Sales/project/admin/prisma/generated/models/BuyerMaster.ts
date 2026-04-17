@@ -232,6 +232,7 @@ export type BuyerMasterWhereInput = {
   address?: Prisma.StringFilter<"BuyerMaster"> | string
   city?: Prisma.StringFilter<"BuyerMaster"> | string
   createdAt?: Prisma.DateTimeFilter<"BuyerMaster"> | Date | string
+  salesMasters?: Prisma.SalesMasterListRelationFilter
 }
 
 export type BuyerMasterOrderByWithRelationInput = {
@@ -242,6 +243,7 @@ export type BuyerMasterOrderByWithRelationInput = {
   address?: Prisma.SortOrder
   city?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  salesMasters?: Prisma.SalesMasterOrderByRelationAggregateInput
 }
 
 export type BuyerMasterWhereUniqueInput = Prisma.AtLeast<{
@@ -255,6 +257,7 @@ export type BuyerMasterWhereUniqueInput = Prisma.AtLeast<{
   address?: Prisma.StringFilter<"BuyerMaster"> | string
   city?: Prisma.StringFilter<"BuyerMaster"> | string
   createdAt?: Prisma.DateTimeFilter<"BuyerMaster"> | Date | string
+  salesMasters?: Prisma.SalesMasterListRelationFilter
 }, "id" | "email">
 
 export type BuyerMasterOrderByWithAggregationInput = {
@@ -292,6 +295,7 @@ export type BuyerMasterCreateInput = {
   address: string
   city: string
   createdAt?: Date | string
+  salesMasters?: Prisma.SalesMasterCreateNestedManyWithoutBuyerInput
 }
 
 export type BuyerMasterUncheckedCreateInput = {
@@ -302,6 +306,7 @@ export type BuyerMasterUncheckedCreateInput = {
   address: string
   city: string
   createdAt?: Date | string
+  salesMasters?: Prisma.SalesMasterUncheckedCreateNestedManyWithoutBuyerInput
 }
 
 export type BuyerMasterUpdateInput = {
@@ -311,6 +316,7 @@ export type BuyerMasterUpdateInput = {
   address?: Prisma.StringFieldUpdateOperationsInput | string
   city?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  salesMasters?: Prisma.SalesMasterUpdateManyWithoutBuyerNestedInput
 }
 
 export type BuyerMasterUncheckedUpdateInput = {
@@ -321,6 +327,7 @@ export type BuyerMasterUncheckedUpdateInput = {
   address?: Prisma.StringFieldUpdateOperationsInput | string
   city?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  salesMasters?: Prisma.SalesMasterUncheckedUpdateManyWithoutBuyerNestedInput
 }
 
 export type BuyerMasterCreateManyInput = {
@@ -390,6 +397,108 @@ export type BuyerMasterSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
 }
 
+export type BuyerMasterScalarRelationFilter = {
+  is?: Prisma.BuyerMasterWhereInput
+  isNot?: Prisma.BuyerMasterWhereInput
+}
+
+export type BuyerMasterCreateNestedOneWithoutSalesMastersInput = {
+  create?: Prisma.XOR<Prisma.BuyerMasterCreateWithoutSalesMastersInput, Prisma.BuyerMasterUncheckedCreateWithoutSalesMastersInput>
+  connectOrCreate?: Prisma.BuyerMasterCreateOrConnectWithoutSalesMastersInput
+  connect?: Prisma.BuyerMasterWhereUniqueInput
+}
+
+export type BuyerMasterUpdateOneRequiredWithoutSalesMastersNestedInput = {
+  create?: Prisma.XOR<Prisma.BuyerMasterCreateWithoutSalesMastersInput, Prisma.BuyerMasterUncheckedCreateWithoutSalesMastersInput>
+  connectOrCreate?: Prisma.BuyerMasterCreateOrConnectWithoutSalesMastersInput
+  upsert?: Prisma.BuyerMasterUpsertWithoutSalesMastersInput
+  connect?: Prisma.BuyerMasterWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.BuyerMasterUpdateToOneWithWhereWithoutSalesMastersInput, Prisma.BuyerMasterUpdateWithoutSalesMastersInput>, Prisma.BuyerMasterUncheckedUpdateWithoutSalesMastersInput>
+}
+
+export type BuyerMasterCreateWithoutSalesMastersInput = {
+  customerName: string
+  email: string
+  password: string
+  address: string
+  city: string
+  createdAt?: Date | string
+}
+
+export type BuyerMasterUncheckedCreateWithoutSalesMastersInput = {
+  id?: number
+  customerName: string
+  email: string
+  password: string
+  address: string
+  city: string
+  createdAt?: Date | string
+}
+
+export type BuyerMasterCreateOrConnectWithoutSalesMastersInput = {
+  where: Prisma.BuyerMasterWhereUniqueInput
+  create: Prisma.XOR<Prisma.BuyerMasterCreateWithoutSalesMastersInput, Prisma.BuyerMasterUncheckedCreateWithoutSalesMastersInput>
+}
+
+export type BuyerMasterUpsertWithoutSalesMastersInput = {
+  update: Prisma.XOR<Prisma.BuyerMasterUpdateWithoutSalesMastersInput, Prisma.BuyerMasterUncheckedUpdateWithoutSalesMastersInput>
+  create: Prisma.XOR<Prisma.BuyerMasterCreateWithoutSalesMastersInput, Prisma.BuyerMasterUncheckedCreateWithoutSalesMastersInput>
+  where?: Prisma.BuyerMasterWhereInput
+}
+
+export type BuyerMasterUpdateToOneWithWhereWithoutSalesMastersInput = {
+  where?: Prisma.BuyerMasterWhereInput
+  data: Prisma.XOR<Prisma.BuyerMasterUpdateWithoutSalesMastersInput, Prisma.BuyerMasterUncheckedUpdateWithoutSalesMastersInput>
+}
+
+export type BuyerMasterUpdateWithoutSalesMastersInput = {
+  customerName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  city?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type BuyerMasterUncheckedUpdateWithoutSalesMastersInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  customerName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  city?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+
+/**
+ * Count Type BuyerMasterCountOutputType
+ */
+
+export type BuyerMasterCountOutputType = {
+  salesMasters: number
+}
+
+export type BuyerMasterCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  salesMasters?: boolean | BuyerMasterCountOutputTypeCountSalesMastersArgs
+}
+
+/**
+ * BuyerMasterCountOutputType without action
+ */
+export type BuyerMasterCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the BuyerMasterCountOutputType
+   */
+  select?: Prisma.BuyerMasterCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * BuyerMasterCountOutputType without action
+ */
+export type BuyerMasterCountOutputTypeCountSalesMastersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SalesMasterWhereInput
+}
 
 
 export type BuyerMasterSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -400,6 +509,8 @@ export type BuyerMasterSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   address?: boolean
   city?: boolean
   createdAt?: boolean
+  salesMasters?: boolean | Prisma.BuyerMaster$salesMastersArgs<ExtArgs>
+  _count?: boolean | Prisma.BuyerMasterCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["buyerMaster"]>
 
 export type BuyerMasterSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -433,10 +544,18 @@ export type BuyerMasterSelectScalar = {
 }
 
 export type BuyerMasterOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "customerName" | "email" | "password" | "address" | "city" | "createdAt", ExtArgs["result"]["buyerMaster"]>
+export type BuyerMasterInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  salesMasters?: boolean | Prisma.BuyerMaster$salesMastersArgs<ExtArgs>
+  _count?: boolean | Prisma.BuyerMasterCountOutputTypeDefaultArgs<ExtArgs>
+}
+export type BuyerMasterIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type BuyerMasterIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
 
 export type $BuyerMasterPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "BuyerMaster"
-  objects: {}
+  objects: {
+    salesMasters: Prisma.$SalesMasterPayload<ExtArgs>[]
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     customerName: string
@@ -839,6 +958,7 @@ readonly fields: BuyerMasterFieldRefs;
  */
 export interface Prisma__BuyerMasterClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  salesMasters<T extends Prisma.BuyerMaster$salesMastersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BuyerMaster$salesMastersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SalesMasterPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -892,6 +1012,10 @@ export type BuyerMasterFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.I
    */
   omit?: Prisma.BuyerMasterOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BuyerMasterInclude<ExtArgs> | null
+  /**
    * Filter, which BuyerMaster to fetch.
    */
   where: Prisma.BuyerMasterWhereUniqueInput
@@ -910,6 +1034,10 @@ export type BuyerMasterFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Exten
    */
   omit?: Prisma.BuyerMasterOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BuyerMasterInclude<ExtArgs> | null
+  /**
    * Filter, which BuyerMaster to fetch.
    */
   where: Prisma.BuyerMasterWhereUniqueInput
@@ -927,6 +1055,10 @@ export type BuyerMasterFindFirstArgs<ExtArgs extends runtime.Types.Extensions.In
    * Omit specific fields from the BuyerMaster
    */
   omit?: Prisma.BuyerMasterOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BuyerMasterInclude<ExtArgs> | null
   /**
    * Filter, which BuyerMaster to fetch.
    */
@@ -976,6 +1108,10 @@ export type BuyerMasterFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extens
    */
   omit?: Prisma.BuyerMasterOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BuyerMasterInclude<ExtArgs> | null
+  /**
    * Filter, which BuyerMaster to fetch.
    */
   where?: Prisma.BuyerMasterWhereInput
@@ -1023,6 +1159,10 @@ export type BuyerMasterFindManyArgs<ExtArgs extends runtime.Types.Extensions.Int
    * Omit specific fields from the BuyerMaster
    */
   omit?: Prisma.BuyerMasterOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BuyerMasterInclude<ExtArgs> | null
   /**
    * Filter, which BuyerMasters to fetch.
    */
@@ -1072,6 +1212,10 @@ export type BuyerMasterCreateArgs<ExtArgs extends runtime.Types.Extensions.Inter
    */
   omit?: Prisma.BuyerMasterOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BuyerMasterInclude<ExtArgs> | null
+  /**
    * The data needed to create a BuyerMaster.
    */
   data: Prisma.XOR<Prisma.BuyerMasterCreateInput, Prisma.BuyerMasterUncheckedCreateInput>
@@ -1117,6 +1261,10 @@ export type BuyerMasterUpdateArgs<ExtArgs extends runtime.Types.Extensions.Inter
    * Omit specific fields from the BuyerMaster
    */
   omit?: Prisma.BuyerMasterOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BuyerMasterInclude<ExtArgs> | null
   /**
    * The data needed to update a BuyerMaster.
    */
@@ -1184,6 +1332,10 @@ export type BuyerMasterUpsertArgs<ExtArgs extends runtime.Types.Extensions.Inter
    */
   omit?: Prisma.BuyerMasterOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BuyerMasterInclude<ExtArgs> | null
+  /**
    * The filter to search for the BuyerMaster to update in case it exists.
    */
   where: Prisma.BuyerMasterWhereUniqueInput
@@ -1210,6 +1362,10 @@ export type BuyerMasterDeleteArgs<ExtArgs extends runtime.Types.Extensions.Inter
    */
   omit?: Prisma.BuyerMasterOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BuyerMasterInclude<ExtArgs> | null
+  /**
    * Filter which BuyerMaster to delete.
    */
   where: Prisma.BuyerMasterWhereUniqueInput
@@ -1230,6 +1386,30 @@ export type BuyerMasterDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.I
 }
 
 /**
+ * BuyerMaster.salesMasters
+ */
+export type BuyerMaster$salesMastersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SalesMaster
+   */
+  select?: Prisma.SalesMasterSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the SalesMaster
+   */
+  omit?: Prisma.SalesMasterOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SalesMasterInclude<ExtArgs> | null
+  where?: Prisma.SalesMasterWhereInput
+  orderBy?: Prisma.SalesMasterOrderByWithRelationInput | Prisma.SalesMasterOrderByWithRelationInput[]
+  cursor?: Prisma.SalesMasterWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SalesMasterScalarFieldEnum | Prisma.SalesMasterScalarFieldEnum[]
+}
+
+/**
  * BuyerMaster without action
  */
 export type BuyerMasterDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1241,4 +1421,8 @@ export type BuyerMasterDefaultArgs<ExtArgs extends runtime.Types.Extensions.Inte
    * Omit specific fields from the BuyerMaster
    */
   omit?: Prisma.BuyerMasterOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BuyerMasterInclude<ExtArgs> | null
 }
