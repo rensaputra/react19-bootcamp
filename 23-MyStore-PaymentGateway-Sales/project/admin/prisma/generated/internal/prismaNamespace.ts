@@ -387,7 +387,9 @@ export const ModelName = {
   AdminUser: 'AdminUser',
   ProductType: 'ProductType',
   Product: 'Product',
-  BuyerMaster: 'BuyerMaster'
+  BuyerMaster: 'BuyerMaster',
+  SalesMaster: 'SalesMaster',
+  SalesTransaction: 'SalesTransaction'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -403,7 +405,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "adminUser" | "productType" | "product" | "buyerMaster"
+    modelProps: "adminUser" | "productType" | "product" | "buyerMaster" | "salesMaster" | "salesTransaction"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -703,6 +705,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    SalesMaster: {
+      payload: Prisma.$SalesMasterPayload<ExtArgs>
+      fields: Prisma.SalesMasterFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.SalesMasterFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SalesMasterPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.SalesMasterFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SalesMasterPayload>
+        }
+        findFirst: {
+          args: Prisma.SalesMasterFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SalesMasterPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.SalesMasterFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SalesMasterPayload>
+        }
+        findMany: {
+          args: Prisma.SalesMasterFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SalesMasterPayload>[]
+        }
+        create: {
+          args: Prisma.SalesMasterCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SalesMasterPayload>
+        }
+        createMany: {
+          args: Prisma.SalesMasterCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.SalesMasterCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SalesMasterPayload>[]
+        }
+        delete: {
+          args: Prisma.SalesMasterDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SalesMasterPayload>
+        }
+        update: {
+          args: Prisma.SalesMasterUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SalesMasterPayload>
+        }
+        deleteMany: {
+          args: Prisma.SalesMasterDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.SalesMasterUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.SalesMasterUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SalesMasterPayload>[]
+        }
+        upsert: {
+          args: Prisma.SalesMasterUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SalesMasterPayload>
+        }
+        aggregate: {
+          args: Prisma.SalesMasterAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSalesMaster>
+        }
+        groupBy: {
+          args: Prisma.SalesMasterGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SalesMasterGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.SalesMasterCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SalesMasterCountAggregateOutputType> | number
+        }
+      }
+    }
+    SalesTransaction: {
+      payload: Prisma.$SalesTransactionPayload<ExtArgs>
+      fields: Prisma.SalesTransactionFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.SalesTransactionFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SalesTransactionPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.SalesTransactionFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SalesTransactionPayload>
+        }
+        findFirst: {
+          args: Prisma.SalesTransactionFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SalesTransactionPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.SalesTransactionFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SalesTransactionPayload>
+        }
+        findMany: {
+          args: Prisma.SalesTransactionFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SalesTransactionPayload>[]
+        }
+        create: {
+          args: Prisma.SalesTransactionCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SalesTransactionPayload>
+        }
+        createMany: {
+          args: Prisma.SalesTransactionCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.SalesTransactionCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SalesTransactionPayload>[]
+        }
+        delete: {
+          args: Prisma.SalesTransactionDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SalesTransactionPayload>
+        }
+        update: {
+          args: Prisma.SalesTransactionUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SalesTransactionPayload>
+        }
+        deleteMany: {
+          args: Prisma.SalesTransactionDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.SalesTransactionUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.SalesTransactionUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SalesTransactionPayload>[]
+        }
+        upsert: {
+          args: Prisma.SalesTransactionUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SalesTransactionPayload>
+        }
+        aggregate: {
+          args: Prisma.SalesTransactionAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSalesTransaction>
+        }
+        groupBy: {
+          args: Prisma.SalesTransactionGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SalesTransactionGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.SalesTransactionCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SalesTransactionCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -789,6 +939,30 @@ export const BuyerMasterScalarFieldEnum = {
 } as const
 
 export type BuyerMasterScalarFieldEnum = (typeof BuyerMasterScalarFieldEnum)[keyof typeof BuyerMasterScalarFieldEnum]
+
+
+export const SalesMasterScalarFieldEnum = {
+  id: 'id',
+  bId: 'bId',
+  SODateTime: 'SODateTime',
+  grandTotalPrice: 'grandTotalPrice',
+  paymentMode: 'paymentMode',
+  paymentDetails: 'paymentDetails'
+} as const
+
+export type SalesMasterScalarFieldEnum = (typeof SalesMasterScalarFieldEnum)[keyof typeof SalesMasterScalarFieldEnum]
+
+
+export const SalesTransactionScalarFieldEnum = {
+  id: 'id',
+  SMOId: 'SMOId',
+  productId: 'productId',
+  unitPrice: 'unitPrice',
+  qtyPurchased: 'qtyPurchased',
+  total: 'total'
+} as const
+
+export type SalesTransactionScalarFieldEnum = (typeof SalesTransactionScalarFieldEnum)[keyof typeof SalesTransactionScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -946,6 +1120,8 @@ export type GlobalOmitConfig = {
   productType?: Prisma.ProductTypeOmit
   product?: Prisma.ProductOmit
   buyerMaster?: Prisma.BuyerMasterOmit
+  salesMaster?: Prisma.SalesMasterOmit
+  salesTransaction?: Prisma.SalesTransactionOmit
 }
 
 /* Types for Logging */

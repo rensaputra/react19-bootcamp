@@ -78,7 +78,6 @@ export async function getCustomerData(): Promise<User | null> {
   }
 
   const data = await res.json();
-  console.log("Customer data response:", data);
   return data?.data || null;
 }
 

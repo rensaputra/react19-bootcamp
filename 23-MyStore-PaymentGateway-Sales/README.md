@@ -65,10 +65,20 @@ https://github.com/rensaputra/react19-bootcamp/pull/5
 
 ## Creating payment status page
 
-- The payment status page is created to display checkout results, retrieving session data from Stripe using the session ID in the URL.
+- The payment status page is created to display checkout results, retrieving session data from Stripe using the session ID in the URL. To retrieve the session data is by creating a server action that initializes a Stripe instance with the secret key and calls `stripeInstance.checkout.sessions.retrieve(sessionId)` to get the session details.
 - A server action fetches the checkout session details asynchronously, which are then passed as props to the payment status component.
 - The UI includes a success message with a styled card and a button to continue shopping, enhanced with a success icon.
 - The video also covers fixing the display of product size values during checkout by mapping size codes to readable labels.
 - Finally, the full checkout flow is tested to ensure the payment process and redirection to the status page work smoothly.
 
 https://github.com/rensaputra/react19-bootcamp/pull/6
+
+## Creating sales and transaction table in database
+
+- The video covers creating sales master and sales transaction tables to properly record all sales transactions and update product stock after payment.
+- It explains the database schema design, showing how the buyer master relates one-to-many with sales master, and sales master relates one-to-many with sales transaction, establishing clear relationships.
+- The process of generating and syncing these tables to the database using Prisma migrations is demonstrated, ensuring the schema updates are applied and verified in the development database.
+- I then run `npm run gen:prisma` to generate the Prisma client based on the updated schema, allowing me to interact with the new tables in my application code.
+- Then I run `npm run db:dev` to apply the migrations and update the development database with the new sales master and sales transaction tables, ensuring the schema changes are reflected in the database structure.
+
+https://github.com/rensaputra/react19-bootcamp/pull/7

@@ -54,7 +54,9 @@ export const ModelName = {
   AdminUser: 'AdminUser',
   ProductType: 'ProductType',
   Product: 'Product',
-  BuyerMaster: 'BuyerMaster'
+  BuyerMaster: 'BuyerMaster',
+  SalesMaster: 'SalesMaster',
+  SalesTransaction: 'SalesTransaction'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -120,6 +122,30 @@ export const BuyerMasterScalarFieldEnum = {
 } as const
 
 export type BuyerMasterScalarFieldEnum = (typeof BuyerMasterScalarFieldEnum)[keyof typeof BuyerMasterScalarFieldEnum]
+
+
+export const SalesMasterScalarFieldEnum = {
+  id: 'id',
+  bId: 'bId',
+  SODateTime: 'SODateTime',
+  grandTotalPrice: 'grandTotalPrice',
+  paymentMode: 'paymentMode',
+  paymentDetails: 'paymentDetails'
+} as const
+
+export type SalesMasterScalarFieldEnum = (typeof SalesMasterScalarFieldEnum)[keyof typeof SalesMasterScalarFieldEnum]
+
+
+export const SalesTransactionScalarFieldEnum = {
+  id: 'id',
+  SMOId: 'SMOId',
+  productId: 'productId',
+  unitPrice: 'unitPrice',
+  qtyPurchased: 'qtyPurchased',
+  total: 'total'
+} as const
+
+export type SalesTransactionScalarFieldEnum = (typeof SalesTransactionScalarFieldEnum)[keyof typeof SalesTransactionScalarFieldEnum]
 
 
 export const SortOrder = {
