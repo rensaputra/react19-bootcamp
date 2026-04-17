@@ -49,3 +49,9 @@ export async function createCheckoutSession(
 
   return { clientSecret: checkoutSession.client_secret };
 }
+
+export async function retrieveCheckoutSession(sessionId: string) {
+  const stripeInstance = new Stripe(process.env.STRIPE_SECRET_KEY!);
+  const session = await stripeInstance.checkout.sessions.retrieve(sessionId);
+  return session;
+}
