@@ -62,3 +62,13 @@ Pull request: https://github.com/rensaputra/react19-bootcamp/pull/3
 
 https://github.com/rensaputra/react19-bootcamp/pull/4
 https://github.com/rensaputra/react19-bootcamp/pull/5
+
+## Creating payment status page
+
+- The payment status page is created to display checkout results, retrieving session data from Stripe using the session ID in the URL.
+- A server action fetches the checkout session details asynchronously, which are then passed as props to the payment status component.
+- The UI includes a success message with a styled card and a button to continue shopping, enhanced with a success icon.
+- The video also covers fixing the display of product size values during checkout by mapping size codes to readable labels.
+- Finally, the full checkout flow is tested to ensure the payment process and redirection to the status page work smoothly.
+
+https://github.com/rensaputra/react19-bootcamp/pull/6

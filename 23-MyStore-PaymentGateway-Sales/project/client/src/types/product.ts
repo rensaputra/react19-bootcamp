@@ -28,3 +28,9 @@ export type ProductInCart = Product & {
   quantity: number;
   size: ProductSize;
 };
+
+export const SIZES = {
+  smallSize: "S",
+  mediumSize: "M",
+  largeSize: "L",
+};

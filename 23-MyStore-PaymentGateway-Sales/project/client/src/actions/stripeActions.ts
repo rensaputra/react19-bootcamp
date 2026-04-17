@@ -2,6 +2,7 @@
 
 import { ProductInCart, User } from "@/types";
 import Stripe from "stripe";
+import { SIZES } from "@/types/product";
 
 export async function createCheckoutSession(
   cartItems: ProductInCart[],
@@ -24,7 +25,7 @@ export async function createCheckoutSession(
         price_data: {
           currency: "aud",
           product_data: {
-            name: `${item.name} (Size: ${item.size.replace("Size", "")})`,
+            name: `${item.name} (Size: ${SIZES[item.size]})`,
           },
           unit_amount: item.sellPrice * 100, // Convert to cents
         },
@@ -48,4 +49,10 @@ export async function createCheckoutSession(
   });
 
   return { clientSecret: checkoutSession.client_secret };
+}
+
+export async function retrieveCheckoutSession(sessionId: string) {
+  const stripeInstance = new Stripe(process.env.STRIPE_SECRET_KEY!);
+  const session = await stripeInstance.checkout.sessions.retrieve(sessionId);
+  return session;
 }
