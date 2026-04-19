@@ -21,3 +21,5 @@ export type Product = {
   updatedAt: Date;
   productType: ProductType;
 };
+
+export type ProductSize = "smallSize" | "mediumSize" | "largeSize";
