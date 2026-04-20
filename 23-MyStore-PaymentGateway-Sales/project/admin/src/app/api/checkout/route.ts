@@ -63,7 +63,6 @@ export async function POST(request: NextRequest) {
         SODateTime: SODateTime,
         grandTotalPrice: data.grandTotalPrice,
         paymentMode: data.paymentMode,
-        paymentDetails: data.paymentDetails,
       },
     });
 

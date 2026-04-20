@@ -82,3 +82,18 @@ https://github.com/rensaputra/react19-bootcamp/pull/6
 - Then I run `npm run db:dev` to apply the migrations and update the development database with the new sales master and sales transaction tables, ensuring the schema changes are reflected in the database structure.
 
 https://github.com/rensaputra/react19-bootcamp/pull/7
+
+## API to update database after the successful checkout
+
+- The API handles checkout by verifying the customer's JWT token to ensure secure authentication.
+- It updates the buyer's address and city, then adjusts product stock quantities based on the purchased items.
+- Sales master records are created to log overall order details, while individual sales transaction records track each product in the order.
+- Unix timestamps from Stripe payments are converted properly for database storage.
+
+https://github.com/rensaputra/react19-bootcamp/pull/8
+
+## Testing the checkout API using Postman
+
+- The checkout API is tested using Postman by sending a POST request with payment and checkout data extracted from the payment session.
+- Authorization is handled by including the JWT token in the request headers as a cookie to avoid unauthorized errors.
+- Successful API calls update the product stock and sales records in the database, confirming the order placement.

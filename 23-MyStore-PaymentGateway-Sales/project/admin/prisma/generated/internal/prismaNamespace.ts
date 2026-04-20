@@ -946,8 +946,7 @@ export const SalesMasterScalarFieldEnum = {
   bId: 'bId',
   SODateTime: 'SODateTime',
   grandTotalPrice: 'grandTotalPrice',
-  paymentMode: 'paymentMode',
-  paymentDetails: 'paymentDetails'
+  paymentMode: 'paymentMode'
 } as const
 
 export type SalesMasterScalarFieldEnum = (typeof SalesMasterScalarFieldEnum)[keyof typeof SalesMasterScalarFieldEnum]

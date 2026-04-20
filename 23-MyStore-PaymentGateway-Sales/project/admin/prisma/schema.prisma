@@ -62,7 +62,6 @@ model SalesMaster {
   SODateTime        DateTime
   grandTotalPrice   Float
   paymentMode       String
-  paymentDetails    String
   buyer             BuyerMaster        @relation(fields: [bId], references: [id])
   salesTransactions SalesTransaction[]
 }
