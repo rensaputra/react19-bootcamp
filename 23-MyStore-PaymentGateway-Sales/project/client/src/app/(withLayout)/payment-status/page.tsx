@@ -6,7 +6,8 @@ import {
   retrievePaymentMethod,
 } from "@/actions/stripeActions";
 import { redirect } from "next/navigation";
-import { PaymentStatusSession } from "@/types/api-response";
+import type { PaymentStatusSession } from "@/types/";
+import { updateCheckoutData } from "@/actions/checkoutActions";
 
 const PaymentStatusPage = async ({
   searchParams,
@@ -36,8 +37,8 @@ const PaymentStatusPage = async ({
       paymentMode: paymentMethod?.type || "unknown",
       products: JSON.parse(session?.metadata?.products || "{}"),
     };
-
-    return <PaymentStatus session={updatedResObj} />;
+    const response = await updateCheckoutData(updatedResObj);
+    return <PaymentStatus status={response?.message} />;
   } else {
     redirect("/");
   }
