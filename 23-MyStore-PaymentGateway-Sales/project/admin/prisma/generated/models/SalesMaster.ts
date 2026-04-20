@@ -42,7 +42,6 @@ export type SalesMasterMinAggregateOutputType = {
   SODateTime: Date | null
   grandTotalPrice: number | null
   paymentMode: string | null
-  paymentDetails: string | null
 }
 
 export type SalesMasterMaxAggregateOutputType = {
@@ -51,7 +50,6 @@ export type SalesMasterMaxAggregateOutputType = {
   SODateTime: Date | null
   grandTotalPrice: number | null
   paymentMode: string | null
-  paymentDetails: string | null
 }
 
 export type SalesMasterCountAggregateOutputType = {
@@ -60,7 +58,6 @@ export type SalesMasterCountAggregateOutputType = {
   SODateTime: number
   grandTotalPrice: number
   paymentMode: number
-  paymentDetails: number
   _all: number
 }
 
@@ -81,7 +78,6 @@ export type SalesMasterMinAggregateInputType = {
   SODateTime?: true
   grandTotalPrice?: true
   paymentMode?: true
-  paymentDetails?: true
 }
 
 export type SalesMasterMaxAggregateInputType = {
@@ -90,7 +86,6 @@ export type SalesMasterMaxAggregateInputType = {
   SODateTime?: true
   grandTotalPrice?: true
   paymentMode?: true
-  paymentDetails?: true
 }
 
 export type SalesMasterCountAggregateInputType = {
@@ -99,7 +94,6 @@ export type SalesMasterCountAggregateInputType = {
   SODateTime?: true
   grandTotalPrice?: true
   paymentMode?: true
-  paymentDetails?: true
   _all?: true
 }
 
@@ -195,7 +189,6 @@ export type SalesMasterGroupByOutputType = {
   SODateTime: Date
   grandTotalPrice: number
   paymentMode: string
-  paymentDetails: string
   _count: SalesMasterCountAggregateOutputType | null
   _avg: SalesMasterAvgAggregateOutputType | null
   _sum: SalesMasterSumAggregateOutputType | null
@@ -227,7 +220,6 @@ export type SalesMasterWhereInput = {
   SODateTime?: Prisma.DateTimeFilter<"SalesMaster"> | Date | string
   grandTotalPrice?: Prisma.FloatFilter<"SalesMaster"> | number
   paymentMode?: Prisma.StringFilter<"SalesMaster"> | string
-  paymentDetails?: Prisma.StringFilter<"SalesMaster"> | string
   buyer?: Prisma.XOR<Prisma.BuyerMasterScalarRelationFilter, Prisma.BuyerMasterWhereInput>
   salesTransactions?: Prisma.SalesTransactionListRelationFilter
 }
@@ -238,7 +230,6 @@ export type SalesMasterOrderByWithRelationInput = {
   SODateTime?: Prisma.SortOrder
   grandTotalPrice?: Prisma.SortOrder
   paymentMode?: Prisma.SortOrder
-  paymentDetails?: Prisma.SortOrder
   buyer?: Prisma.BuyerMasterOrderByWithRelationInput
   salesTransactions?: Prisma.SalesTransactionOrderByRelationAggregateInput
 }
@@ -252,7 +243,6 @@ export type SalesMasterWhereUniqueInput = Prisma.AtLeast<{
   SODateTime?: Prisma.DateTimeFilter<"SalesMaster"> | Date | string
   grandTotalPrice?: Prisma.FloatFilter<"SalesMaster"> | number
   paymentMode?: Prisma.StringFilter<"SalesMaster"> | string
-  paymentDetails?: Prisma.StringFilter<"SalesMaster"> | string
   buyer?: Prisma.XOR<Prisma.BuyerMasterScalarRelationFilter, Prisma.BuyerMasterWhereInput>
   salesTransactions?: Prisma.SalesTransactionListRelationFilter
 }, "id">
@@ -263,7 +253,6 @@ export type SalesMasterOrderByWithAggregationInput = {
   SODateTime?: Prisma.SortOrder
   grandTotalPrice?: Prisma.SortOrder
   paymentMode?: Prisma.SortOrder
-  paymentDetails?: Prisma.SortOrder
   _count?: Prisma.SalesMasterCountOrderByAggregateInput
   _avg?: Prisma.SalesMasterAvgOrderByAggregateInput
   _max?: Prisma.SalesMasterMaxOrderByAggregateInput
@@ -280,7 +269,6 @@ export type SalesMasterScalarWhereWithAggregatesInput = {
   SODateTime?: Prisma.DateTimeWithAggregatesFilter<"SalesMaster"> | Date | string
   grandTotalPrice?: Prisma.FloatWithAggregatesFilter<"SalesMaster"> | number
   paymentMode?: Prisma.StringWithAggregatesFilter<"SalesMaster"> | string
-  paymentDetails?: Prisma.StringWithAggregatesFilter<"SalesMaster"> | string
 }
 
 export type SalesMasterCreateInput = {
@@ -288,7 +276,6 @@ export type SalesMasterCreateInput = {
   SODateTime: Date | string
   grandTotalPrice: number
   paymentMode: string
-  paymentDetails: string
   buyer: Prisma.BuyerMasterCreateNestedOneWithoutSalesMastersInput
   salesTransactions?: Prisma.SalesTransactionCreateNestedManyWithoutSalesMasterInput
 }
@@ -299,7 +286,6 @@ export type SalesMasterUncheckedCreateInput = {
   SODateTime: Date | string
   grandTotalPrice: number
   paymentMode: string
-  paymentDetails: string
   salesTransactions?: Prisma.SalesTransactionUncheckedCreateNestedManyWithoutSalesMasterInput
 }
 
@@ -308,7 +294,6 @@ export type SalesMasterUpdateInput = {
   SODateTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   grandTotalPrice?: Prisma.FloatFieldUpdateOperationsInput | number
   paymentMode?: Prisma.StringFieldUpdateOperationsInput | string
-  paymentDetails?: Prisma.StringFieldUpdateOperationsInput | string
   buyer?: Prisma.BuyerMasterUpdateOneRequiredWithoutSalesMastersNestedInput
   salesTransactions?: Prisma.SalesTransactionUpdateManyWithoutSalesMasterNestedInput
 }
@@ -319,7 +304,6 @@ export type SalesMasterUncheckedUpdateInput = {
   SODateTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   grandTotalPrice?: Prisma.FloatFieldUpdateOperationsInput | number
   paymentMode?: Prisma.StringFieldUpdateOperationsInput | string
-  paymentDetails?: Prisma.StringFieldUpdateOperationsInput | string
   salesTransactions?: Prisma.SalesTransactionUncheckedUpdateManyWithoutSalesMasterNestedInput
 }
 
@@ -329,7 +313,6 @@ export type SalesMasterCreateManyInput = {
   SODateTime: Date | string
   grandTotalPrice: number
   paymentMode: string
-  paymentDetails: string
 }
 
 export type SalesMasterUpdateManyMutationInput = {
@@ -337,7 +320,6 @@ export type SalesMasterUpdateManyMutationInput = {
   SODateTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   grandTotalPrice?: Prisma.FloatFieldUpdateOperationsInput | number
   paymentMode?: Prisma.StringFieldUpdateOperationsInput | string
-  paymentDetails?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type SalesMasterUncheckedUpdateManyInput = {
@@ -346,7 +328,6 @@ export type SalesMasterUncheckedUpdateManyInput = {
   SODateTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   grandTotalPrice?: Prisma.FloatFieldUpdateOperationsInput | number
   paymentMode?: Prisma.StringFieldUpdateOperationsInput | string
-  paymentDetails?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type SalesMasterListRelationFilter = {
@@ -365,7 +346,6 @@ export type SalesMasterCountOrderByAggregateInput = {
   SODateTime?: Prisma.SortOrder
   grandTotalPrice?: Prisma.SortOrder
   paymentMode?: Prisma.SortOrder
-  paymentDetails?: Prisma.SortOrder
 }
 
 export type SalesMasterAvgOrderByAggregateInput = {
@@ -379,7 +359,6 @@ export type SalesMasterMaxOrderByAggregateInput = {
   SODateTime?: Prisma.SortOrder
   grandTotalPrice?: Prisma.SortOrder
   paymentMode?: Prisma.SortOrder
-  paymentDetails?: Prisma.SortOrder
 }
 
 export type SalesMasterMinOrderByAggregateInput = {
@@ -388,7 +367,6 @@ export type SalesMasterMinOrderByAggregateInput = {
   SODateTime?: Prisma.SortOrder
   grandTotalPrice?: Prisma.SortOrder
   paymentMode?: Prisma.SortOrder
-  paymentDetails?: Prisma.SortOrder
 }
 
 export type SalesMasterSumOrderByAggregateInput = {
@@ -462,7 +440,6 @@ export type SalesMasterCreateWithoutBuyerInput = {
   SODateTime: Date | string
   grandTotalPrice: number
   paymentMode: string
-  paymentDetails: string
   salesTransactions?: Prisma.SalesTransactionCreateNestedManyWithoutSalesMasterInput
 }
 
@@ -471,7 +448,6 @@ export type SalesMasterUncheckedCreateWithoutBuyerInput = {
   SODateTime: Date | string
   grandTotalPrice: number
   paymentMode: string
-  paymentDetails: string
   salesTransactions?: Prisma.SalesTransactionUncheckedCreateNestedManyWithoutSalesMasterInput
 }
 
@@ -509,7 +485,6 @@ export type SalesMasterScalarWhereInput = {
   SODateTime?: Prisma.DateTimeFilter<"SalesMaster"> | Date | string
   grandTotalPrice?: Prisma.FloatFilter<"SalesMaster"> | number
   paymentMode?: Prisma.StringFilter<"SalesMaster"> | string
-  paymentDetails?: Prisma.StringFilter<"SalesMaster"> | string
 }
 
 export type SalesMasterCreateWithoutSalesTransactionsInput = {
@@ -517,7 +492,6 @@ export type SalesMasterCreateWithoutSalesTransactionsInput = {
   SODateTime: Date | string
   grandTotalPrice: number
   paymentMode: string
-  paymentDetails: string
   buyer: Prisma.BuyerMasterCreateNestedOneWithoutSalesMastersInput
 }
 
@@ -527,7 +501,6 @@ export type SalesMasterUncheckedCreateWithoutSalesTransactionsInput = {
   SODateTime: Date | string
   grandTotalPrice: number
   paymentMode: string
-  paymentDetails: string
 }
 
 export type SalesMasterCreateOrConnectWithoutSalesTransactionsInput = {
@@ -551,7 +524,6 @@ export type SalesMasterUpdateWithoutSalesTransactionsInput = {
   SODateTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   grandTotalPrice?: Prisma.FloatFieldUpdateOperationsInput | number
   paymentMode?: Prisma.StringFieldUpdateOperationsInput | string
-  paymentDetails?: Prisma.StringFieldUpdateOperationsInput | string
   buyer?: Prisma.BuyerMasterUpdateOneRequiredWithoutSalesMastersNestedInput
 }
 
@@ -561,7 +533,6 @@ export type SalesMasterUncheckedUpdateWithoutSalesTransactionsInput = {
   SODateTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   grandTotalPrice?: Prisma.FloatFieldUpdateOperationsInput | number
   paymentMode?: Prisma.StringFieldUpdateOperationsInput | string
-  paymentDetails?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type SalesMasterCreateManyBuyerInput = {
@@ -569,7 +540,6 @@ export type SalesMasterCreateManyBuyerInput = {
   SODateTime: Date | string
   grandTotalPrice: number
   paymentMode: string
-  paymentDetails: string
 }
 
 export type SalesMasterUpdateWithoutBuyerInput = {
@@ -577,7 +547,6 @@ export type SalesMasterUpdateWithoutBuyerInput = {
   SODateTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   grandTotalPrice?: Prisma.FloatFieldUpdateOperationsInput | number
   paymentMode?: Prisma.StringFieldUpdateOperationsInput | string
-  paymentDetails?: Prisma.StringFieldUpdateOperationsInput | string
   salesTransactions?: Prisma.SalesTransactionUpdateManyWithoutSalesMasterNestedInput
 }
 
@@ -586,7 +555,6 @@ export type SalesMasterUncheckedUpdateWithoutBuyerInput = {
   SODateTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   grandTotalPrice?: Prisma.FloatFieldUpdateOperationsInput | number
   paymentMode?: Prisma.StringFieldUpdateOperationsInput | string
-  paymentDetails?: Prisma.StringFieldUpdateOperationsInput | string
   salesTransactions?: Prisma.SalesTransactionUncheckedUpdateManyWithoutSalesMasterNestedInput
 }
 
@@ -595,7 +563,6 @@ export type SalesMasterUncheckedUpdateManyWithoutBuyerInput = {
   SODateTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   grandTotalPrice?: Prisma.FloatFieldUpdateOperationsInput | number
   paymentMode?: Prisma.StringFieldUpdateOperationsInput | string
-  paymentDetails?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -635,7 +602,6 @@ export type SalesMasterSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   SODateTime?: boolean
   grandTotalPrice?: boolean
   paymentMode?: boolean
-  paymentDetails?: boolean
   buyer?: boolean | Prisma.BuyerMasterDefaultArgs<ExtArgs>
   salesTransactions?: boolean | Prisma.SalesMaster$salesTransactionsArgs<ExtArgs>
   _count?: boolean | Prisma.SalesMasterCountOutputTypeDefaultArgs<ExtArgs>
@@ -647,7 +613,6 @@ export type SalesMasterSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   SODateTime?: boolean
   grandTotalPrice?: boolean
   paymentMode?: boolean
-  paymentDetails?: boolean
   buyer?: boolean | Prisma.BuyerMasterDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["salesMaster"]>
 
@@ -657,7 +622,6 @@ export type SalesMasterSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   SODateTime?: boolean
   grandTotalPrice?: boolean
   paymentMode?: boolean
-  paymentDetails?: boolean
   buyer?: boolean | Prisma.BuyerMasterDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["salesMaster"]>
 
@@ -667,10 +631,9 @@ export type SalesMasterSelectScalar = {
   SODateTime?: boolean
   grandTotalPrice?: boolean
   paymentMode?: boolean
-  paymentDetails?: boolean
 }
 
-export type SalesMasterOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "bId" | "SODateTime" | "grandTotalPrice" | "paymentMode" | "paymentDetails", ExtArgs["result"]["salesMaster"]>
+export type SalesMasterOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "bId" | "SODateTime" | "grandTotalPrice" | "paymentMode", ExtArgs["result"]["salesMaster"]>
 export type SalesMasterInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   buyer?: boolean | Prisma.BuyerMasterDefaultArgs<ExtArgs>
   salesTransactions?: boolean | Prisma.SalesMaster$salesTransactionsArgs<ExtArgs>
@@ -695,7 +658,6 @@ export type $SalesMasterPayload<ExtArgs extends runtime.Types.Extensions.Interna
     SODateTime: Date
     grandTotalPrice: number
     paymentMode: string
-    paymentDetails: string
   }, ExtArgs["result"]["salesMaster"]>
   composites: {}
 }
@@ -1126,7 +1088,6 @@ export interface SalesMasterFieldRefs {
   readonly SODateTime: Prisma.FieldRef<"SalesMaster", 'DateTime'>
   readonly grandTotalPrice: Prisma.FieldRef<"SalesMaster", 'Float'>
   readonly paymentMode: Prisma.FieldRef<"SalesMaster", 'String'>
-  readonly paymentDetails: Prisma.FieldRef<"SalesMaster", 'String'>
 }
     
 

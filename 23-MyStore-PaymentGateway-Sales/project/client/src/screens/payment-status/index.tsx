@@ -1,8 +1,9 @@
-import Stripe from "stripe";
 import Link from "next/link";
 import { CheckBadgeIcon } from "@/components/icons";
+import { PaymentStatusSession } from "@/types";
 
-const PaymentStatus = ({ session }: { session: Stripe.Checkout.Session }) => {
+const PaymentStatus = ({ session }: { session: PaymentStatusSession }) => {
+  console.log("Payment Status Session:", JSON.stringify(session));
   return (
     <div className="flex justify-center items-center my-20">
       <div className="bg-white rounded-xl shadow-lg w-3xl px-10 py-20">

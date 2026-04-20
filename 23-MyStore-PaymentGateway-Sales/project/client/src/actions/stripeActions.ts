@@ -56,3 +56,17 @@ export async function retrieveCheckoutSession(sessionId: string) {
   const session = await stripeInstance.checkout.sessions.retrieve(sessionId);
   return session;
 }
+
+export async function retrievePaymentIntent(paymentIntentId: string) {
+  const stripeInstance = new Stripe(process.env.STRIPE_SECRET_KEY!);
+  const paymentIntent =
+    await stripeInstance.paymentIntents.retrieve(paymentIntentId);
+  return paymentIntent;
+}
+
+export async function retrievePaymentMethod(paymentMethodId: string) {
+  const stripeInstance = new Stripe(process.env.STRIPE_SECRET_KEY!);
+  const paymentMethod =
+    await stripeInstance.paymentMethods.retrieve(paymentMethodId);
+  return paymentMethod;
+}
