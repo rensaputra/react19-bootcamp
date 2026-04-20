@@ -23,7 +23,7 @@ export default async function ProductTypeScreen() {
         <table className="custom-table">
           <thead className="border-y-2 border-gray-400">
             <tr>
-              <th>Sr. No</th>
+              <th>#</th>
               <th>Product Type</th>
               <th>Action</th>
             </tr>

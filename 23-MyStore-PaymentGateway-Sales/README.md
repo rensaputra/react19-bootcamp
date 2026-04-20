@@ -105,3 +105,10 @@ https://github.com/rensaputra/react19-bootcamp/pull/8
 - Upon successful payment, the application dynamically displays a success message and updates product stock and sales records in the database.
 
 https://github.com/rensaputra/react19-bootcamp/pull/10
+
+## Creating buyer master section and rendering dynamic data in buyer table
+
+- Set up the buyers route and page component
+- Create server actions to fetch buyers data dynamically from the database, ensuring the user is authenticated via JWT token verification.
+
+https://github.com/rensaputra/react19-bootcamp/pull/11

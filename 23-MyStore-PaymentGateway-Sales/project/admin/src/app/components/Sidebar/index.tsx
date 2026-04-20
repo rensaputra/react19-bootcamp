@@ -8,6 +8,7 @@ import {
   SwatchIcon,
   ShoppingIcon,
   LogoutIcon,
+  BuyersIcon,
 } from "../icons";
 import { User } from "@/types/user";
 import { Button } from "../ui/Button";
@@ -34,6 +35,11 @@ export default function Sidebar({ userData }: { userData: User | null }) {
       text: "Products",
       url: "/products",
       icon: <ShoppingIcon />,
+    },
+    {
+      text: "Buyers",
+      url: "/buyers",
+      icon: <BuyersIcon />,
     },
   ];
 

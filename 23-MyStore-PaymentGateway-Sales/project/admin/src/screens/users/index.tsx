@@ -23,7 +23,7 @@ export default async function Users() {
         <table className="custom-table">
           <thead className="border-y-2 border-gray-400">
             <tr>
-              <th>Sr. No</th>
+              <th>#</th>
               <th>User Name</th>
               <th>Action</th>
             </tr>
