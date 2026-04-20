@@ -97,3 +97,11 @@ https://github.com/rensaputra/react19-bootcamp/pull/8
 - The checkout API is tested using Postman by sending a POST request with payment and checkout data extracted from the payment session.
 - Authorization is handled by including the JWT token in the request headers as a cookie to avoid unauthorized errors.
 - Successful API calls update the product stock and sales records in the database, confirming the order placement.
+
+## Integrating checkout API in the client section
+
+- The checkout API is integrated into the client section by creating a server action that sends payment and checkout data securely.
+- Authentication is managed by including the customer's JWT token in cookies to authorize the API request.
+- Upon successful payment, the application dynamically displays a success message and updates product stock and sales records in the database.
+
+https://github.com/rensaputra/react19-bootcamp/pull/10
