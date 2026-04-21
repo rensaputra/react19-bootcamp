@@ -19,10 +19,9 @@ export async function loginUser(formData: FormData) {
     },
   });
 
-  const isValidPassword = await bcrypt.compare(
-    data.password as string,
-    user?.password as string,
-  );
+  const isValidPassword = user
+    ? await bcrypt.compare(data.password as string, user?.password as string)
+    : false;
 
   if (!user || !isValidPassword) {
     return redirect(
