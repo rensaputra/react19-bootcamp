@@ -50,3 +50,7 @@
   @apply absolute top-2 right-2 p-1 bg-transparent rounded-lg text-gray-400 text-base
   ml-auto inline-flex items-center hover:text-gray-900;
 }
+
+.dashboard-card {
+  @apply border border-gray-200 rounded-xl shadow-md p-4 space-y-4;
+}
