@@ -1,9 +1,10 @@
-import Image from "next/image";
-
-export default function Home() {
+import { getDashboardData } from "@/actions/dashboardActions";
+import Dashboard from "@/screens/dashboard";
+export default async function Home() {
+  const dashboardData = await getDashboardData();
   return (
-    <div className="">
-      <h1>This is the admin section.</h1>
+    <div>
+      <Dashboard dashboardData={dashboardData} />
     </div>
   );
 }

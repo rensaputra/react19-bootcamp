@@ -45,3 +45,4 @@ Full-stack code dump from my 2026 React 19 bootcamp. Features Stripe integration
 - [21 - MyStore: Client Section](21-MyStore-ClientSection)
 - [22 - MyStore: Authentication](22-MyStore-Authentication)
 - [23 - MyStore: Payment Gateway & Sales](23-MyStore-PaymentGateway-Sales)
+- [24 - MyStore: Reports and Analysis (Charts)](24-MyStore-Reports-Analysis-Charts)
