@@ -1,15 +1,18 @@
 import type { DashboardData } from "@/types";
+
+import DashboardCard from "@/app/components/ui/DashboardCard";
+import RecentOrderSection from "./RecentOrderSection";
+
 const Dashboard = ({ dashboardData }: { dashboardData: DashboardData }) => {
+  const { recentOrders, ...summaryData } = dashboardData;
   return (
     <div>
       <div className="grid grid-cols-3 gap-5">
-        {Object.entries(dashboardData).map(([key, value]) => (
-          <div key={key} className="dashboard-card">
-            <h1 className="text-xl font-bold">{key}</h1>
-            <span className="text-3xl">{value}</span>
-          </div>
+        {Object.entries(summaryData).map(([label, value]) => (
+          <DashboardCard key={label} label={label} value={value} />
         ))}
       </div>
+      <RecentOrderSection />
     </div>
   );
 };

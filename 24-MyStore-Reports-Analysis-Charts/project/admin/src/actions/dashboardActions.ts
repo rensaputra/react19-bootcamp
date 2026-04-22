@@ -21,10 +21,22 @@ export const getDashboardData = async () => {
     0,
   );
 
+  const salesMasterData = await db.salesMaster.findMany({
+    include: {
+      buyer: true,
+      salesTransactions: true,
+    },
+    orderBy: {
+      SODateTime: "desc",
+    },
+    take: 5,
+  });
+
   const dashboardData = {
     totalBuyers: totalBuyers?.length || 0,
     totalCustomers: customerData?.length || 0,
-    totalRevenue: totalRevenue || 0,
+    totalRevenue: totalRevenue ? `$${totalRevenue.toFixed(2)}` : "-",
+    recentOrders: salesMasterData,
   };
 
   return dashboardData;
