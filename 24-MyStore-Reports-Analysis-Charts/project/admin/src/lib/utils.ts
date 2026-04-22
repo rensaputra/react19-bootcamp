@@ -49,3 +49,7 @@ export async function verifyJWT(token: string) {
     return false;
   }
 }
+
+export function formatDate(date: Date) {
+  return date.toLocaleDateString("en-AU");
+}

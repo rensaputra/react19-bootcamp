@@ -6,13 +6,13 @@ import RecentOrderSection from "./RecentOrderSection";
 const Dashboard = ({ dashboardData }: { dashboardData: DashboardData }) => {
   const { recentOrders, ...summaryData } = dashboardData;
   return (
-    <div>
+    <div className="space-y-5">
       <div className="grid grid-cols-3 gap-5">
         {Object.entries(summaryData).map(([label, value]) => (
           <DashboardCard key={label} label={label} value={value} />
         ))}
       </div>
-      <RecentOrderSection />
+      <RecentOrderSection orders={recentOrders} />
     </div>
   );
 };
