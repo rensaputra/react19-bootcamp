@@ -5,9 +5,11 @@ import { InformationIcon } from "@/app/components/icons";
 import { Button } from "@/app/components/ui/Button";
 import { useState } from "react";
 import PurchasedProductsModal from "@/app/components/ui/PurchasedProductsModal";
+import { SalesMaster } from "@/types";
 
-const RecentOrderSection = ({ orders }: { orders: any[] }) => {
+const RecentOrderSection = ({ orders }: { orders: SalesMaster[] }) => {
   const [showProductsModal, setShowProductsModal] = useState(false);
+  const [selectedOrder, setSelectedOrder] = useState<SalesMaster | null>(null);
 
   const toggleProductsModal = () => {
     setShowProductsModal((prev) => !prev);
@@ -32,7 +34,7 @@ const RecentOrderSection = ({ orders }: { orders: any[] }) => {
               orders.map((order, index) => (
                 <tr key={index}>
                   <td>{index + 1}</td>
-                  <td>{order.buyer.customerName}</td>
+                  <td>{order.buyer?.customerName}</td>
                   <td>{formatDate(order.SODateTime)}</td>
                   <td>{order.grandTotalPrice}</td>
                   <td>{order.paymentMode}</td>
@@ -40,7 +42,10 @@ const RecentOrderSection = ({ orders }: { orders: any[] }) => {
                     <Button
                       type="button"
                       className="bg-transparent text-blue-700 p-0 hover:cursor-pointer"
-                      onClick={toggleProductsModal}
+                      onClick={() => {
+                        setSelectedOrder(order);
+                        toggleProductsModal();
+                      }}
                     >
                       <InformationIcon />
                     </Button>
@@ -58,7 +63,10 @@ const RecentOrderSection = ({ orders }: { orders: any[] }) => {
         </table>
       </div>
       {showProductsModal && (
-        <PurchasedProductsModal onClose={toggleProductsModal} />
+        <PurchasedProductsModal
+          onClose={toggleProductsModal}
+          salesTransactions={selectedOrder?.salesTransactions}
+        />
       )}
     </>
   );

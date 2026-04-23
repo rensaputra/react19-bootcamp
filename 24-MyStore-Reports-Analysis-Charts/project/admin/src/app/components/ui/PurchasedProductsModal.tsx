@@ -1,6 +1,14 @@
 import { CloseIcon } from "@/app/components/icons";
+import { SalesTransaction } from "@/types";
 
-const PurchasedProductsModal = ({ onClose }: { onClose: () => void }) => {
+const PurchasedProductsModal = ({
+  onClose,
+  salesTransactions,
+}: {
+  onClose: () => void;
+  salesTransactions: SalesTransaction[] | undefined;
+}) => {
+  console.log("Sales Transactions:", salesTransactions);
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50">
       <div className="bg-black/50 fixed inset-0" onClick={onClose} />
@@ -10,6 +18,9 @@ const PurchasedProductsModal = ({ onClose }: { onClose: () => void }) => {
             <CloseIcon />
           </button>
           <h1>This is a purchased products modal.</h1>
+          <table>
+            <thead></thead>
+          </table>
         </div>
       </div>
     </div>
