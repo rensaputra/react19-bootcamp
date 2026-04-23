@@ -1,0 +1,19 @@
+import { CloseIcon } from "@/app/components/icons";
+
+const PurchasedProductsModal = ({ onClose }: { onClose: () => void }) => {
+  return (
+    <div className="fixed inset-0 flex items-center justify-center z-50">
+      <div className="bg-black/50 fixed inset-0" onClick={onClose} />
+      <div className="relative p-6 w-full max-w-lg h-full md:h-auto">
+        <div className="relative text-center bg-white rounded-lg shadow-lg p-6">
+          <button onClick={onClose} className="close-icon-btn">
+            <CloseIcon />
+          </button>
+          <h1>This is a purchased products modal.</h1>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default PurchasedProductsModal;
