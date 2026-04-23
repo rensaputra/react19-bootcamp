@@ -2,6 +2,7 @@ import type { DashboardData } from "@/types";
 
 import DashboardCard from "@/app/components/ui/DashboardCard";
 import RecentOrderSection from "./RecentOrderSection";
+import CustomLineChart from "@/app/components/charts/CustomLineChart";
 
 const Dashboard = ({ dashboardData }: { dashboardData: DashboardData }) => {
   const { recentOrders, ...summaryData } = dashboardData;
@@ -13,6 +14,9 @@ const Dashboard = ({ dashboardData }: { dashboardData: DashboardData }) => {
         ))}
       </div>
       <RecentOrderSection orders={recentOrders} />
+      <div className="w-full h-[300px] dashboard-card">
+        <CustomLineChart />
+      </div>
     </div>
   );
 };
