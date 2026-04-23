@@ -32,3 +32,19 @@
 - It covers formatting timestamps into a readable date format and improving UI spacing for better presentation.
 
 https://github.com/rensaputra/react19-bootcamp/pull/14
+
+## Preparing recent order report
+
+## Creating purchased products modal
+
+https://github.com/rensaputra/react19-bootcamp/pull/15/changes/01cfb3d82a2ffa0325bd62d75250b01edb94a530
+
+## Fetching purchased products in modal
+
+https://github.com/rensaputra/react19-bootcamp/pull/15/changes/5461f46aba33aa4c934ab16f0d5df08f3e340792
+
+## Render products in the purchased products table
+
+https://github.com/rensaputra/react19-bootcamp/pull/15/changes/194aba9978e4077427053595878250b2fa696395
+
+## Implemeting charts using Recharts

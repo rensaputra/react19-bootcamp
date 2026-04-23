@@ -24,7 +24,11 @@ export const getDashboardData = async () => {
   const salesMasterData = await db.salesMaster.findMany({
     include: {
       buyer: true,
-      salesTransactions: true,
+      salesTransactions: {
+        include: {
+          product: true,
+        },
+      },
     },
     orderBy: {
       SODateTime: "desc",
