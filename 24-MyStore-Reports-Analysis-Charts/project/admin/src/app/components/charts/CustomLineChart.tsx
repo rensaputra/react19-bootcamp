@@ -10,13 +10,7 @@ import {
   CartesianGrid,
 } from "recharts";
 
-const CustomLineChart = () => {
-  const data = [
-    { date: "21/04/2026", value: 100 },
-    { date: "22/04/2026", value: 80 },
-    { date: "23/04/2026", value: 120 },
-  ];
-
+const CustomLineChart = ({ data, yKey }: { data: any[]; yKey: string }) => {
   return (
     <>
       <ResponsiveContainer width="100%" height="100%">
@@ -25,7 +19,7 @@ const CustomLineChart = () => {
           <XAxis dataKey="date" />
           <YAxis />
           <Tooltip />
-          <Line type="monotone" dataKey="value" stroke="#8884d8" />
+          <Line type="monotone" dataKey={yKey} stroke="currentColor" />
         </LineChart>
       </ResponsiveContainer>
     </>

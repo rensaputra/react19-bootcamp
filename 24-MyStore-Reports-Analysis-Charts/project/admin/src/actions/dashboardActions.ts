@@ -36,11 +36,18 @@ export const getDashboardData = async () => {
     take: 5,
   });
 
+  const revenueByDate = await db.$queryRaw`
+  SELECT DATE(SODateTime) as date, SUM(grandTotalPrice) as total
+  FROM SalesMaster
+  GROUP BY DATE(SODateTime)
+  ORDER BY DATE(SODateTime) ASC`;
+
   const dashboardData = {
     totalBuyers: totalBuyers?.length || 0,
     totalCustomers: customerData?.length || 0,
     totalRevenue: totalRevenue ? `$${totalRevenue.toFixed(2)}` : "-",
     recentOrders: salesMasterData,
+    revenueByDate: revenueByDate,
   };
 
   return dashboardData;

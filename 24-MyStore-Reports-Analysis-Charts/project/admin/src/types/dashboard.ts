@@ -3,6 +3,7 @@ export interface DashboardData {
   totalCustomers: number;
   totalRevenue: string;
   recentOrders: SalesMaster[];
+  revenueByDate: any[];
 }
 
 export interface SalesMaster {

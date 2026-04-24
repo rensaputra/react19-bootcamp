@@ -18,6 +18,7 @@ Full-stack code dump from my 2026 React 19 bootcamp. Features Stripe integration
 - Prisma ORM
 - JOSE + JWT
 - Stripe API
+- [Recharts](https://recharts.github.io)
 
 ## Chapters
 
