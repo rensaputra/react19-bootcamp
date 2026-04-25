@@ -2,10 +2,11 @@ import type { DashboardData } from "@/types";
 
 import DashboardCard from "@/app/components/ui/DashboardCard";
 import RecentOrderSection from "./RecentOrderSection";
-import CustomLineChart from "@/app/components/charts/CustomLineChart";
+import ChartSection from "./ChartSection";
 
 const Dashboard = ({ dashboardData }: { dashboardData: DashboardData }) => {
-  const { recentOrders, ...summaryData } = dashboardData;
+  const { recentOrders, revenueByDate, customerCreatedByDate, ...summaryData } =
+    dashboardData;
   return (
     <div className="space-y-5">
       <div className="grid grid-cols-3 gap-5">
@@ -14,9 +15,10 @@ const Dashboard = ({ dashboardData }: { dashboardData: DashboardData }) => {
         ))}
       </div>
       <RecentOrderSection orders={recentOrders} />
-      <div className="w-full h-[300px] dashboard-card">
-        <CustomLineChart />
-      </div>
+      <ChartSection
+        revenueByDate={revenueByDate}
+        customerCreatedByDate={customerCreatedByDate}
+      />
     </div>
   );
 };

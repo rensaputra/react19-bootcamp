@@ -1,4 +1,5 @@
 import { db } from "@/lib/db";
+import { formatDate } from "@/lib/utils";
 
 export const getDashboardData = async () => {
   const customerData = await db.buyerMaster.findMany({
@@ -21,7 +22,7 @@ export const getDashboardData = async () => {
     0,
   );
 
-  const salesMasterData = await db.salesMaster.findMany({
+  const recentSalesMasterData = await db.salesMaster.findMany({
     include: {
       buyer: true,
       salesTransactions: {
@@ -36,11 +37,55 @@ export const getDashboardData = async () => {
     take: 5,
   });
 
+  const salesMasterData = await db.salesMaster.findMany({
+    include: {
+      buyer: true,
+      salesTransactions: {
+        include: {
+          product: true,
+        },
+      },
+    },
+    orderBy: {
+      SODateTime: "desc",
+    },
+  });
+
+  const revenueByDate = salesMasterData.reduce(
+    (acc, sales) => {
+      const dateKey = formatDate(sales.SODateTime);
+      const existingEntry = acc[dateKey] || {
+        date: dateKey,
+        total: 0,
+      };
+      existingEntry.total += sales.grandTotalPrice;
+      acc[dateKey] = existingEntry;
+      return acc;
+    },
+    {} as Record<string, { date: string; total: number }>,
+  );
+
+  const customerCreatedByDate = customerData.reduce(
+    (acc, customer) => {
+      const dateKey = formatDate(customer.createdAt);
+      const existingEntry = acc[dateKey] || {
+        date: dateKey,
+        total: 0,
+      };
+      existingEntry.total++;
+      acc[dateKey] = existingEntry;
+      return acc;
+    },
+    {} as Record<string, { date: string; total: number }>,
+  );
+
   const dashboardData = {
     totalBuyers: totalBuyers?.length || 0,
     totalCustomers: customerData?.length || 0,
     totalRevenue: totalRevenue ? `$${totalRevenue.toFixed(2)}` : "-",
-    recentOrders: salesMasterData,
+    recentOrders: recentSalesMasterData,
+    revenueByDate: Object.values(revenueByDate).reverse(),
+    customerCreatedByDate: Object.values(customerCreatedByDate),
   };
 
   return dashboardData;
