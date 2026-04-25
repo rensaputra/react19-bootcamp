@@ -4,6 +4,7 @@ export interface DashboardData {
   totalRevenue: string;
   recentOrders: SalesMaster[];
   revenueByDate: any[];
+  customerCreatedByDate: any[];
 }
 
 export interface SalesMaster {

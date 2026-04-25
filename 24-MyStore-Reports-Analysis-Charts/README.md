@@ -48,3 +48,7 @@ https://github.com/rensaputra/react19-bootcamp/pull/15/changes/5461f46aba33aa4c9
 https://github.com/rensaputra/react19-bootcamp/pull/15/changes/194aba9978e4077427053595878250b2fa696395
 
 ## Implemeting charts using Recharts
+
+## Preparing and rendering sales report chart
+
+https://github.com/rensaputra/react19-bootcamp/pull/16
