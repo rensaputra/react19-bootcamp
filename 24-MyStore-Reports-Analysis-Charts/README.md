@@ -81,7 +81,7 @@ https://github.com/rensaputra/react19-bootcamp/pull/15/changes/194aba9978e407742
 - It highlights styling techniques to ensure the chart's line color inherits from the parent component's text color for consistent UI design.
 - In CSS, the keyword `currentColor` is used to make an element's color inherit the current text color of its parent.
 
-https://github.com/rensaputra/react19-bootcamp/pull/16
+https://github.com/rensaputra/react19-bootcamp/pull/16/changes/a6f088b2bff2b50e446c3013b4128c6e3b76b0bc
 
 ## Preparing and creating customers report chart
 
@@ -92,4 +92,4 @@ https://github.com/rensaputra/react19-bootcamp/pull/16
 - Passing dashboard data as props to the chart component enables dynamic rendering of charts based on the data.
 - Importing and using custom chart components within this section helps organize the UI and promotes component reuse.
 
-https://github.com/rensaputra/react19-bootcamp/pull/17
+https://github.com/rensaputra/react19-bootcamp/pull/16/changes/b24403d15d98dd296c9e8d9f4e192c4a05cf0f49

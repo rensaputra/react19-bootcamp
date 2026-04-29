@@ -14,7 +14,7 @@ Full-stack code dump from my 2026 React 19 bootcamp. Features Stripe integration
 - NodeJS
 - ExpressJS
 - Vite
-- SQlite and MySQL
+- SQlite and PostgreSQL
 - Prisma ORM
 - JOSE + JWT
 - Stripe API
@@ -47,3 +47,4 @@ Full-stack code dump from my 2026 React 19 bootcamp. Features Stripe integration
 - [22 - MyStore: Authentication](22-MyStore-Authentication)
 - [23 - MyStore: Payment Gateway & Sales](23-MyStore-PaymentGateway-Sales)
 - [24 - MyStore: Reports and Analysis (Charts)](24-MyStore-Reports-Analysis-Charts)
+- [25 - MyStore: Deployment](25-MyStore-Deployment)
