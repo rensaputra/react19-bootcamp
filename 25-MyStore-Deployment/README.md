@@ -41,3 +41,10 @@ https://github.com/rensaputra/MyStore-Client
   - Exporting the data from SQLite to a CSV file and then importing it into PostgreSQL
     - In DBeaver, right-click SQLLite table > Export Data > CSV
     - In Supabase Dashboard, go to the Table Editor > Select Table > Insert > Import Data from CSV
+
+## Link the MySQL database to admin application
+
+- I installed the `pg` and `@prisma/adapter-pg` packages to enable PostgreSQL support
+- Updated the `db` util file
+- Run `npx prisma generate` to regenerate the Prisma client with the new database configuration
+- Test the connection by running the application and ensuring that it can successfully connect to the PostgreSQL database and perform CRUD operations as expected.
