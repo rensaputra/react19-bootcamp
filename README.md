@@ -19,6 +19,7 @@ Full-stack code dump from my 2026 React 19 bootcamp. Features Stripe integration
 - JOSE + JWT
 - Stripe API
 - [Recharts](https://recharts.github.io)
+- Vercel and Supabase
 
 ## Chapters
 

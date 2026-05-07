@@ -42,9 +42,31 @@ https://github.com/rensaputra/MyStore-Client
     - In DBeaver, right-click SQLLite table > Export Data > CSV
     - In Supabase Dashboard, go to the Table Editor > Select Table > Insert > Import Data from CSV
 
-## Link the MySQL database to admin application
+## Link the PostgreSQL database to admin application
 
 - I installed the `pg` and `@prisma/adapter-pg` packages to enable PostgreSQL support
 - Updated the `db` util file
 - Run `npx prisma generate` to regenerate the Prisma client with the new database configuration
 - Test the connection by running the application and ensuring that it can successfully connect to the PostgreSQL database and perform CRUD operations as expected.
+
+  https://github.com/rensaputra/MyStore-Admin/commit/8e7d243bd4794decb8097ed56f1fd5016ddbc463
+
+## Deploying admin app on Vercel
+
+- You need to update the build script to generate the Prisma schema along with building the Next.js app before deployment.
+- When deploying on Vercel, configure environment variables like the database URL and JWT secret to match your local .env settings.
+- After deployment, use the Vercel dashboard to monitor deployment status, logs, analytics, and manage settings like environment variables and git configurations.
+- Troubleshooting deployment issues often involves checking logs and ensuring database connectivity and authentication are correctly set up.
+
+https://my-store-admin-sigma.vercel.app/
+
+## Deploying client app on Vercel
+
+- Configure environment variables carefully, including base URLs and Stripe keys, to ensure the app connects correctly to backend services.
+- Address build errors by following React best practices, such as wrapping asynchronous hooks like useSearchParams with Suspense for proper loading state management.
+- After deployment, fix issues like image rendering by setting the correct domains in configuration files (e.g., next.config.js).  
+  `https://github.com/rensaputra/MyStore-Client/commit/ecfdfcf5d2ddcffa208e4631d20c0140f49b8b1a`
+- Use environment variables to make URLs dynamic, such as the payment redirect URL, to avoid hardcoding localhost addresses.
+- Push changes to GitHub and redeploy on Vercel to apply fixes and updates.
+
+https://my-store-client-ten.vercel.app/
