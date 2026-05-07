@@ -49,3 +49,4 @@ Full-stack code dump from my 2026 React 19 bootcamp. Features Stripe integration
 - [23 - MyStore: Payment Gateway & Sales](23-MyStore-PaymentGateway-Sales)
 - [24 - MyStore: Reports and Analysis (Charts)](24-MyStore-Reports-Analysis-Charts)
 - [25 - MyStore: Deployment](25-MyStore-Deployment)
+- [26 - Bit-Sized Project: Email OTP Verification](26-Project-Email-OTP-Verification)
