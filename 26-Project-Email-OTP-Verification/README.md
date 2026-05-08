@@ -40,3 +40,9 @@
 - Using React Router is the preferred way to manage multiple forms or views, like email verification and OTP verification, by creating separate routes instead of conditionally rendering forms in the same component.
 - The setup involves installing the react-router package, wrapping your app with the BrowserRouter component, and defining individual Route components for each path.
 - This approach keeps your code cleaner, easier to maintain, and improves navigation by mapping URLs to components.
+
+## Creating OTP verification card
+
+- You learned how to create an OTP verification card component by adapting an existing email verification component, updating titles, labels, input types, and button text to fit the OTP use case.
+- The video demonstrates styling techniques using Tailwind CSS classes to center text, add margins, emphasize text with font weight, and arrange elements with flexbox for a clean layout.
+- It shows how to include additional UI elements like displaying the email address where the OTP was sent and adding a resend button with appropriate styling.
