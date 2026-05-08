@@ -27,3 +27,10 @@
 - Tailwind CSS uses utility classes (like `text-lg`, `bg-blue-500`) instead of pre-built components, helping you avoid writing custom CSS.
 - It optimizes performance by removing unused styles, which reduces the final CSS size.
 - To install Tailwind with npm, follow the [official Tailwind CSS installation guide](https://tailwindcss.com/docs/installation/using-vite).
+
+## Creating card for email verification
+
+- How to create a clean, styled card layout using Tailwind CSS utility classes for borders, padding, shadows, rounded corners, and width control.
+- Techniques to center text and use flexbox for form layout, including styling labels, input fields, and adding spacing.
+- Styling a full-width submit button with background color, padding, and rounded edges.
+- Setting background colors for the page and card container to make the card visually stand out.
