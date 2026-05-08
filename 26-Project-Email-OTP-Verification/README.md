@@ -46,3 +46,10 @@
 - You learned how to create an OTP verification card component by adapting an existing email verification component, updating titles, labels, input types, and button text to fit the OTP use case.
 - The video demonstrates styling techniques using Tailwind CSS classes to center text, add margins, emphasize text with font weight, and arrange elements with flexbox for a clean layout.
 - It shows how to include additional UI elements like displaying the email address where the OTP was sent and adding a resend button with appropriate styling.
+
+## Handling form values
+
+- Use React's useState hook to create state variables for form inputs like email and OTP, initializing them with empty strings.
+- Create event handler functions (e.g., `onChangeHandler`) to update state based on user input by accessing event.target.value.
+- Prevent the default form submission behavior using `e.preventDefault()` in the submit handler to avoid page refresh and keep input data intact.
+- Log or process the input values on form submission to handle user data effectively.
