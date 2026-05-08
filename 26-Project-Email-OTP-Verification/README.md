@@ -21,3 +21,9 @@
 - The folder structure includes a src folder for components and assets, plus configuration files like vite.config.js for customizing the build and development server.
 - The development server runs on port 5173, and you can view the default Vite React screen by opening localhost:5173 in your browser.
 - The next step after setup is installing Tailwind CSS to style the application.
+
+## Install and configure Tailwind CSS
+
+- Tailwind CSS uses utility classes (like `text-lg`, `bg-blue-500`) instead of pre-built components, helping you avoid writing custom CSS.
+- It optimizes performance by removing unused styles, which reduces the final CSS size.
+- To install Tailwind with npm, follow the [official Tailwind CSS installation guide](https://tailwindcss.com/docs/installation/using-vite).
