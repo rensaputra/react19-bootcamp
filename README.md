@@ -6,7 +6,7 @@ Full-stack code dump from my 2026 React 19 bootcamp. Features Stripe integration
 
 ## Tech used 🏗️
 
-- React
+- React and React Router
 - TypeScript
 - NextJS
 - Redux and RTK

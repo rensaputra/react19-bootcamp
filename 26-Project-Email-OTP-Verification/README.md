@@ -34,3 +34,9 @@
 - Techniques to center text and use flexbox for form layout, including styling labels, input fields, and adding spacing.
 - Styling a full-width submit button with background color, padding, and rounded edges.
 - Setting background colors for the page and card container to make the card visually stand out.
+
+## Creating routes
+
+- Using React Router is the preferred way to manage multiple forms or views, like email verification and OTP verification, by creating separate routes instead of conditionally rendering forms in the same component.
+- The setup involves installing the react-router package, wrapping your app with the BrowserRouter component, and defining individual Route components for each path.
+- This approach keeps your code cleaner, easier to maintain, and improves navigation by mapping URLs to components.
