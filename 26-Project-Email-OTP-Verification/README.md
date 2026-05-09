@@ -109,3 +109,9 @@
 - Future improvement could include to use a database like Redis for better performance and scalability, especially in production environments where multiple server instances may be running.
 - We created a new POST API endpoint to verify the OTP by checking the stored value, handling cases like missing or expired OTPs, and sending appropriate success or error responses.
 - We delete the OTP from the Map after successful verification to maintain security and prevent reuse.
+
+## Set OTP expiration time
+
+- OTPs should have a limited validity period; this video shows how to store an expiration timestamp alongside the OTP to enforce this.
+- The expiration time is set by adding 10 minutes to the current time when the OTP is generated, and this information is communicated to the user in the email.
+- During OTP verification, the system checks if the current time is within the expiration window; if expired, it deletes the OTP record and returns an error message.

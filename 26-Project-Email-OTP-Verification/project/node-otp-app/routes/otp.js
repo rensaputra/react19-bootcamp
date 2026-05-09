@@ -28,6 +28,7 @@ router.post("/send-otp", async (req, res) => {
       <div style="font-family: Arial, sans-serif, max-width: 600px; margin: 0 auto;">
         <h2>Your OTP (One-Time Password) code is:</h2>
         <div style="background-color:#f4f4f4; padding: 20px; text-align: center; border-radius: 5px; margin: 20px 0;"><h1 style="color:#007bff; font-size:32px; margin: 0; letter-spacing: 5px;">${otp}</h1></div>
+        <p><strong>This code will expire in 10 minutes.</strong></p>
       </div>`,
     };
 
@@ -35,7 +36,10 @@ router.post("/send-otp", async (req, res) => {
       .send(msg)
       .then(() => {
         res.status(200).json({ message: "OTP sent successfully" });
-        otpStore.set(email, { otp });
+        otpStore.set(email, {
+          otp,
+          expiresAt: new Date(Date.now() + 10 * 60 * 1000), // OTP expires in 10 minutes
+        });
       })
       .catch((error) => {
         console.error(error);
@@ -57,6 +61,13 @@ router.post("/verify-otp", async (req, res) => {
     if (!storedData) {
       return res.status(400).json({
         message: "OTP not found or expired. Please request a new one.",
+      });
+    }
+
+    if (new Date() > storedData.expiresAt) {
+      otpStore.delete(email); // Remove expired OTP
+      return res.status(400).json({
+        message: "OTP has expired. Please request a new one.",
       });
     }
 
