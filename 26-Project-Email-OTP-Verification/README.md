@@ -75,3 +75,9 @@
 - We created a POST API endpoint in ExpressJS that accepts the user's email in the request body.
 - The API generates a random six-digit OTP using node's crypto module and sends it back in a JSON response.
 - Proper error handling is implemented using try-catch blocks, with meaningful HTTP status codes for missing email input (400) and server errors (500).
+
+## Postman installation
+
+- We will use Postman as our API testing tool to send requests to our Express server and verify the functionality of our endpoints.
+- Postman allows us to test various HTTP methods (GET, POST, etc.), set request headers, and view responses in a user-friendly interface.
+- Download postman from the offcial website: https://www.postman.com/downloads/ and install it on your machine to start testing your APIs.
