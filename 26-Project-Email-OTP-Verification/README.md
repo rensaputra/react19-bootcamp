@@ -102,3 +102,10 @@
 - The API key is stored securely in environment variables using a .env file and accessed in the code with the dotenv package to avoid hardcoding sensitive information.
 - I then installed the @sendgrid/mail package to send emails programmatically, I then imported it into the Express route handler, set the API key, and created a message object with recipient, sender, subject, and HTML content to send the OTP email.
 - I was able to test the email sending functionality by making a POST request to the /send-otp endpoint with an email address, and I received the OTP email successfully, demonstrating the integration of SendGrid for email delivery in our application.
+
+## Creating API to verify OTP
+
+- We use JavaScript's Map object to temporarily store OTPs with email as the key, which is useful for caching and session management without a database.
+- Future improvement could include to use a database like Redis for better performance and scalability, especially in production environments where multiple server instances may be running.
+- We created a new POST API endpoint to verify the OTP by checking the stored value, handling cases like missing or expired OTPs, and sending appropriate success or error responses.
+- We delete the OTP from the Map after successful verification to maintain security and prevent reuse.

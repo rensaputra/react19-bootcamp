@@ -6,6 +6,8 @@ const router = express.Router();
 const sgMail = require("@sendgrid/mail");
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
+const otpStore = new Map(); // In-memory store for OTPs
+
 router.post("/send-otp", async (req, res) => {
   try {
     const { email } = req.body;
@@ -33,6 +35,7 @@ router.post("/send-otp", async (req, res) => {
       .send(msg)
       .then(() => {
         res.status(200).json({ message: "OTP sent successfully" });
+        otpStore.set(email, { otp });
       })
       .catch((error) => {
         console.error(error);
@@ -40,6 +43,36 @@ router.post("/send-otp", async (req, res) => {
       });
   } catch (error) {
     res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+router.post("/verify-otp", async (req, res) => {
+  try {
+    const { email, otp } = req.body;
+    if (!email || !otp) {
+      return res.status(400).json({ message: "Email and OTP are required" });
+    }
+
+    const storedData = otpStore.get(email);
+    if (!storedData) {
+      return res.status(400).json({
+        message: "OTP not found or expired. Please request a new one.",
+      });
+    }
+
+    if (storedData.otp === otp) {
+      otpStore.delete(email); // Remove the used OTP
+      return res.status(200).json({ message: "OTP verified successfully!" });
+    } else {
+      return res
+        .status(400)
+        .json({ message: "Invalid OTP. Please try again." });
+    }
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ message: "Failed to verify OTP, please try again." });
   }
 });
 
