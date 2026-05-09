@@ -61,3 +61,11 @@
 - The server runs continuously on a specified port, allowing it to listen for client requests.
 - Best practice includes using a .env file to store configuration values like the port number, accessed in code via the dotenv package, avoiding hardcoding sensitive or environment-specific data.
 - To use .env files, install dotenv with `npm install dotenv`, create a .env file with key-value pairs (e.g., `PORT_NUMBER=5000`), and load it in your server code with `require('dotenv').config()`.
+
+## Creating basic GET API
+
+- You learned how to create a basic GET API endpoint using ExpressJS in a Node.js server, including handling requests and sending responses with appropriate status codes.
+- `app.listen()` is used to start the server and listen for incoming requests on a specified port, while `app.get()` defines a route handler for GET requests to a specific path.
+- `app.get()` calls a callback function when a request is made to the defined route, allowing you to send a response back to the client using `res.status().json()` or similar methods.
+- The video highlights the importance of restarting the server to see code changes and introduces `nodemon`, a tool that automatically restarts the server on code updates, improving development workflow.
+- Understanding API endpoints as specific URLs on the server that clients communicate with is essential for building web applications that interact with databases and external services.
