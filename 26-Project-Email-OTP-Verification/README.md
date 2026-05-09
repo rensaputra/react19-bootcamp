@@ -93,3 +93,12 @@
 - Using express.Router allows you to organize related routes into separate files, creating modular and maintainable backend code.
 - The router instance acts as a lightweight mini app and middleware, improving application performance by handling routes efficiently.
 - You can mount these routers in the main Express app with app.use, optionally adding a common prefix like '/api' to group related routes.
+
+## Sending email using SendGrid
+
+- We explored how to integrate SendGrid, a cloud-based email delivery service, into a Node.js application to send OTPs via email securely and reliably.
+- First I signed up for a Twilio SendGrid account, then I authenticated my domain and verified my email address to ensure successful email delivery.
+- I created an API key in SendGrid, which is used to authenticate requests from the server to SendGrid's API for sending emails.
+- The API key is stored securely in environment variables using a .env file and accessed in the code with the dotenv package to avoid hardcoding sensitive information.
+- I then installed the @sendgrid/mail package to send emails programmatically, I then imported it into the Express route handler, set the API key, and created a message object with recipient, sender, subject, and HTML content to send the OTP email.
+- I was able to test the email sending functionality by making a POST request to the /send-otp endpoint with an email address, and I received the OTP email successfully, demonstrating the integration of SendGrid for email delivery in our application.

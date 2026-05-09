@@ -1,7 +1,10 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const crypto = require("crypto");
 const router = express.Router();
+const sgMail = require("@sendgrid/mail");
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 router.post("/send-otp", async (req, res) => {
   try {
@@ -11,7 +14,30 @@ router.post("/send-otp", async (req, res) => {
     }
 
     const otp = crypto.randomInt(0, 1000000).toString().padStart(6, "0");
-    res.status(200).json({ email, otp });
+
+    const msg = {
+      to: email, // Change to your recipient
+      from: {
+        email: process.env.FROM_EMAIL,
+        name: process.env.FROM_NAME,
+      },
+      subject: "Your OTP Verification Code",
+      html: `
+      <div style="font-family: Arial, sans-serif, max-width: 600px; margin: 0 auto;">
+        <h2>Your OTP (One-Time Password) code is:</h2>
+        <div style="background-color:#f4f4f4; padding: 20px; text-align: center; border-radius: 5px; margin: 20px 0;"><h1 style="color:#007bff; font-size:32px; margin: 0; letter-spacing: 5px;">${otp}</h1></div>
+      </div>`,
+    };
+
+    sgMail
+      .send(msg)
+      .then(() => {
+        res.status(200).json({ message: "OTP sent successfully" });
+      })
+      .catch((error) => {
+        console.error(error);
+        res.status(500).json({ message: "Failed to send OTP" });
+      });
   } catch (error) {
     res.status(500).json({ message: "Internal server error" });
   }
