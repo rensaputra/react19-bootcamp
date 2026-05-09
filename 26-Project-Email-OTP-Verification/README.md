@@ -64,8 +64,14 @@
 
 ## Creating basic GET API
 
-- You learned how to create a basic GET API endpoint using ExpressJS in a Node.js server, including handling requests and sending responses with appropriate status codes.
+- We created a basic GET API endpoint using ExpressJS in a Node.js server, including handling requests and sending responses with appropriate status codes.
 - `app.listen()` is used to start the server and listen for incoming requests on a specified port, while `app.get()` defines a route handler for GET requests to a specific path.
 - `app.get()` calls a callback function when a request is made to the defined route, allowing you to send a response back to the client using `res.status().json()` or similar methods.
 - The video highlights the importance of restarting the server to see code changes and introduces `nodemon`, a tool that automatically restarts the server on code updates, improving development workflow.
 - Understanding API endpoints as specific URLs on the server that clients communicate with is essential for building web applications that interact with databases and external services.
+
+## Creating a simple POST API
+
+- We created a POST API endpoint in ExpressJS that accepts the user's email in the request body.
+- The API generates a random six-digit OTP using node's crypto module and sends it back in a JSON response.
+- Proper error handling is implemented using try-catch blocks, with meaningful HTTP status codes for missing email input (400) and server errors (500).
