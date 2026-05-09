@@ -53,3 +53,11 @@
 - Create event handler functions (e.g., `onChangeHandler`) to update state based on user input by accessing event.target.value.
 - Prevent the default form submission behavior using `e.preventDefault()` in the submit handler to avoid page refresh and keep input data intact.
 - Log or process the input values on form submission to handle user data effectively.
+
+## Setting up Express server using Node.js
+
+- You learned how to initialize a Node.js project and create a server using the ExpressJS framework, which simplifies server setup and routing.
+- First you run `npm init -y` to create a package.json file, then install Express with `npm install express`.
+- The server runs continuously on a specified port, allowing it to listen for client requests.
+- Best practice includes using a .env file to store configuration values like the port number, accessed in code via the dotenv package, avoiding hardcoding sensitive or environment-specific data.
+- To use .env files, install dotenv with `npm install dotenv`, create a .env file with key-value pairs (e.g., `PORT_NUMBER=5000`), and load it in your server code with `require('dotenv').config()`.
