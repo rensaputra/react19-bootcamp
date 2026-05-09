@@ -87,3 +87,9 @@
 - Postman is used as a tool to test POST API requests by sending JSON data, such as an email, to the server without needing a real client app.
 - An internal server error (status 500) occurred because the server was not parsing the incoming JSON payload; this was fixed by adding the `express.json()` middleware to parse request bodies.
 - Middleware in ExpressJS acts as a function that runs between the request and response, allowing you to process data like JSON before handling it further.
+
+## Organizing routes with `express.Router()`
+
+- Using express.Router allows you to organize related routes into separate files, creating modular and maintainable backend code.
+- The router instance acts as a lightweight mini app and middleware, improving application performance by handling routes efficiently.
+- You can mount these routers in the main Express app with app.use, optionally adding a common prefix like '/api' to group related routes.
