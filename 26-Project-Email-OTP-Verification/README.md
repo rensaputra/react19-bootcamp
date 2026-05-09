@@ -81,3 +81,9 @@
 - We will use Postman as our API testing tool to send requests to our Express server and verify the functionality of our endpoints.
 - Postman allows us to test various HTTP methods (GET, POST, etc.), set request headers, and view responses in a user-friendly interface.
 - Download postman from the offcial website: https://www.postman.com/downloads/ and install it on your machine to start testing your APIs.
+
+## Making a POST request from Postman
+
+- Postman is used as a tool to test POST API requests by sending JSON data, such as an email, to the server without needing a real client app.
+- An internal server error (status 500) occurred because the server was not parsing the incoming JSON payload; this was fixed by adding the `express.json()` middleware to parse request bodies.
+- Middleware in ExpressJS acts as a function that runs between the request and response, allowing you to process data like JSON before handling it further.

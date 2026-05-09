@@ -1,7 +1,7 @@
 const express = require("express");
 const crypto = require("crypto");
 const app = express();
-app.use(express.json());
+app.use(express.json()); // Middleware for parsing JSON
 
 require("dotenv").config();
 
