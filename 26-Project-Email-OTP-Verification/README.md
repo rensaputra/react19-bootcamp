@@ -115,3 +115,16 @@
 - OTPs should have a limited validity period; this video shows how to store an expiration timestamp alongside the OTP to enforce this.
 - The expiration time is set by adding 10 minutes to the current time when the OTP is generated, and this information is communicated to the user in the email.
 - During OTP verification, the system checks if the current time is within the expiration window; if expired, it deletes the OTP record and returns an error message.
+
+## API Integration for sending OTP
+
+- In this part we are integrating the frontend react form with the backend API `send-otp`, including making the email input required and sending the email via a POST fetch request.
+- It demonstrates handling API responses to redirect users on success (using react-router useNavigate) or display error messages, and how to encode the email safely in the URL for the OTP verification page.
+- The video covers managing a loading state to disable the submit button during the API call and addresses CORS errors by configuring the backend with the CORS middleware.
+- We installed the `cors` package in the backend, imported it, and used `app.use(cors())` to allow cross-origin requests from the frontend, enabling successful communication between the React app and Express server.
+
+## Integrating API to Verify the OTP
+
+- We implemented React Router's useSearchParams hook to retrieve and display the email from URL parameters in the OTP verification component.
+- The video demonstrates reusing API call logic for OTP verification, managing loading state to disable the verify button during API calls, and handling success and error responses with alerts and navigation.
+- It highlights adding a resend OTP feature for better user experience and addresses data type mismatches in OTP validation to avoid errors.
